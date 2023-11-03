@@ -51,7 +51,8 @@ export const useStore = create((set,get) => ({
       }
     })
 
-      set(state=>({...state,shopCart:state.shopCart-1,goodCart:goodCartNew}))
+      set(state=>({...state,shopCart:state.shopCart-1,goodCart:[...goodCartNew]}))
+      localStorage.removeItem('state')
       localStorage.setItem("state",JSON.stringify(get()))
 
   },
@@ -69,10 +70,10 @@ export const useStore = create((set,get) => ({
    return isGoodInCart
   },
   getPrice(){
-    [].red
+    
     let price=0
     price=get().goodCart.reduce((totalCost, object) => {
-      return totalCost + ((object.unique_price!=0?object.unique_price:false)||object.cost || 0);
+      return totalCost + ((object.unique_price!=0?object.unique_price:object.cost )||object.cost || 0);
     }, 0);
     return price
   }
