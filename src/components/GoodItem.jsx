@@ -29,7 +29,7 @@ export default function GoodItem({good}) {
         setFlagBuy(pre=>!pre)
     }
   return (
-<Card raised sx={{ maxWidth: 445,marginBottom:3 }}>
+<Card raised sx={{ maxWidth: 445,marginBottom:3,border:`${good.unique_price!=0?"2px solid red":""}` }} >
       <CardMedia
           component="img"
 
@@ -49,7 +49,10 @@ export default function GoodItem({good}) {
           {good.name}
         </Typography>
         <Typography gutterBottom variant="h6" component="div">
-          {good.cost} грн.
+            {
+                good.unique_price!=0?`Ціна тижня  ${good.unique_price} грн. замість старої ціни : ${good.cost} грн.`:""
+            }
+       
         </Typography>
         <Typography variant="body2" color="text.secondary">
             {good.text}

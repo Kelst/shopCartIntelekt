@@ -72,7 +72,7 @@ export const useStore = create((set,get) => ({
     [].red
     let price=0
     price=get().goodCart.reduce((totalCost, object) => {
-      return totalCost + (object.cost || 0);
+      return totalCost + ((object.unique_price!=0?object.unique_price:false)||object.cost || 0);
     }, 0);
     return price
   }
