@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Смуга прокрутки (для WebKit браузерів) */
+::-webkit-scrollbar {
+    width: 0; /* Зробити ширину смуги прокрутки нульовою */
+    height: 0; /* Зробити висоту смуги прокрутки нульовою */
+  }
+  
+  /* Фон смуги прокрутки (для WebKit браузерів) */
+  ::-webkit-scrollbar-track {
+    background: transparent; /* Зробити фон смуги прокрутки прозорим */
+  }
+  
+  /* Ползунок смуги прокрутки (для WebKit браузерів) */
+  ::-webkit-scrollbar-thumb {
+    background: transparent; /* Зробити ползунок смуги прокрутки прозорим */
+  }

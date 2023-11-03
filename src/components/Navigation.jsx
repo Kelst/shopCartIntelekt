@@ -18,6 +18,8 @@ import { Link } from 'react-router-dom';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useStore } from '../store';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const drawerWidth = 240;
 const navItems = ['Роутери', 'Приставки', 'Точки доступу'];
@@ -25,75 +27,55 @@ const navItems = ['Роутери', 'Приставки', 'Точки досту
 function Navigation(props) {
   const { window,children } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const getPrice=useStore(state=>state.getPrice)
+  const [price,setPrice]=useState(0) 
+  const shopCart=useStore(state=>state.shopCart)
+  const cat=useStore(state=>state.cat)
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-     
-      
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
+ 
+  useEffect(()=>{
+ setPrice(getPrice())
+  },[shopCart])
 
-  const container = window !== undefined ? () => window().document.body : undefined;
-const shopCart=useStore(state=>state.shopCart)
-const cat=useStore(state=>state.cat)
+
+
   return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar component="nav">
-        <Toolbar>
-        <div className='flex  items-center  justify-center '>
-            <div className=' flex-2'>
-          <Box sx={{ display: {  sm: 'block' } } } >
+    <Box sx={{ display: 'flex' }}  >
+   
+      <AppBar component="nav" sx={{bgcolor:"#ea3439"}}>
+        {price==0?"":`${price} (грн.)`}
+        <Toolbar className=' flex justify-center bg-red-600' >
+        <div className='flex   justify-between items-center w-[100%]'>
+            <div className='flex gap-3'>
+            
             {cat.map((item) => (
              <Link  key={item.id} to={`/category/${item.id}`}>
-              <Button key={item.id} sx={{ color: '#fff',fontSize:"11px" }}>
+              <Button className=' shadow-md' color='error' variant='outlined' key={item.id} sx={{ color: '#fff',fontSize:"13px" }}>
                 {item.cat}
               </Button>
               </Link>
             ))}
-          </Box>
+       
           </div>
-          <div className=''>
+
+          <div className='flex-2'>
+            <Link to='/shop-cart/'>
           <IconButton aria-label="cart" >
-       <Badge badgeContent={shopCart}  sx={{color:"#fff"}}>
+         <Badge badgeContent={shopCart}  sx={{color:"#fff"}}>
         <ShoppingCartIcon />
       </Badge>
     </IconButton>
+    </Link>
     </div>
+
     </div>
         </Toolbar>
       </AppBar>
-      <nav>
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </nav>
-      <Box component="main" sx={{ p: 3 }}>
+      <Box component="main" sx={{ pt: 0 , width:"100%"}} >
         <Toolbar />
             {children}
       </Box>
