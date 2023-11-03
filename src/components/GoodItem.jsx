@@ -49,9 +49,18 @@ export default function GoodItem({good}) {
           {good.name}
         </Typography>
         <Typography gutterBottom variant="h6" component="div">
-            {
-                good.unique_price!=0?`Ціна тижня  ${good.unique_price} грн. замість старої ціни : ${good.cost} грн.`:""
-            }
+        {
+  good.unique_price !== 0
+    ? (
+      <>
+        <span className=' font-bold '>Ціна тижня {good.unique_price} грн.</span> замість старої ціни : {good.cost} грн.
+      </>
+    )
+    : ""
+}
+{
+     good.unique_price == 0?`${good.cost} (грн)`:""
+}
        
         </Typography>
         <Typography variant="body2" color="text.secondary">
