@@ -21,25 +21,22 @@ import { useStore } from '../store';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-const drawerWidth = 240;
-const navItems = ['Роутери', 'Приставки', 'Точки доступу'];
+
 
 function Navigation(props) {
   const { window,children } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
   const getPrice=useStore(state=>state.getPrice)
   const [price,setPrice]=useState(0) 
   const shopCart=useStore(state=>state.shopCart)
+  const operators=useStore(state=>state.operators)
   const cat=useStore(state=>state.cat)
 
-  const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
-  };
+ 
 
  
   useEffect(()=>{
  setPrice(getPrice())
-  },[shopCart])
+  },[operators])
 
 
 
@@ -47,7 +44,7 @@ function Navigation(props) {
     <Box sx={{ display: 'flex' }}  >
    
       <AppBar component="nav" sx={{bgcolor:"#ea3439"}}>
-        {price==0?"":`${price} (грн.)`}
+        {price==0?"":`Замовлень на суму: ${price} (грн.)`}
         <Toolbar className=' flex justify-center bg-red-600' >
         <div className='flex   justify-between items-center w-[100%]'>
             <div className='flex gap-3'>

@@ -9,12 +9,13 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useState } from 'react';
 import { useStore } from '../store';
+import { useNavigate } from 'react-router-dom';
 export default function GoodItem({good}) {
     const [flagBuy,setFlagBuy]=useState(false)
     const addToCart=useStore(state=>state.addToCart)
     const removeFromCart=useStore(state=>state.removeFromCart)
     const cheCkGoodInCart=useStore(state=>state.cheCkGoodInCart)
-
+    const nav=useNavigate()
 
    React.useEffect(()=>{
     setFlagBuy(cheCkGoodInCart(good))
@@ -27,6 +28,9 @@ export default function GoodItem({good}) {
     const handleDelete=()=>{
         removeFromCart(good)
         setFlagBuy(pre=>!pre)
+    }
+    const handleToShop=()=>{
+      nav("/shop-cart/")
     }
   return (
 <Card raised sx={{ maxWidth: 445,marginBottom:3,border:`${good.unique_price!=0?"2px solid red":""}` }} >
@@ -72,7 +76,7 @@ export default function GoodItem({good}) {
             flagBuy==false?
              <Button color='secondary' variant='outlined' onClick={handleBuy} startIcon={<ShoppingCartIcon/>} size="small">Купити</Button>
              :
-             <Button color='error'  variant='outlined' onClick={handleDelete} startIcon={<DeleteForeverIcon/>} size="small">Видалити з кошика</Button>
+            <div> <Button color='error'  variant='outlined' onClick={handleDelete} startIcon={<DeleteForeverIcon/>} size="small">Видалити з кошика</Button> <Button onClick={handleToShop}>Оформити замовлення</Button></div>
         }
        
        

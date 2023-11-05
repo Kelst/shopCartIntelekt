@@ -5,15 +5,16 @@ export const useStore = create((set,get) => ({
   shopCart: 0,
   cat:[],
   goodCart:[],
+  cartSum:0,
+  operators:0,
 
   checkLocalStorage(){
     const dataFromLocalStorage=JSON.parse(localStorage.getItem("state"))
-    if(dataFromLocalStorage.shopCart!=0){
-      set(state=>({...state,shopCart:dataFromLocalStorage.shopCart}))
-    }
+   
     if(dataFromLocalStorage.goodCart.length!=0){
-      set(state=>({...state,goodCart:dataFromLocalStorage.goodCart}))
+      set(state=>({...state,operators:dataFromLocalStorage.operators,cat:dataFromLocalStorage.cat,shopCart:dataFromLocalStorage.goodCart.length,goodCart:[...dataFromLocalStorage.goodCart]}))
     }
+    console.log("Check",dataFromLocalStorage.goodCart);
   },
   async getAllCat () {
   
@@ -37,25 +38,72 @@ export const useStore = create((set,get) => ({
       
     }
   },
-  addToCart(good){
-
-      set(state=>({...state,shopCart:state.shopCart+1,goodCart:[...state.goodCart,good]}))
-      localStorage.setItem("state",JSON.stringify(get()))
-  },
-  removeFromCart(good){
-    const id_cat=good.id_cat
-    const id=good.id
-    const goodCartNew=get().goodCart.filter(e=>{
-      if(e.id!=id && e.id_cat!=id_cat){
-        return e
+  addToCart(good) {
+    set(state => {
+      const existingGood = state.goodCart.find(item => (item.id === good.id&&item.id_cat===good.id_cat));
+  
+      if (existingGood) {
+        // Товар вже є в кошику, збільшуємо лічильник
+        existingGood.count = (existingGood.count || 0) + 1;
+      } else {
+        // Товару ще немає в кошику, додаємо його з лічильником 2
+        good.count = 1;
+        state.goodCart.push(good);
       }
-    })
-
-      set(state=>({...state,shopCart:state.shopCart-1,goodCart:[...goodCartNew]}))
-      localStorage.removeItem('state')
-      localStorage.setItem("state",JSON.stringify(get()))
-
+  
+      return {
+        ...state,
+        shopCart: state.goodCart.length ,
+        goodCart: [...state.goodCart],
+        operators:state.operators+1
+      };
+    });
+  
+    // Зберігаємо оновлений стан у localStorage
+    localStorage.setItem("state", JSON.stringify(get()));
+    
+    console.log(get().goodCart, "Add");
   },
+   removeFromCart(good) {
+  const id_cat = good.id_cat;
+  const id = good.id;
+
+  console.log(get().goodCart);
+  console.log(id_cat, id);
+
+  const updatedGoodCart = get().goodCart.map(item => {
+    if (item.id === id && item.id_cat === id_cat) {
+      if (item.count === 1) {
+        return null; // Видаляємо товар, якщо count === 1
+      } else {
+        return { ...item, count: item.count - 1 };
+      }
+    }
+    return item;
+  });
+
+  const newGoodCart = updatedGoodCart.filter(item => item !== null);
+
+  console.log(newGoodCart);
+
+  set(state => ({
+    ...state,
+    shopCart: newGoodCart.length,
+    goodCart: [...newGoodCart],
+    operators:state.operators-1
+
+  }));
+  
+  localStorage.removeItem('state');
+  localStorage.setItem("state", JSON.stringify(get()));
+}
+
+
+
+
+
+
+,
   cheCkGoodInCart(good){
    
     const id_cat=good.id_cat 
@@ -73,7 +121,9 @@ export const useStore = create((set,get) => ({
     
     let price=0
     price=get().goodCart.reduce((totalCost, object) => {
-      return totalCost + ((object.unique_price!=0?object.unique_price:object.cost )||object.cost || 0);
+        let un=object.unique_price!=0?object.unique_price*object.count:object.cost*object.count
+        
+      return totalCost + (un || 0);
     }, 0);
     return price
   }

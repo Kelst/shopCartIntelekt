@@ -16,7 +16,7 @@ export default function Category() {
       setGoodByCat(data)
     }
     fetchData(id)
-  },[id])
+  },[goods,id])
   return (
     <div className=' flex flex-col items-center justify-center w-[100%]  '>
 
