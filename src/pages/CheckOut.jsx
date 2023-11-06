@@ -11,9 +11,12 @@ export default function CheckOut() {
       };
       const {tg,onToggleButton,user}=useTelegram()
   return (
-    <div className='w-[360px] m-auto border p-9 shadow-md'>
+    <div className='w-[260px] m-auto border p-9 shadow-md'>
         <Typography className=' uppercase  ' variant='h7'>Оформлення Замовлення </Typography>
        <div className='mt-8 flex flex-col justify-center items-center'>
+          {
+            JSON.stringify(user)
+        }
         <TextField  label="ПІБ"
         value={name}
         sx={{width:"100%"}}
