@@ -13,7 +13,7 @@ export default function Layout() {
   
   useEffect(()=>{
     tg.ready()
-    setTelegramId(user.id)
+    setTelegramId(user?.id)
     async function  fetchData() {
       await getAllCat()    
       checkLocalStorage()

@@ -35,7 +35,7 @@ export default function CheckOut() {
         }}/>
          <TextField  label="Телефон"
         value={phone}
-        sx={{width:"100%"}}
+        sx={{width:"100%",marginTop: 1}}
         variant='standard'
         onChange={(event) => {
           setPhone(event.target.value);
