@@ -80,7 +80,7 @@ export const useStore = create((set,get) => ({
       }
     }
     return item;
-  });
+  })
 
   const newGoodCart = updatedGoodCart.filter(item => item !== null);
 
@@ -97,10 +97,33 @@ export const useStore = create((set,get) => ({
   localStorage.removeItem('state');
   localStorage.setItem("state", JSON.stringify(get()));
 }
+,
 
+removeFromCartShop(good) {
+  const id_cat = good.id_cat;
+  const id = good.id;
+  const updatedGoodCart = get().goodCart.map(item => {
+    if (item.id === id && item.id_cat === id_cat) {
+  return null
+    }
+    return item;
+  })
 
+  const newGoodCart = updatedGoodCart.filter(item => item !== null);
 
+  console.log(newGoodCart);
 
+  set(state => ({
+    ...state,
+    shopCart: newGoodCart.length,
+    goodCart: [...newGoodCart],
+    operators:state.operators-1
+
+  }));
+  
+  localStorage.removeItem('state');
+  localStorage.setItem("state", JSON.stringify(get()));
+}
 
 
 ,

@@ -7,6 +7,7 @@ export default function ShopItem({good}) {
   const [count,setCount]=useState(1)
   const addToCart=useStore(state=>state.addToCart)
   const removeFromCart=useStore(state=>state.removeFromCart)
+  const removeFromCartShop=useStore(state=>state.removeFromCartShop)
 
   useEffect(()=>{
 setCount(good.count)
@@ -26,7 +27,7 @@ setCount(good.count)
     }
   }
   const handleDeleteFromCart=()=>{
-    removeFromCart(good)
+    removeFromCartShop(good)
   }
   return (
     <div className='flex gap-2   justify-between  items-center mb-3 border w-[90%] mx-auto'>
