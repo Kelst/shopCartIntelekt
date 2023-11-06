@@ -37,7 +37,7 @@ setCount(good.count)
       
       </div>
       <div className=''>
-        <Button onClick={handleAdd} sx={{bgcolor:"#ff9999",color:"black"}}>+</Button>
+        <Button variant='contained' onClick={handleAdd} sx={{bgcolor:"#ff9999",color:"black"}}>+</Button>
         <Typography className='font-bold'>{count}</Typography>
         <Button onClick={handleRem} sx={{bgcolor:"#ff9999",color:"black"}}>-</Button>
       </div>
