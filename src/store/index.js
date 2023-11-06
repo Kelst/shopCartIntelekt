@@ -11,9 +11,9 @@ export const useStore = create((set,get) => ({
   setTelegramId(id){
     set(state=>({...state,telegramId:id}))
   },
- async getPhone(){
+ async getPhone(id){
 try {
-  const response=await $api.post("/get-phone")
+  const response=await $api.post("/get-phone",{id:id})
   const data=response.data
   if (data!=false){
     return data

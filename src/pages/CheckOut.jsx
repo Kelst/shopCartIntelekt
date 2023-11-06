@@ -16,6 +16,7 @@ export default function CheckOut() {
       useEffect(()=>{
         async function  fetchData(){
           let p=  await getPhone(user.id)
+       
           setPhone(p)
         }
         fetchData()
