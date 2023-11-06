@@ -11,7 +11,7 @@ export default function ShopCart() {
     setSum(getPrice())
   })
   return (
-    <div className=' flex flex-col border h-[78vh]' >
+    <div className=' flex flex-col border h-[78vh] bg-white' >
           <div className='  uppercase font-bold underline'>
             Ваша корзина
           </div>

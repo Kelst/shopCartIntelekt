@@ -18,7 +18,7 @@ export default function Category() {
     fetchData(id)
   },[goods,id])
   return (
-    <div className=' flex flex-col items-center justify-center w-[100%]  '>
+    <div className=' flex flex-col items-center justify-center w-[100%]  bg-white'>
 
     {
       goodByCat.length==0?<Typography>Вибачте в даній категорії немає жодного товару</Typography>:

@@ -18,7 +18,7 @@ export default function Layout() {
 
   },[])
   return (
-    <div>
+    <div  >
      <Navigation>
     
     <Outlet/>
