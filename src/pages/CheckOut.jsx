@@ -1,25 +1,43 @@
 import { FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useTelegram } from '../hooks/useTelegram';
+import { useStore } from '../store';
 
 export default function CheckOut() {
     const [name, setName] = React.useState('');
     const [place, setPlace] = React.useState('10');
+    const [phone, setPhone] = React.useState('');
     const handleChange = (event) => {
         console.log(place);
         setPlace(event.target.value);
       };
       const {tg,onToggleButton,user}=useTelegram()
+      const getPhone=useStore(state=>state.getPhone)
+      useEffect(()=>{
+        async function  fetchData(){
+          let p=  await getPhone(user.id)
+          setPhone(p)
+        }
+        fetchData()
+      },[])
   return (
-    <div className='w-[360px] m-auto border p-9 shadow-md'>
+    <div className='w-[260px] m-auto border p-9 shadow-md'>
         <Typography className=' uppercase  ' variant='h7'>Оформлення Замовлення </Typography>
        <div className='mt-8 flex flex-col justify-center items-center'>
+    
         <TextField  label="ПІБ"
         value={name}
         sx={{width:"100%"}}
         variant='standard'
         onChange={(event) => {
           setName(event.target.value);
+        }}/>
+         <TextField  label="Телефон"
+        value={phone}
+        sx={{width:"100%"}}
+        variant='standard'
+        onChange={(event) => {
+          setPhone(event.target.value);
         }}/>
             <FormControl sx={{ marginTop: 3, width:"100%"}}>
         <InputLabel >Забрати з</InputLabel>

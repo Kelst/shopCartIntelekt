@@ -7,7 +7,24 @@ export const useStore = create((set,get) => ({
   goodCart:[],
   cartSum:0,
   operators:0,
+  telegramId:"",
+  setTelegramId(id){
+    set(state=>({...state,telegramId:id}))
+  },
+ async getPhone(){
+try {
+  const response=await $api.post("/get-phone")
+  const data=response.data
+  if (data!=false){
+    return data
+  }else {
+    return ""
+  }
+}
+catch (e){
 
+}
+  },
   checkLocalStorage(){
     const dataFromLocalStorage=JSON.parse(localStorage.getItem("state"))
    
