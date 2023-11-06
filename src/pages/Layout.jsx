@@ -8,11 +8,12 @@ import { useTelegram } from '../hooks/useTelegram'
 export default function Layout() {
   const getAllCat=useStore(state=>state.getAllCat)
   const checkLocalStorage=useStore(state=>state.checkLocalStorage)
+  const setTelegramId=useStore(state=>state.setTelegramId)
   const {tg,onToggleButton,user}=useTelegram() 
   
   useEffect(()=>{
     tg.ready()
-    console.log(user);
+    setTelegramId(user.id)
     async function  fetchData() {
       await getAllCat()    
       checkLocalStorage()
