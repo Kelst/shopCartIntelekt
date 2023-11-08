@@ -33,13 +33,13 @@ export default function GoodItem({good}) {
       nav("/shop-cart/")
     }
   return (
-<Card raised sx={{ height:745, maxWidth: 445,marginBottom:3,border:`${good.unique_price!=0?"2px solid red":""}` }} >
+<Card raised sx={{ height:665, maxWidth: 445,border:`${good.unique_price!=0?"2px solid red":""}` }} >
       <CardMedia
           component="img"
 
          sx={{
             height: 260,
-            width:290,
+            width:200,
             margin:"0 auto",
             objectFit: "contain" 
           }}
@@ -67,11 +67,11 @@ export default function GoodItem({good}) {
 }
        
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" sx={{fontSize:12}} color="text.secondary">
             {good.text}
         </Typography>
       </CardContent>
-      <CardActions className=' flex justify-between'>
+      <CardActions className=' flex justify-between items-center'>
         {
             flagBuy==false?
              <Button color='secondary' variant='outlined' onClick={handleBuy} startIcon={<ShoppingCartIcon/>} size="small">Купити</Button>
