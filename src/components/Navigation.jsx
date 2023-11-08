@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useStore } from '../store';
@@ -33,7 +33,7 @@ function Navigation(props) {
 const navigate=useNavigate()
 const loc=useLocation()
 
- 
+
 
  
   useEffect(()=>{
@@ -41,7 +41,7 @@ const loc=useLocation()
 
   setCatnav(currentCat)
  setPrice(getPrice())
-  },[operators])
+  },[operators,currentCat])
 
 
 const handleForvard=()=>{
@@ -105,7 +105,7 @@ const handleBack=()=>{
                  </div>
                    
                 </div>
-                :<div className='relative mt-1 ml-8 rounded-md bg-black px-4 py-2 shadow-lg shadow-gray-800 sha'> <img className='w-[90px] object-contain  '
+                :<div onClick={()=>navigate("/")} className='relative cursor-pointer mt-1 ml-8 rounded-md bg-black px-4 py-2 shadow-lg shadow-gray-800 sha'> <img className='w-[90px] object-contain  '
           
                  src="https://www.intelekt.net/wp-content/themes/valery.tarnavsky_theme/img/new-logow.png"
                   alt="" srcset="" />
