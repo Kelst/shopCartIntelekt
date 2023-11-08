@@ -15,6 +15,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import LeftDrawer from './LeftDrawer';
 import { Drawer } from '@mui/material';
+import BackDroopCustum from './BackDroopCustum';
 
 
 
@@ -37,7 +38,6 @@ function Navigation(props) {
 
   return (
     <Box sx={{ display: 'flex' }}  >
-   
       <AppBar component="nav" sx={{bgcolor:"#ea3439"}}>
        
         {price==0?"":`Замовлень на суму: ${price} (грн.)`}
@@ -80,6 +80,8 @@ function Navigation(props) {
         </Toolbar>
       </AppBar>
       <Box component="main" sx={{ pt: 0 , width:"100%"}} >
+      <BackDroopCustum/>
+
         <Toolbar />
             {children}
       </Box>

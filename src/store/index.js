@@ -8,6 +8,10 @@ export const useStore = create((set,get) => ({
   cartSum:0,
   operators:0,
   telegramId:"",
+  loader:false,
+  setLoader(val){
+    set(state=>({...state,loader:val}))
+  },
   setTelegramId(id){
     set(state=>({...state,telegramId:id}))
   },
@@ -47,12 +51,14 @@ catch (e){
   },
   async getGoods (id_cat) {
     try {
+      set(state=>({...state,loader:true}))
       const response=await $api.post("/get-all-goods-by-cat",{id_cat:id_cat})
       const data=response.data
+      set(state=>({...state,loader:false}))
      return data
     } catch (error) {
       console.log(error);
-      
+      set(state=>({...state,loader:false}))
     }
   },
   addToCart(good) {
