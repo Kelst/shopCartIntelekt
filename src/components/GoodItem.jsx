@@ -33,12 +33,12 @@ export default function GoodItem({good}) {
       nav("/shop-cart/")
     }
   return (
-<Card raised sx={{ height:565,border:`${good.unique_price!=0?"2px solid red":"1px solid gray"}` }} >
+<Card raised sx={{ height:475,border:`${good.unique_price!=0?"2px solid red":"1px solid gray"}` }} >
       <CardMedia
           component="img"
 
          sx={{
-            height: 260,
+            height: 160,
             width:200,
             margin:"0 auto",
             objectFit: "contain" 
@@ -76,7 +76,7 @@ export default function GoodItem({good}) {
             flagBuy==false?
              <Button color='secondary' variant='outlined' onClick={handleBuy} startIcon={<ShoppingCartIcon/>} size="small">Купити</Button>
              :
-            <div> <Button color='error'  variant='outlined' onClick={handleDelete} startIcon={<DeleteForeverIcon/>} size="small">Видалити з кошика</Button> <Button onClick={handleToShop}>Оформити замовлення</Button></div>
+            <div> <Button color='error'  variant='outlined' onClick={handleDelete} startIcon={<DeleteForeverIcon/>} size="small">Видалити з кошика</Button> <Button  onClick={handleToShop}>Оформити замовлення</Button></div>
         }
        
        
