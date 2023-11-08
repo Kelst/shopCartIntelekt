@@ -93,7 +93,7 @@ const handleBack=()=>{
           </div>
           {
             shovDynamicsNavigation?
-                <div className='ml-10 flex gap-3  ease-in transition-all duration-150 '>
+                <div className='ml-8 flex gap-3  ease-in transition-all duration-150 '>
                   <div onClick={handleBack}>
                    <ArrowBackIosNewIcon   className=' cursor-pointer'/>
                    </div>
@@ -105,7 +105,7 @@ const handleBack=()=>{
                  </div>
                    
                 </div>
-                :<div className='relative rounded-md bg-black px-4 py-2 shadow-lg shadow-gray-800 sha'> <img className='w-[90px] object-contain  '
+                :<div className='relative mt-1 ml-8 rounded-md bg-black px-4 py-2 shadow-lg shadow-gray-800 sha'> <img className='w-[90px] object-contain  '
           
                  src="https://www.intelekt.net/wp-content/themes/valery.tarnavsky_theme/img/new-logow.png"
                   alt="" srcset="" />

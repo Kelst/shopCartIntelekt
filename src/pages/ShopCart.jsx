@@ -19,7 +19,7 @@ export default function ShopCart() {
     navigate("/check-out")
   ]
   return (
-    <div className=' flex flex-col border h-[78vh] bg-white' >
+    <div className=' mt-2 flex flex-col border h-[78vh] bg-white' >
           <div className='  uppercase font-bold underline'>
             Ваш кошик
           </div>
