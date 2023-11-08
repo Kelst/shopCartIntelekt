@@ -24,7 +24,7 @@ export default function Category() {
     {
       goodByCat.length==0?<Typography>Вибачте в даній категорії немає жодного товару</Typography>:
      
-      <Carousel sx={{width:"360px"}} autoPlay={false}
+      <Carousel sx={{width:"315px"}} autoPlay={false}
       swipe
       >
       { goodByCat.map(e=><GoodItem key={e.id} good={e}/>)}

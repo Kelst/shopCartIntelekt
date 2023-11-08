@@ -38,8 +38,8 @@ export default function GoodItem({good}) {
           component="img"
 
          sx={{
-            height: 340,
-            width:300,
+            height: 260,
+            width:290,
             margin:"0 auto",
             objectFit: "contain" 
           }}
