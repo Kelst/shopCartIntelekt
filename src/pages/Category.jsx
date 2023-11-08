@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useStore } from '../store';
 import GoodItem from '../components/GoodItem';
 import { Typography } from '@mui/material';
 import Carousel from 'react-material-ui-carousel'
 
 export default function Category() {
-  let { id } = useParams(); useParams
+  let { id } = useParams(); 
   const [goodByCat,setGoodByCat]=useState([])
   const goods=useStore(state=>state.getGoods)
-  useEffect(()=>{
+  const setCatNav=useStore(state=>state.setCatNav)
+  const cat=useStore(state=>state.cat)
 
+  let location = useLocation(); 
+  useEffect(()=>{
+    let  regex = /\/category\//g;   
+    let id=parseInt(location.pathname.replace(regex, ''));
+    let index=cat.findIndex(e=>e.id==id)
+    console.log(index||0);
+    setCatNav(index||0)
     async function fetchData(id) {
 
       const data=await goods(id)  

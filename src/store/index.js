@@ -8,7 +8,13 @@ export const useStore = create((set,get) => ({
   cartSum:0,
   operators:0,
   telegramId:"",
+  catNav:0,
   loader:false,
+
+setCatNav(id){
+  set(state=>({...state,catNav:id}))
+
+},
   setLoader(val){
     set(state=>({...state,loader:val}))
   },
