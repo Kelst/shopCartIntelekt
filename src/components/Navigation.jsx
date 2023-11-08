@@ -110,7 +110,7 @@ const handleBack=()=>{
                  src="https://www.intelekt.net/wp-content/themes/valery.tarnavsky_theme/img/new-logow.png"
                   alt="" srcset="" />
                   <div className=' absolute top-3 left-[27px] '>
-                    <img className='w-3 animate-spin' src="https://www.intelekt.net/wp-content/themes/valery.tarnavsky_theme/img/round-bigw.png" alt="" srcset="" />
+                    <img className='w-3 animate-my-spin' src="https://www.intelekt.net/wp-content/themes/valery.tarnavsky_theme/img/round-bigw.png" alt="" srcset="" />
                     <img className='w-2 ml-2  animate-reverse-spin ' src="https://www.intelekt.net/wp-content/themes/valery.tarnavsky_theme/img/round-small.png" alt="" srcset="" />
                   </div>
                   

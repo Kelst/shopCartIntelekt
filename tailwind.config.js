@@ -7,13 +7,20 @@ export default {
   theme: {
     extend: {
       animation: {
-        'reverse-spin': 'reverse-spin 1s linear infinite'
+        'reverse-spin': 'reverse-spin 20s linear infinite',
+        'my-spin': 'spin 20s linear infinite'
       },
       keyframes: {
         'reverse-spin': {
           from: {
             transform: 'rotate(360deg)'
           },
+        
+        },
+        'spin':{
+          from:{
+            transform:'rotate(-360deg)'
+          }
         }
       }
     },
