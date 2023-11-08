@@ -10,6 +10,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useState } from 'react';
 import { useStore } from '../store';
 import { useNavigate } from 'react-router-dom';
+import { Divider } from '@mui/material';
 export default function GoodItem({good}) {
     const [flagBuy,setFlagBuy]=useState(false)
     const addToCart=useStore(state=>state.addToCart)
@@ -33,7 +34,7 @@ export default function GoodItem({good}) {
       nav("/shop-cart/")
     }
   return (
-<Card raised sx={{ height:475,border:`${good.unique_price!=0?"2px solid red":"1px solid gray"}` }} >
+<Card raised className=' flex flex-col justify-end' sx={{height:475,border:`${good.unique_price!=0?"2px solid red":"1px solid gray"}` }} >
       <CardMedia
           component="img"
 
@@ -71,7 +72,10 @@ export default function GoodItem({good}) {
             {good.text}
         </Typography>
       </CardContent>
-      <CardActions className=' flex justify-between items-center'>
+      <Divider/>
+     
+      <CardActions> 
+        <div className='flex justify-center items-center  '>
         {
             flagBuy==false?
              <Button color='secondary' variant='outlined' onClick={handleBuy} startIcon={<ShoppingCartIcon/>} size="small">Купити</Button>
@@ -79,8 +83,9 @@ export default function GoodItem({good}) {
             <div> <Button color='error'  variant='outlined' onClick={handleDelete} startIcon={<DeleteForeverIcon/>} size="small">Видалити з кошика</Button> <Button  onClick={handleToShop}>Оформити замовлення</Button></div>
         }
        
-       
+           </div>
       </CardActions>
+  
     </Card>
   )
 }

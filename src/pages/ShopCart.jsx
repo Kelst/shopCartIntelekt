@@ -18,7 +18,7 @@ export default function ShopCart() {
   return (
     <div className=' flex flex-col border h-[78vh] bg-white' >
           <div className='  uppercase font-bold underline'>
-            Ваша корзина
+            Ваш кошик
           </div>
         {
           goodCart.length!=0?
@@ -30,7 +30,7 @@ export default function ShopCart() {
           Оформити замовлення
         </Button>
         </div>
-          :  <div className=' flex justify-center items-center flex-col gap-2 mt-44 uppercase text-red-600 '> Ваша корзина порожня <ProductionQuantityLimitsTwoToneIcon/> </div>
+          :  <div className=' flex justify-center items-center flex-col gap-2 mt-44 uppercase text-red-600 '> Ваш кошик порожній <ProductionQuantityLimitsTwoToneIcon/> </div>
         }
     </div>
   )

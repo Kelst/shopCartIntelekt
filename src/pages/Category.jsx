@@ -26,6 +26,7 @@ export default function Category() {
      
       <Carousel indicators={false} sx={{minWidth:"315px"}} autoPlay={false}
       swipe
+      duration={900}
       >
       { goodByCat.map(e=><GoodItem key={e.id} good={e}/>)}
       </Carousel>
