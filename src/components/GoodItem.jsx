@@ -33,7 +33,7 @@ export default function GoodItem({good}) {
       nav("/shop-cart/")
     }
   return (
-<Card raised sx={{ maxWidth: 445,marginBottom:3,border:`${good.unique_price!=0?"2px solid red":""}` }} >
+<Card raised sx={{ height:745, maxWidth: 445,marginBottom:3,border:`${good.unique_price!=0?"2px solid red":""}` }} >
       <CardMedia
           component="img"
 

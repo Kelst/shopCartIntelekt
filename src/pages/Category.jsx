@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useStore } from '../store';
 import GoodItem from '../components/GoodItem';
 import { Typography } from '@mui/material';
+import Carousel from 'react-material-ui-carousel'
 
 export default function Category() {
   let { id } = useParams(); useParams
@@ -22,7 +23,12 @@ export default function Category() {
 
     {
       goodByCat.length==0?<Typography>Вибачте в даній категорії немає жодного товару</Typography>:
-      goodByCat.map(e=><GoodItem key={e.id} good={e}/>)
+     
+      <Carousel sx={{width:"360px"}} autoPlay={false}
+      swipe
+      >
+      { goodByCat.map(e=><GoodItem key={e.id} good={e}/>)}
+      </Carousel>
     }
     
     </div>
