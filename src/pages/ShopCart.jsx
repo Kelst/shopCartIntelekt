@@ -4,6 +4,7 @@ import ShopItem from '../components/ShopItem'
 import ProductionQuantityLimitsTwoToneIcon from '@mui/icons-material/ProductionQuantityLimitsTwoTone';
 import { Button, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+
 export default function ShopCart() {
   const goodCart=useStore(state=>state.goodCart)
   const getPrice=useStore(state=>state.getPrice)

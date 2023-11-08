@@ -5,22 +5,17 @@ import Button from '@mui/material/Button';
 import { useStore } from '../store';
 
 export default function BackDroopCustum() {
-  const flag=useStore(state=>state.flag)
-  const setFlag=useStore(state=>state.setFlag)
-  const handleClose = () => {
-    setFlag(false);
-  };
-  const handleOpen = () => {
-    setFlag(true);
-  };
+  const loader=useStore(state=>state.loader)
+  const setLoader=useStore(state=>state.setLoader)
+
 
   return (
     <div>
-      <Button onClick={handleOpen}>Show backdrop</Button>
+      
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={flag}
-        onClick={handleClose}
+        open={loader}
+   
       >
         <CircularProgress color="inherit" />
       </Backdrop>
