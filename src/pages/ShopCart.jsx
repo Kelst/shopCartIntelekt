@@ -8,10 +8,12 @@ import { useNavigate } from 'react-router-dom';
 export default function ShopCart() {
   const goodCart=useStore(state=>state.goodCart)
   const getPrice=useStore(state=>state.getPrice)
+  const setShovDynamicsNavigation=useStore(state=>state.setShovDynamicsNavigation)
   const [sum,setSum]=useState(0)
   const navigate=useNavigate()
   useEffect(()=>{
     setSum(getPrice())
+    setShovDynamicsNavigation(false)
   })
   const handleCheckOut=()=>[
     navigate("/check-out")

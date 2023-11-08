@@ -31,15 +31,17 @@ function Navigation(props) {
   const shovDynamicsNavigation=useStore(state=>state.shovDynamicsNavigation)
 
 const navigate=useNavigate()
+const loc=useLocation()
 
  
 
  
   useEffect(()=>{
-   
+    
+
   setCatnav(currentCat)
  setPrice(getPrice())
-  },[operators,currentCat])
+  },[operators])
 
 
 const handleForvard=()=>{

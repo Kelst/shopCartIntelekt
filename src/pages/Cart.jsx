@@ -1,5 +1,5 @@
 import { Divider, Typography } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useStore } from '../store'
 import { useNavigate } from 'react-router-dom';
 import ButtomCustom from '../components/ButtomCustom';
@@ -7,10 +7,14 @@ import ButtomCustom from '../components/ButtomCustom';
 export default function Cart() {
   const cat=useStore(state=>state.cat)
   const navigate=useNavigate()
+  const setShovDynamicsNavigation=useStore(state=>state.setShovDynamicsNavigation)
 
   const handleTo=(id)=>{
     navigate(`/category/${id}`)
   }
+  useEffect(()=>{
+    setShovDynamicsNavigation(false)
+  },[])
   return (
     <div className='w-[300px] m-auto'>
     <div>

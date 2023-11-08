@@ -11,14 +11,15 @@ export default function Category() {
   const goods=useStore(state=>state.getGoods)
   const setCatNav=useStore(state=>state.setCatNav)
   const cat=useStore(state=>state.cat)
-  
+  const setShovDynamicsNavigation=useStore(state=>state.setShovDynamicsNavigation)
+
   let location = useLocation(); 
   useEffect(()=>{
-
+    setShovDynamicsNavigation(true)
     let  regex = /\/category\//g;   
     let id=parseInt(location.pathname.replace(regex, ''));
     let index=cat.findIndex(e=>e.id==id)
-    console.log(index||0);
+    
     setCatNav(index||0)
     async function fetchData(id) {
 

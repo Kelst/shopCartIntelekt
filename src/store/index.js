@@ -11,7 +11,9 @@ export const useStore = create((set,get) => ({
   catNav:0,
   loader:false,
   shovDynamicsNavigation:false,
-
+setShovDynamicsNavigation(flag){
+  set(state=>({...state,shovDynamicsNavigation:flag}))
+},
 setCatNav(id){
   set(state=>({...state,catNav:id}))
 
