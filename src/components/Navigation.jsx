@@ -105,13 +105,22 @@ const handleBack=()=>{
                  </div>
                    
                 </div>
-                :""
+                :<div className='relative rounded-md bg-black px-4 py-2 shadow-lg shadow-gray-800 sha'> <img className='w-[90px] object-contain  '
+          
+                 src="https://www.intelekt.net/wp-content/themes/valery.tarnavsky_theme/img/new-logow.png"
+                  alt="" srcset="" />
+                  <div className=' absolute top-3 left-[27px] '>
+                    <img className='w-3 animate-spin' src="https://www.intelekt.net/wp-content/themes/valery.tarnavsky_theme/img/round-bigw.png" alt="" srcset="" />
+                    <img className='w-2 ml-2  animate-reverse-spin ' src="https://www.intelekt.net/wp-content/themes/valery.tarnavsky_theme/img/round-small.png" alt="" srcset="" />
+                  </div>
+                  
+                  </div>
              }
-          <div className='flex-2'>
+          <div className='flex-2  '>
             <Link to='/shop-cart/'>
           <IconButton aria-label="cart" >
          <Badge badgeContent={shopCart}  sx={{color:"#fff"}}>
-        <ShoppingCartIcon />
+        <ShoppingCartIcon  />
       </Badge>
     </IconButton>
     </Link>
