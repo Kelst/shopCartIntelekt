@@ -33,7 +33,7 @@ export default function GoodItem({good}) {
       nav("/shop-cart/")
     }
   return (
-<Card raised sx={{ height:665, maxWidth: 445,border:`${good.unique_price!=0?"2px solid red":""}` }} >
+<Card raised sx={{ height:565,border:`${good.unique_price!=0?"2px solid red":"1px solid gray"}` }} >
       <CardMedia
           component="img"
 
@@ -49,10 +49,10 @@ export default function GoodItem({good}) {
 
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div" sx={{fontFamily:"ds"}}>
+        <Typography gutterBottom variant="h6" component="div" sx={{fontFamily:"ds"}}>
           {good.name}
         </Typography>
-        <Typography gutterBottom variant="h6" component="div">
+        <Typography gutterBottom variant="h7" component="div">
         {
   good.unique_price !== 0
     ? (
