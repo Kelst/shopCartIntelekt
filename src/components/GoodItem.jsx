@@ -42,7 +42,8 @@ export default function GoodItem({good}) {
             height: 160,
             width:200,
             margin:"0 auto",
-            objectFit: "contain" 
+            objectFit: "contain", 
+            paddingTop:8
           }}
           
         image={`${good.url}`}
@@ -75,7 +76,7 @@ export default function GoodItem({good}) {
       <Divider/>
      
       <CardActions> 
-        <div className='flex justify-center items-center  '>
+        <div className='flex justify-center items-center  h-[80px] '>
         {
             flagBuy==false?
              <Button color='secondary' variant='outlined' onClick={handleBuy} startIcon={<ShoppingCartIcon/>} size="small">Купити</Button>
