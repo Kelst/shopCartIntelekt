@@ -10,6 +10,7 @@ export const useStore = create((set,get) => ({
   telegramId:"",
   catNav:0,
   loader:false,
+  shovDynamicsNavigation:false,
 
 setCatNav(id){
   set(state=>({...state,catNav:id}))

@@ -28,6 +28,8 @@ function Navigation(props) {
   const cat=useStore(state=>state.cat)
   const [catNav,setCatnav]=useState(0)
   const currentCat=useStore(state=>state.catNav)
+  const shovDynamicsNavigation=useStore(state=>state.shovDynamicsNavigation)
+
 const navigate=useNavigate()
 
  
@@ -88,7 +90,7 @@ const handleBack=()=>{
            
           </div>
           {
-
+            shovDynamicsNavigation?
                 <div className='ml-10 flex gap-3  ease-in transition-all duration-150 '>
                   <div onClick={handleBack}>
                    <ArrowBackIosNewIcon   className=' cursor-pointer'/>
@@ -101,6 +103,7 @@ const handleBack=()=>{
                  </div>
                    
                 </div>
+                :""
              }
           <div className='flex-2'>
             <Link to='/shop-cart/'>

@@ -11,9 +11,10 @@ export default function Category() {
   const goods=useStore(state=>state.getGoods)
   const setCatNav=useStore(state=>state.setCatNav)
   const cat=useStore(state=>state.cat)
-
+  
   let location = useLocation(); 
   useEffect(()=>{
+
     let  regex = /\/category\//g;   
     let id=parseInt(location.pathname.replace(regex, ''));
     let index=cat.findIndex(e=>e.id==id)
@@ -32,7 +33,7 @@ export default function Category() {
     {
       goodByCat.length==0?<Typography>Вибачте в даній категорії немає жодного товару</Typography>:
      
-      <Carousel indicators={false} sx={{minWidth:"315px"}} autoPlay={false}
+      <Carousel indicators={true} sx={{minWidth:"315px"}} autoPlay={false}
       swipe
       duration={900}
       >
