@@ -6,14 +6,20 @@ import {
 import Cart from "../pages/Cart";
 import ShopCart from "../pages/ShopCart";
 import Category from "../pages/Category";
-import Item from "../pages/Item";
+
 import Layout from "../pages/Layout";
 import CheckOut from "../pages/CheckOut";
+import $api from "../http";
 
 export const router=createBrowserRouter([
     {
         path:"/",
         element:<Layout/>,
+        loader:async()=>{
+          const response=await $api.get("/get-all-cat")
+          const data=response.data
+          return data
+        },
         children:[
             {
               
@@ -21,7 +27,12 @@ export const router=createBrowserRouter([
                 element: <Cart/>,
               },
               {
+                
                   path: "/category/:id",
+                  loader: async ({ params }) => { 
+                    const response=await $api.post("/get-all-goods-by-cat",{id_cat:params.id})
+                    return response.data
+                  },
                   element: <Category/>,
                 },
                 {

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLoaderData } from 'react-router-dom'
 import Navigation from '../components/Navigation'
 import { useStore } from '../store'
 import { useState } from 'react'
@@ -10,26 +10,30 @@ export default function Layout() {
   const getAllCat=useStore(state=>state.getAllCat)
   const checkLocalStorage=useStore(state=>state.checkLocalStorage)
   const setTelegramId=useStore(state=>state.setTelegramId)
+  const setAllCat=useStore(state=>state.setAllCat)
   const {tg,onToggleButton,user}=useTelegram() 
+  const datas=useLoaderData()
   
   useEffect(()=>{
     tg.ready()
     setTelegramId(user?.id)
-    async function  fetchData() {
-      let d=await $api_nova.get('',
-      {
-        apiKey: "41249e216ac722eda29376114338da90",
-        modelName: "Address",
-        calledMethod: "getWarehouses",
-        methodProperties: {
-        CityName : "Дорошівці"
-        }
-     })
-      console.log(d,"API NOVA");
-      await getAllCat()    
-      checkLocalStorage()
-    }
-  fetchData()
+ setAllCat(datas)
+ console.log(datas);
+  //   async function  fetchData() {
+  //   //   let d=await $api_nova.get('',
+  //   //   {
+  //   //     apiKey: "41249e216ac722eda29376114338da90",
+  //   //     modelName: "Address",
+  //   //     calledMethod: "getWarehouses",
+  //   //     methodProperties: {
+  //   //     CityName : "Дорошівці"
+  //   //     }
+  //   //  })
+  //   //   console.log(d,"API NOVA");
+  //     await getAllCat()    
+  //     checkLocalStorage()
+  //   }
+  // fetchData()
 
   },[])
   return (

@@ -1,46 +1,46 @@
-import React, { useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from 'react'
+import { useLoaderData, useLocation, useParams } from 'react-router-dom';
 import { useStore } from '../store';
 import GoodItem from '../components/GoodItem';
 import { Typography } from '@mui/material';
 import Carousel from 'react-material-ui-carousel'
+import Slider from "react-slick";
+import CaruselCustum from '../components/CaruselCustum';
+import TabGoods from '../components/TabGoods';
 
 export default function Category() {
   let { id } = useParams(); 
-  const [goodByCat,setGoodByCat]=useState([])
-  const goods=useStore(state=>state.getGoods)
   const setCatNav=useStore(state=>state.setCatNav)
   const cat=useStore(state=>state.cat)
   const setShovDynamicsNavigation=useStore(state=>state.setShovDynamicsNavigation)
-
-  let location = useLocation(); 
+  const [showItem,setShowItem]=useState([])
+  const operator2=useStore(state=>state.operator2)
+const datas=useLoaderData()
   useEffect(()=>{
-    setShovDynamicsNavigation(true)
-    let  regex = /\/category\//g;   
-    let id=parseInt(location.pathname.replace(regex, ''));
-    let index=cat.findIndex(e=>e.id==id)
-    
-    setCatNav(index||0)
-    async function fetchData(id) {
 
-      const data=await goods(id)  
-      setGoodByCat(data)
-    }
-    fetchData(id)
-  },[goods,id])
+    console.log(datas,"DAT");
+    setShovDynamicsNavigation(true)
+    let index=cat.findIndex(e=>e.id==id)
+    setCatNav(index)
+     let a= datas.map(e=><GoodItem key={e.id} good={e}/>)
+      setShowItem(a)
+    console.log("CAtegory:",datas,"Index",index);
+  
+
+
+  },[])
   return (
     <div className=' flex flex-col items-center justify-center w-[100%]  bg-white'>
+      <TabGoods/>
 
-    {
-      goodByCat.length==0?<Typography>Вибачте в даній категорії немає жодного товару</Typography>:
+    {/* {
+      showItem.length==0?<Typography>Вибачте в даній категорії немає жодного товару</Typography>:
      
-      <Carousel indicators={true} sx={{minWidth:"315px"}} autoPlay={false}
-      swipe
-      duration={900}
-      >
-      { goodByCat.map(e=><GoodItem key={e.id} good={e}/>)}
-      </Carousel>
-    }
+     <CaruselCustum showItem={[...showItem]} />
+     
+     
+    } */}
+  
     
     </div>
   )

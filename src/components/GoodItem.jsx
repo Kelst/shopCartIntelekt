@@ -16,15 +16,16 @@ export default function GoodItem({good}) {
     const addToCart=useStore(state=>state.addToCart)
     const removeFromCart=useStore(state=>state.removeFromCart)
     const cheCkGoodInCart=useStore(state=>state.cheCkGoodInCart)
+    const catNav=useStore(state=>state.catNav)
     const nav=useNavigate()
 
    React.useEffect(()=>{
     setFlagBuy(cheCkGoodInCart(good))
-   },[])
+   })
     const handleBuy=()=>{
-        setFlagBuy(pre=>!pre)
+        setFlagBuy(pre=>!pre) 
         addToCart(good)
-
+ 
     }
     const handleDelete=()=>{
         removeFromCart(good)
@@ -69,9 +70,11 @@ export default function GoodItem({good}) {
 }
        
         </Typography>
-        <Typography variant="body2" height={165} overflow={'scroll'} sx={{fontSize:12,paddingTop:"1px"}} color="text.secondary">
+        <div className=' z-50' >
+        <Typography   variant="body2" height={165} overflow={'scroll'} sx={{fontSize:12,paddingTop:"1px"}} color="text.secondary">
             {good.text}
         </Typography>
+        </div>
       </CardContent>
       <Divider/>
      

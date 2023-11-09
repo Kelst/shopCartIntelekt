@@ -10,7 +10,8 @@ export default function Cart() {
   const setShovDynamicsNavigation=useStore(state=>state.setShovDynamicsNavigation)
 
   const handleTo=(id)=>{
-    navigate(`/category/${id}`)
+
+    navigate(`/category/${id}`,{ state: { id: id } })
   }
   useEffect(()=>{
     setShovDynamicsNavigation(false)

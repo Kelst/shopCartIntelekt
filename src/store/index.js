@@ -11,6 +11,14 @@ export const useStore = create((set,get) => ({
   catNav:0,
   loader:false,
   shovDynamicsNavigation:false,
+  operator2:0,
+  countSlide:0,
+  setOperator2(){
+set(state=>({...state,operator2:state.operator2+1}))
+  },
+  setAllCat(cats){
+set(state=>({...state,cat:cats}))
+  },
 setShovDynamicsNavigation(flag){
   set(state=>({...state,shovDynamicsNavigation:flag}))
 },
@@ -42,7 +50,7 @@ catch (e){
     const dataFromLocalStorage=JSON.parse(localStorage.getItem("state"))
    
     if(dataFromLocalStorage.goodCart.length!=0){
-      set(state=>({...state,operators:dataFromLocalStorage.operators,cat:dataFromLocalStorage.cat,shopCart:dataFromLocalStorage.goodCart.length,goodCart:[...dataFromLocalStorage.goodCart]}))
+      set(state=>({...state,catNav:dataFromLocalStorage.catNav,operators:dataFromLocalStorage.operators,cat:dataFromLocalStorage.cat,shopCart:dataFromLocalStorage.goodCart.length,goodCart:[...dataFromLocalStorage.goodCart]}))
     }
     console.log("Check",dataFromLocalStorage.goodCart);
   },

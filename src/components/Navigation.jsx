@@ -27,34 +27,39 @@ function Navigation(props) {
   const operators=useStore(state=>state.operators)
   const cat=useStore(state=>state.cat)
   const [catNav,setCatnav]=useState(0)
-  const currentCat=useStore(state=>state.catNav)
+  const operator2=useStore(state=>state.operator2)
+  const setOperator2=useStore(state=>state.setOperator2)
   const shovDynamicsNavigation=useStore(state=>state.shovDynamicsNavigation)
 
 const navigate=useNavigate()
 const loc=useLocation()
 
-
+let { id } = useParams(); 
 
  
   useEffect(()=>{
     
 
-  setCatnav(currentCat)
  setPrice(getPrice())
-  },[operators,currentCat])
+  },[operators])
 
 
 const handleForvard=()=>{
+  setOperator2()
   if(catNav==cat.length-1){
     setCatnav(0)
-    navigate(`/category/${cat[0].id}`)
+   
+    navigate(`/category/${cat[0].id}`,{replace:true})
   }else
   {
     setCatnav(catNav+1)
-    navigate(`/category/${cat[catNav+1].id}`)
+
+    navigate(`/category/${cat[catNav+1].id}`,{replace:true})
   }
 }
 const handleBack=()=>{
+  setOperator2()
+  setOperator2
   if(catNav==0){
     setCatnav(cat.length-1)
     navigate(`/category/${cat[cat.length-1].id}`)
@@ -98,19 +103,21 @@ const handleBack=()=>{
                    <ArrowBackIosNewIcon   className=' cursor-pointer'/>
                    </div>
                    <div className=' ease-in transition-all duration-[1700] opacity-100'>
-                     {cat[catNav]?.cat}
+                     {cat.length!=0?cat[catNav].cat:"dds"}
                      </div>
                  <div  onClick={handleForvard} >
                    <ArrowForwardIosIcon className='cursor-pointer'/>
                  </div>
                    
                 </div>
-                :<div onClick={()=>navigate("/")} className='relative cursor-pointer mt-1 ml-8 rounded-md bg-black px-4 py-2 shadow-lg shadow-gray-800 sha'> <img className='w-[90px] object-contain  '
+                :<div onClick={()=>navigate("/")} className=' absolute top-5 left-[39%]
+                 
+                cursor-pointer mt-1 ml-8 rounded-md bg-gray-600 px-4 py-2  '> <img className='w-[90px] object-contain  '
           
                  src="https://www.intelekt.net/wp-content/themes/valery.tarnavsky_theme/img/new-logow.png"
                   alt="" srcset="" />
                   <div className=' absolute top-3 left-[27px] '>
-                    <img className='w-3 animate-my-spin' src="https://www.intelekt.net/wp-content/themes/valery.tarnavsky_theme/img/round-bigw.png" alt="" srcset="" />
+                    <img  className='w-3  animate-my-spin' src="https://www.intelekt.net/wp-content/themes/valery.tarnavsky_theme/img/round-bigw.png" alt="" srcset="" />
                     <img className='w-2 ml-2  animate-reverse-spin ' src="https://www.intelekt.net/wp-content/themes/valery.tarnavsky_theme/img/round-small.png" alt="" srcset="" />
                   </div>
                   
