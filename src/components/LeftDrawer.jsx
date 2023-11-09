@@ -38,6 +38,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function LeftDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const setValue=useStore(state=>state.setIndex)
+  const value=useStore(state=>state.index)
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -84,8 +86,8 @@ export default function LeftDrawer() {
         <Divider />
         <List>
           {
-             cat.map((item) => (
-              <Link  key={item.id} to={`/category/${item.id}`}>
+             cat.map((item,index) => (
+              <Link onClick={()=>setValue(index)} key={item.id} to={`/category/${item.id}`}>
 
               <ListItem key={item.cat} disablePadding>
               <ListItemButton onClick={()=>setOpen(false)}>

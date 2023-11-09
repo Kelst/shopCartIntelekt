@@ -47,7 +47,9 @@ function a11yProps(index) {
 export default function TabGoods() {
   const theme = useTheme();
   const cat=useStore(state=>state.cat)
-  const [value, setValue] = React.useState(0);
+  const value=useStore(state=>state.index)
+  const setValue=useStore(state=>state.setIndex)
+  
 
   React.useEffect(()=>{
     console.log(cat);

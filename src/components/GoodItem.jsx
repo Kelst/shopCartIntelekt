@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { useStore } from '../store';
 import { useNavigate } from 'react-router-dom';
 import { Divider } from '@mui/material';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 export default function GoodItem({good}) {
     const [flagBuy,setFlagBuy]=useState(false)
     const addToCart=useStore(state=>state.addToCart)
@@ -71,10 +72,12 @@ export default function GoodItem({good}) {
        
         </Typography>
         <div className=' z-50' >
-        <Typography   variant="body2" height={165} overflow={'scroll'} sx={{fontSize:12,paddingTop:"1px"}} color="text.secondary">
-            {good.text}
+        <Typography   variant="body2" height={95} overflow={'scroll'} sx={{fontSize:12,paddingTop:"1px"}} color="text.secondary">
+            {good.title}
         </Typography>
+       
         </div>
+        <Button variant='outlined' fullWidth >Детальніше ...</Button>
       </CardContent>
       <Divider/>
      

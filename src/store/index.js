@@ -13,6 +13,10 @@ export const useStore = create((set,get) => ({
   shovDynamicsNavigation:false,
   operator2:0,
   countSlide:0,
+  index:0,
+  setIndex(index){
+    set((state)=>({...state,index:index}))
+  },
   setOperator2(){
 set(state=>({...state,operator2:state.operator2+1}))
   },
