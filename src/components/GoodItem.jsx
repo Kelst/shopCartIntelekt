@@ -37,13 +37,13 @@ export default function GoodItem({good}) {
 <Card raised className=' flex flex-col justify-end' sx={{height:475,border:`${good.unique_price!=0?"2px solid red":"1px solid gray"}` }} >
       <CardMedia
           component="img"
-
+          
          sx={{
             height: 160,
             width:200,
             margin:"0 auto",
             objectFit: "contain", 
-            paddingTop:8
+            paddingTop:10
           }}
           
         image={`${good.url}`}
@@ -69,7 +69,7 @@ export default function GoodItem({good}) {
 }
        
         </Typography>
-        <Typography variant="body2" sx={{fontSize:12}} color="text.secondary">
+        <Typography variant="body2" height={165} overflow={'scroll'} sx={{fontSize:12,paddingTop:"1px"}} color="text.secondary">
             {good.text}
         </Typography>
       </CardContent>
