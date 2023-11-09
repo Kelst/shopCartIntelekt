@@ -30,7 +30,7 @@ setItems(a)
     autoPlay={false}
     swipe 
     duration={500}
-    cycleNavigation={false}
+    cycleNavigation={true}
    
     >
     { 

@@ -16,8 +16,10 @@ import { useEffect } from 'react';
 import LeftDrawer from './LeftDrawer';
 import { Drawer } from '@mui/material';
 import BackDroopCustum from './BackDroopCustum';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
+import logoNav from "../assets/new-logow.png"
+import bigW from "../assets/round-bigw.png"
+import small from "../assets/round-small.png"
 
 function Navigation(props) {
   const { window,children } = props;
@@ -96,33 +98,20 @@ const handleBack=()=>{
             
            
           </div>
-          {
-            shovDynamicsNavigation?
-                <div className='ml-8 flex gap-3  ease-in transition-all duration-150 '>
-                  <div onClick={handleBack}>
-                   <ArrowBackIosNewIcon   className=' cursor-pointer'/>
-                   </div>
-                   <div className=' ease-in transition-all duration-[1700] opacity-100'>
-                     {cat.length!=0?cat[catNav].cat:"dds"}
-                     </div>
-                 <div  onClick={handleForvard} >
-                   <ArrowForwardIosIcon className='cursor-pointer'/>
-                 </div>
-                   
-                </div>
-                :<div onClick={()=>navigate("/")} className=' absolute top-5 left-[39%]
-                 
-                cursor-pointer mt-1 ml-8 rounded-md bg-gray-600 px-4 py-2  '> <img className='w-[90px] object-contain  '
           
-                 src="https://www.intelekt.net/wp-content/themes/valery.tarnavsky_theme/img/new-logow.png"
+            
+              <div onClick={()=>navigate("/")} className='mt-1 ml-[39px] flex justify-center  items-center  top-[0.1px] cursor-pointer  '>
+                 <img className='w-[120px] h-[50px] object-contain  '
+          
+                 src={logoNav}
                   alt="" srcset="" />
-                  <div className=' absolute top-3 left-[27px] '>
-                    <img  className='w-3  animate-my-spin' src="https://www.intelekt.net/wp-content/themes/valery.tarnavsky_theme/img/round-bigw.png" alt="" srcset="" />
-                    <img className='w-2 ml-2  animate-reverse-spin ' src="https://www.intelekt.net/wp-content/themes/valery.tarnavsky_theme/img/round-small.png" alt="" srcset="" />
+                  <div className=' relative  top-[-7px] left-[-102px] '>
+                    <img  className='w-4 ml-[-6px] animate-my-spin' src={bigW} alt="" srcset="" />
+                    <img className='w-3 ml-[7px] mt-[-4px]  animate-reverse-spin ' src={small} alt="" srcset="" />
                   </div>
                   
                   </div>
-             }
+             
           <div className='flex-2  '>
             <Link to='/shop-cart/'>
           <IconButton aria-label="cart" >
