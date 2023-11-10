@@ -38,7 +38,7 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
         aria-describedby="keep-mounted-modal-description"
       >
         
-    <Card className=' w-[320px] mt-[15%] h-[600px] m-auto'>
+    <Card className=' w-[320px] mt-[5%] h-[600px] m-auto'>
         <div onClick={()=>setOpen(false)}>
     <CloseIcon  className=' hover:animate-pulse text-red-800 relative top-2 left-[289px]  cursor-pointer' />
 </div>
