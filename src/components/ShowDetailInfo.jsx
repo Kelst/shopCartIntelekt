@@ -59,7 +59,7 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
         <Typography gutterBottom variant="h5" component="div">
           {good.name}
         </Typography>
-        <div className='h-[200px] overflow-scroll mb-4'>
+        <div className='h-[41vh] overflow-scroll mb-4'>
         <Typography  sx={{
             fontSize:"12px"
         }}  color="text.secondary">
