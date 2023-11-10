@@ -19,7 +19,7 @@ export default function Layout() {
     setTelegramId(user?.id)
  setAllCat(datas)
  console.log(datas);
-  //   async function  fetchData() {
+     async function  fetchData() {
   //   //   let d=await $api_nova.get('',
   //   //   {
   //   //     apiKey: "41249e216ac722eda29376114338da90",
@@ -30,10 +30,10 @@ export default function Layout() {
   //   //     }
   //   //  })
   //   //   console.log(d,"API NOVA");
-  //     await getAllCat()    
-  //     checkLocalStorage()
-  //   }
-  // fetchData()
+      
+     checkLocalStorage()
+   }
+   fetchData()
 
   },[])
   return (

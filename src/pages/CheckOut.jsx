@@ -37,8 +37,16 @@ export default function CheckOut() {
         value={phone}
         sx={{width:"100%",marginTop: 1}}
         variant='standard'
+       
         onChange={(event) => {
-          setPhone(event.target.value);
+          const inputValue =event.target.value;
+
+         if (inputValue=='')             setPhone("");
+
+          if (/^\d+$/.test(inputValue) && inputValue.length <= 12 && inputValue.length>=0) {
+          
+            setPhone(inputValue);
+          }
         }}/>
             <FormControl sx={{ marginTop: 3, width:"100%"}}>
         <InputLabel >Забрати з</InputLabel>
