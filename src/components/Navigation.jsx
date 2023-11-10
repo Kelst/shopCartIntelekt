@@ -76,7 +76,7 @@ const handleBack=()=>{
     <Box sx={{ display: 'flex' }}  >
       <AppBar component="nav" sx={{bgcolor:"#ea3439"}}>
        
-        {price==0?"":`Замовлень на суму: ${price} (грн.)`}
+       <div className=' text-sm'>{price==0?"":`Замовлень на суму: ${price} (грн.)`}</div>
         <Toolbar className=' flex justify-center bg-red-600' >
         <div className='flex   justify-between items-center w-[100%]'>
             <div className=' w-[10px] flex-2 justify-centr items-center'>
@@ -105,9 +105,9 @@ const handleBack=()=>{
           
                  src={logoNav}
                   alt="" srcset="" />
-                  <div className=' relative  top-[-7px] left-[-82px] '>
-                    <img  className='w-3 ml-[-6px] animate-my-spin' src={bigW} alt="" srcset="" />
-                    <img className='w-2 ml-[7px] mt-[-1px]  animate-reverse-spin ' src={small} alt="" srcset="" />
+                  <div className=' relative  top-[-7px] left-[-80px] '>
+                    <img  className='w-[10px] ml-[-6px] animate-my-spin' src={bigW} alt="" srcset="" />
+                    <img className='w-2 ml-[4px] mt-[-1px]  animate-reverse-spin ' src={small} alt="" srcset="" />
                   </div>
                   
                   </div>

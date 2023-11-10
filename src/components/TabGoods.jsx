@@ -63,7 +63,7 @@ export default function TabGoods() {
   };
 
   return (
-    <Box sx={{ bgcolor: 'white', maxWidth: 340,marginTop:"-25px" }}>
+    <Box sx={{ bgcolor: 'white', maxWidth: 340,marginTop:"-6px" }}>
       <AppBar position="static">
         <Tabs
           scrollButtons="auto"
