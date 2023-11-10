@@ -1,5 +1,5 @@
 import { FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useTelegram } from '../hooks/useTelegram';
 import { useStore } from '../store';
 
@@ -13,6 +13,16 @@ export default function CheckOut() {
       };
       const {tg,onToggleButton,user,buttonTelegram}=useTelegram()
       const getPhone=useStore(state=>state.getPhone)
+     const onSendData=useCallback(()=>{
+      const data={
+        phone,name
+      }
+      tg.sendData(JSON.stringify(data))
+     },[phone,name])
+     useEffect(()=>{
+        tg.onEvent('mainButtonClicked',onSendData)
+        return   tg.offEvent('mainButtonClicked',onSendData)
+     },[])
       useEffect(()=>{
         if(name!==""&&phone!=="") {
           buttonTelegram.show()
