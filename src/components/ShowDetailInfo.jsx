@@ -38,7 +38,7 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
         aria-describedby="keep-mounted-modal-description"
       >
         
-    <Card className=' w-[320px] mt-[5%] h-[600px] m-auto'>
+    <Card className=' w-[320px] mt-[5%] h-[70vh] m-auto '>
         <div onClick={()=>setOpen(false)}>
     <CloseIcon  className=' hover:animate-pulse text-red-800 relative top-2 left-[289px]  cursor-pointer' />
 </div>
@@ -55,11 +55,11 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
         image={good.url}
       />
       <Divider/>
-      <CardContent>
+      <CardContent >
         <Typography gutterBottom variant="h5" component="div">
           {good.name}
         </Typography>
-        <div className='h-[41vh] overflow-scroll mb-4'>
+        <div className='h-[41vh] overflow-scroll pb-4'>
         <Typography  sx={{
             fontSize:"12px"
         }}  color="text.secondary">
