@@ -14,6 +14,7 @@ export default function CheckOut() {
       const {tg,onToggleButton,user}=useTelegram()
       const getPhone=useStore(state=>state.getPhone)
       useEffect(()=>{
+        tg.MainButton.show()
         async function  fetchData(){
           let p=  await getPhone(user.id)
        
