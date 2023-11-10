@@ -11,13 +11,13 @@ export default function CheckOut() {
         console.log(place);
         setPlace(event.target.value);
       };
-      const {tg,onToggleButton,user}=useTelegram()
+      const {tg,onToggleButton,user,buttonTelegram}=useTelegram()
       const getPhone=useStore(state=>state.getPhone)
       useEffect(()=>{
         if(name!==""&&phone!=="") {
-          tg.MainButton.show()
+          buttonTelegram.show()
         }
-       tg.WebApp?.showAlert("Hi")	 
+       
         async function  fetchData(){
           let p=  await getPhone(user.id)
        
