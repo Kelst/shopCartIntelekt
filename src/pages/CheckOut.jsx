@@ -14,17 +14,13 @@ export default function CheckOut() {
       const {tg,onToggleButton,user}=useTelegram()
       const getPhone=useStore(state=>state.getPhone)
       useEffect(()=>{
-        if(name!==""&&phone!=="") {
-          tg.MainButton.show()
-        }
-       tg.WebApp?.showAlert("Hi")	 
         async function  fetchData(){
           let p=  await getPhone(user.id)
        
           setPhone(p)
         }
         fetchData()
-      },[phone,place,name])
+      },[])
   return (
     <div className='w-[260px] m-auto border p-9 shadow-md'>
         <Typography className=' uppercase  ' variant='h7'>Оформлення Замовлення </Typography>
