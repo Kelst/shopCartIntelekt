@@ -100,14 +100,14 @@ const handleBack=()=>{
           </div>
           
             
-              <div onClick={()=>navigate("/")} className='mt-1 ml-[39px] flex justify-center  items-center  top-[0.1px] cursor-pointer  '>
-                 <img className='w-[120px] h-[50px] object-contain  '
+              <div onClick={()=>navigate("/")} className='mt-1 ml-[39px] flex justify-center  items-center   cursor-pointer  '>
+                 <img className='w-[95px] h-[50px] object-contain    '
           
                  src={logoNav}
                   alt="" srcset="" />
-                  <div className=' relative  top-[-7px] left-[-102px] '>
-                    <img  className='w-4 ml-[-6px] animate-my-spin' src={bigW} alt="" srcset="" />
-                    <img className='w-3 ml-[7px] mt-[-4px]  animate-reverse-spin ' src={small} alt="" srcset="" />
+                  <div className=' relative  top-[-7px] left-[-82px] '>
+                    <img  className='w-3 ml-[-6px] animate-my-spin' src={bigW} alt="" srcset="" />
+                    <img className='w-2 ml-[7px] mt-[-1px]  animate-reverse-spin ' src={small} alt="" srcset="" />
                   </div>
                   
                   </div>

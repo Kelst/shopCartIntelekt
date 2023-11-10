@@ -63,7 +63,7 @@ export default function TabGoods() {
   };
 
   return (
-    <Box sx={{ bgcolor: 'white', maxWidth: 400 }}>
+    <Box sx={{ bgcolor: 'white', maxWidth: 340,marginTop:"-25px" }}>
       <AppBar position="static">
         <Tabs
           scrollButtons="auto"
@@ -86,6 +86,7 @@ export default function TabGoods() {
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}
+    
         onChangeIndex={handleChangeIndex}
       >
         {
