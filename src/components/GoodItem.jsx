@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { useStore } from '../store';
 import { useNavigate } from 'react-router-dom';
 import { Divider } from '@mui/material';
+import ShowDetailInfo from "./ShowDetailInfo"
 import VisibilityIcon from '@mui/icons-material/Visibility';
 export default function GoodItem({good}) {
     const [flagBuy,setFlagBuy]=useState(false)
@@ -18,6 +19,7 @@ export default function GoodItem({good}) {
     const removeFromCart=useStore(state=>state.removeFromCart)
     const cheCkGoodInCart=useStore(state=>state.cheCkGoodInCart)
     const catNav=useStore(state=>state.catNav)
+    const [open,setOpen]=useState(false)
     const nav=useNavigate()
 
    React.useEffect(()=>{
@@ -37,6 +39,7 @@ export default function GoodItem({good}) {
     }
   return (
 <Card raised className=' flex flex-col justify-end' sx={{height:475,border:`${good.unique_price!=0?"2px solid red":"1px solid gray"}` }} >
+      <ShowDetailInfo open={open} good={good} setOpen={setOpen}/>
       <CardMedia
           component="img"
           
@@ -52,6 +55,7 @@ export default function GoodItem({good}) {
 
 
       />
+      
       <CardContent>
         <Typography gutterBottom variant="h6" component="div" sx={{fontFamily:"ds"}}>
           {good.name}
@@ -77,7 +81,7 @@ export default function GoodItem({good}) {
         </Typography>
        
         </div>
-        <Button variant='outlined' fullWidth >Детальніше ...</Button>
+        <Button variant='outlined' onClick={()=>setOpen(true)} fullWidth >Детальніше ...</Button>
       </CardContent>
       <Divider/>
      

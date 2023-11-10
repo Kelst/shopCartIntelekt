@@ -8,9 +8,9 @@ export default function Cart() {
   const cat=useStore(state=>state.cat)
   const navigate=useNavigate()
   const setShovDynamicsNavigation=useStore(state=>state.setShovDynamicsNavigation)
-
-  const handleTo=(id)=>{
-
+  const setValue=useStore(state=>state.setIndex)
+  const handleTo=(id,index)=>{
+    setValue(index)
     navigate(`/category/${id}`,{ state: { id: id } })
   }
   useEffect(()=>{
@@ -24,7 +24,7 @@ export default function Cart() {
      <span className=' block mt-5 uppercase'>Виберіть категорію товару який вас цікавить:</span>
     <div className=' mt-12 flex justify-center flex-col gap-6 items-center '>
      {
-      cat.map(e=><ButtomCustom key={e.id}   onClick={()=>handleTo(e.id)} text={e.cat} />
+      cat.map((e,index)=><ButtomCustom key={e.id}   onClick={()=>handleTo(e.id,index)} text={e.cat} />
       )
      }
      </div>
