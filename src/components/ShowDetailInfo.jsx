@@ -45,7 +45,7 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
       <CardMedia
         component="img"
         sx={{
-            height: 260,
+            height: 160,
             width:120,
             margin:"0 auto",
             objectFit: "contain", 
@@ -60,7 +60,9 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
           {good.name}
         </Typography>
         <div className='h-[200px] overflow-scroll mb-4'>
-        <Typography  variant="body2" color="text.secondary">
+        <Typography  sx={{
+            fontSize:"12px"
+        }}  color="text.secondary">
         {good.text}
         </Typography>
         </div>
