@@ -14,10 +14,7 @@ export function useTelegram(){
     }
     const buttonTelegram= tg.MainButton
     buttonTelegram.setText("Готово")
-    buttonTelegram.onClick(()=>{
-        buttonTelegram.sendData("dsadasdas")
-       
-    })
+    
     return {
         user:tg.initDataUnsafe?.user,
         tg,
