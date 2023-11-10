@@ -18,7 +18,6 @@ export default function GoodItem({good}) {
     const addToCart=useStore(state=>state.addToCart)
     const removeFromCart=useStore(state=>state.removeFromCart)
     const cheCkGoodInCart=useStore(state=>state.cheCkGoodInCart)
-    const catNav=useStore(state=>state.catNav)
     const [open,setOpen]=useState(false)
     const nav=useNavigate()
 
@@ -81,7 +80,7 @@ export default function GoodItem({good}) {
         </Typography>
        
         </div>
-        <Button variant='outlined' onClick={()=>setOpen(true)} fullWidth >Детальніше ...</Button>
+        <Button variant='outlined' onClick={()=>setOpen(true)} fullWidth startIcon={<VisibilityIcon/>} >Детальніше ...</Button>
       </CardContent>
       <Divider/>
      
@@ -95,7 +94,7 @@ export default function GoodItem({good}) {
         }
        
            </div>
-      </CardActions>
+      </CardActions> 
   
     </Card>
   )

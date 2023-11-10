@@ -3,6 +3,12 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import { Divider } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 const style = {
   position: 'absolute',
@@ -18,12 +24,12 @@ const style = {
 
 export default function ShowDetailInfo({ good,open,setOpen}) {
 
-  const handleOpen = () => setOpen(true);
+  
   const handleClose = () => setOpen(false);
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      
       <Modal
         keepMounted
         open={open}
@@ -31,14 +37,40 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
         aria-labelledby="keep-mounted-modal-title"
         aria-describedby="keep-mounted-modal-description"
       >
-        <Box sx={style}>
-          <Typography id="keep-mounted-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="keep-mounted-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </Box>
+        
+    <Card className=' w-[450px] mt-[20%] m-auto'>
+        <div onClick={()=>setOpen(false)}>
+    <CloseIcon  className=' hover:animate-pulse text-red-800 relative top-2 left-[410px]  cursor-pointer' />
+</div>
+      <CardMedia
+        component="img"
+        sx={{
+            height: 260,
+            width:300,
+            margin:"0 auto",
+            objectFit: "contain", 
+            paddingTop:5,
+            paddingBottom:1
+          }}
+        image={good.url}
+      />
+      <Divider/>
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {good.name}
+        </Typography>
+        <div className='h-[300px] overflow-scroll'>
+        <Typography  variant="body2" color="text.secondary">
+        {good.text}
+        </Typography>
+        </div>
+      </CardContent>
+      <CardActions>
+       
+      </CardActions>
+    </Card>
+    
+
       </Modal>
     </div>
   );
