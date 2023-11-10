@@ -25,11 +25,11 @@ setItems(a)
     <Carousel 
     
    
-    changeOnFirstRender={true}
+    
     sx={{minWidth:"315px", marginTop:"-15px", marginLeft:"-12px", display:"flex", flexDirection:"column", justifyItems:"center", alignItems:"center"}} 
     autoPlay={false}
     swipe 
-    duration={500}
+    duration={100}
     cycleNavigation={true}
    
     >

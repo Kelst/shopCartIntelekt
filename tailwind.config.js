@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       animation: {
-        'reverse-spin': 'reverse-spin 20s linear infinite',
+        'reverse-spin': 'reverse-spin 5s linear infinite',
         'my-spin': 'spin 20s linear infinite'
       },
       keyframes: {
