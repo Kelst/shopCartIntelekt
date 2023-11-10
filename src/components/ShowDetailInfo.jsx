@@ -38,15 +38,15 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
         aria-describedby="keep-mounted-modal-description"
       >
         
-    <Card className=' w-[450px] mt-[20%] m-auto'>
+    <Card className=' w-[320px] mt-[15%] h-[600px] m-auto'>
         <div onClick={()=>setOpen(false)}>
-    <CloseIcon  className=' hover:animate-pulse text-red-800 relative top-2 left-[410px]  cursor-pointer' />
+    <CloseIcon  className=' hover:animate-pulse text-red-800 relative top-2 left-[289px]  cursor-pointer' />
 </div>
       <CardMedia
         component="img"
         sx={{
             height: 260,
-            width:300,
+            width:120,
             margin:"0 auto",
             objectFit: "contain", 
             paddingTop:5,
@@ -59,15 +59,13 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
         <Typography gutterBottom variant="h5" component="div">
           {good.name}
         </Typography>
-        <div className='h-[300px] overflow-scroll'>
+        <div className='h-[200px] overflow-scroll mb-4'>
         <Typography  variant="body2" color="text.secondary">
         {good.text}
         </Typography>
         </div>
       </CardContent>
-      <CardActions>
-       
-      </CardActions>
+ 
     </Card>
     
 
