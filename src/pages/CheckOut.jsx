@@ -11,21 +11,24 @@ export default function CheckOut() {
         console.log(place);
         setPlace(event.target.value);
       };
-      const {tg,onToggleButton,user,buttonTelegram}=useTelegram()
+      const {tg,onToggleButton,user}=useTelegram()
       const getPhone=useStore(state=>state.getPhone)
      const onSendData=useCallback(()=>{
+      alert("DDDDDDDDDD")
       const data={
         phone,name
       }
-      tg.sendData(JSON.stringify(data))
+      window.Telegram.WebApp.sendData(JSON.stringify(data))
+      tg.close()
      },[phone,name])
      useEffect(()=>{
-        tg.onEvent('mainButtonClicked',onSendData)
-        return   tg.offEvent('mainButtonClicked',onSendData)
+      window.Telegram.WebApp.MainButton.onClick(onSendData)
+
+      
      },[])
       useEffect(()=>{
         if(name!==""&&phone!=="") {
-          buttonTelegram.show()
+          tg.MainButton.show()
         }
        
         async function  fetchData(){

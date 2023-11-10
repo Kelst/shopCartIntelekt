@@ -12,15 +12,14 @@ export function useTelegram(){
             tg.MainButton.show()
         }
     }
-    const buttonTelegram= tg.MainButton
-    buttonTelegram.setText("Готово")
+
     
     return {
         user:tg.initDataUnsafe?.user,
         tg,
         onClose:onClose,
         onToggleButton:onToggleButton,
-        buttonTelegram
+        
 
     }
 }
