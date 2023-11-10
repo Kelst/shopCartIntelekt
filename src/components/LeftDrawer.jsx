@@ -80,7 +80,10 @@ export default function LeftDrawer() {
         
         open={open}
       >
-        <DrawerHeader className=' flex justify-center items-center '>
+        <DrawerHeader className='  '>
+          <div onClick={()=>{setOpen(false)}}>
+          <ChevronLeftIcon  className='relative left-[100px] cursor-pointer'/>
+          </div>
         <div onClick={()=>{
           setOpen(false)
           navigate("/")}} className=' relative  right-11   cursor-pointer   '>
