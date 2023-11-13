@@ -20,6 +20,7 @@ export default function CheckOut() {
     const goodCart=useStore(state=>state.goodCart)
     const sendOrder=useStore(state=>state.sendOrder)
     const getPrice=useStore(state=>state.getPrice)
+    const telegramId=useStore(state=>state.telegramId)
     const navigation=useNavigate()
 
 
@@ -51,6 +52,7 @@ export default function CheckOut() {
       let data={
         name:name,
         phone:phone,
+        telegram_id:telegramId,
         cart:gooDate,
         adress:adre,
         sum:getPrice(),
