@@ -174,7 +174,7 @@ export default function CheckOut() {
      
       </FormControl>  
         <Button sx={{marginTop:3}} variant='outlined' disabled={
-    place !== "30"
+    place == "30"
       ? !(name.trim() !== "" && phone.trim() !== "" && adress.trim() !== "")
       : !(name.trim() !== "" && phone.trim() !== "")
   }   >Завершити</Button>
