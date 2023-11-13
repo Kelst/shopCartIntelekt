@@ -71,17 +71,15 @@ export default function CheckOut() {
       
      },[])
       useEffect(()=>{
-        if(name!==""&&phone!=="") {
-          tg.MainButton.show()
-        }
-       
         async function  fetchData(){
           let p=  await getPhone(user.id)
        
           setPhone(p)
         }
+       
+       
         fetchData()
-      },[name,phone])
+      },[])
   return (
     <div className='w-[303px] m-auto border p-9 shadow-md'>
         <Typography className=' uppercase  ' variant='h7'>Оформлення Замовлення </Typography>
