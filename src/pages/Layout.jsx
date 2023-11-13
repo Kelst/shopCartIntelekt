@@ -14,12 +14,14 @@ export default function Layout() {
   const setTelegramId=useStore(state=>state.setTelegramId)
   const setAllCat=useStore(state=>state.setAllCat)
   const {tg,onToggleButton,user}=useTelegram() 
+  alert(user)
   const datas=useLoaderData()
   useEffect(()=>{
     tg.ready()
     setTelegramId(user?.id)
  setAllCat(datas)
  console.log(datas);
+
     
 
     
