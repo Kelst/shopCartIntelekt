@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function CheckOut() {
     const [name, setName] = React.useState('');
-    const [place, setPlace] = React.useState('10');
+    const [place, setPlace] = React.useState(10);
 
     const [phone, setPhone] = React.useState('');
     const [adress, setAdress] = React.useState('');
