@@ -83,7 +83,7 @@ export default function CheckOut() {
         fetchData()
       },[name,phone])
   return (
-    <div className='w-[330px] m-auto border p-9 shadow-md'>
+    <div className='w-[303px] m-auto border p-9 shadow-md'>
         <Typography className=' uppercase  ' variant='h7'>Оформлення Замовлення </Typography>
        <div className='mt-8 flex flex-col justify-center items-center'>
     
