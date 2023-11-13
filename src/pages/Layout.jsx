@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { useTelegram } from '../hooks/useTelegram'
 import $api_nova from '../nova-poshta'
 import fetchData from '../nova-poshta'
+import AlertCustum from '../components/AlertCustum'
 
 export default function Layout() {
   const getAllCat=useStore(state=>state.getAllCat)
@@ -28,6 +29,7 @@ checkLocalStorage()
   return (
     <div  >
      <Navigation>
+     
     
     <Outlet/>
     

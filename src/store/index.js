@@ -14,6 +14,22 @@ export const useStore = create((set,get) => ({
   operator2:0,
   countSlide:0,
   index:0,
+  async sendOrder (order) {
+    try {
+      set(state=>({...state,loader:true}))
+      const response=await $api.post("/create-order",{order:order})
+      const data=response.data
+      set(state=>({...state,loader:false}))
+      if(data==false) return false 
+      set(state=>({...state,goodCart:[],shopCart:0}))
+      localStorage.removeItem('state');
+     return data
+    } catch (error) {
+      console.log(error);
+      set(state=>({...state,loader:false}))
+      return false
+    }
+  },
   setIndex(index){
     set((state)=>({...state,index:index}))
   },
@@ -52,7 +68,7 @@ catch (e){
   },
   checkLocalStorage(){
     const dataFromLocalStorage=JSON.parse(localStorage.getItem("state"))
-   
+    if(!dataFromLocalStorage) return
     if(dataFromLocalStorage.goodCart.length!=0){
       set(state=>({...state,catNav:dataFromLocalStorage.catNav,operators:dataFromLocalStorage.operators,cat:dataFromLocalStorage.cat,shopCart:dataFromLocalStorage.goodCart.length,goodCart:[...dataFromLocalStorage.goodCart]}))
     }

@@ -4,6 +4,8 @@ import { useTelegram } from '../hooks/useTelegram';
 import { useStore } from '../store';
 import fetchData from '../nova-poshta';
 import ButtomCustom from '../components/ButtomCustom';
+import AlertCustum from '../components/AlertCustum';
+import { useNavigate } from 'react-router-dom';
 
 export default function CheckOut() {
     const [name, setName] = React.useState('');
@@ -15,6 +17,60 @@ export default function CheckOut() {
     const [placeVidil, setPlaceVidil] = React.useState("");
     const [loading,setLoading]=useState(false)
     const [text,setText]=useState("")
+    const goodCart=useStore(state=>state.goodCart)
+    const sendOrder=useStore(state=>state.sendOrder)
+    const getPrice=useStore(state=>state.getPrice)
+    const navigation=useNavigate()
+
+
+    const [open,setOpen]=useState(false)
+    const [textAlert,setTectAlert]=useState("")
+    const [state,setState]=useState(0)
+
+    const handleSendData= async()=>{
+      const gooDate=goodCart.map(e=>{
+        return {name:e.name,cost:e.cost,count:e.count}
+      })
+      let adre=""
+      console.log(place);
+      switch (place) 
+             {
+              case 10 :adre='ТЦ "Проспект", оф. № 128А (праворуч від ескалатору)' 
+              console.log("!1");
+              break;
+              case 20:adre='ТРЦ «DEPOt» (2-й поверх)'
+              console.log("!2");
+              break;
+              case 30:
+                console.log("!3");
+                  adre= adress+" "+vidilen[Number.parseInt(placeVidil)].Description
+                
+             }
+      
+
+      let data={
+        name:name,
+        phone:phone,
+        cart:gooDate,
+        adress:adre,
+        sum:getPrice(),
+        comment:text
+
+      }
+      let flag=await sendOrder(data)
+      if(flag){
+        setTectAlert("Ваше замовлення принято !!! очікуйте повідомлення про номер замовлення")
+        setState(0)
+
+        setOpen(true)
+       setTimeout(()=>{navigation("/")},3000)   
+      }else {
+        setTectAlert("Виникла помилка при оформленні замовлення будь ласка зв'яжіться із тех. підтримкою")
+        setState(1)
+        setOpen(true)
+      }
+
+    }
     const handleChange = (event) => {
         setAdress("")
         setPlace(event.target.value);
@@ -82,6 +138,8 @@ export default function CheckOut() {
       },[])
   return (
     <div className='w-[303px] m-auto border p-9 shadow-md'>
+
+       <AlertCustum open={open} setOpen={setOpen} text={textAlert} state={state}/> 
         <Typography className=' uppercase  ' variant='h7'>Оформлення Замовлення </Typography>
        <div className='mt-8 flex flex-col justify-center items-center'>
     
@@ -173,7 +231,11 @@ export default function CheckOut() {
         />
      
       </FormControl>  
-        <Button sx={{marginTop:3}} variant='outlined' disabled={
+        <Button 
+        
+        onClick={handleSendData}
+        
+        sx={{marginTop:3}} variant='outlined' disabled={
     place == "30"
       ? !(name.trim() !== "" && phone.trim() !== "" && adress.trim() !== "")
       : !(name.trim() !== "" && phone.trim() !== "")
