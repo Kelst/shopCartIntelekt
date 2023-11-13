@@ -1,8 +1,9 @@
-import { CircularProgress, FormControl, InputLabel, MenuItem, Select, TextField, Typography, getAccordionDetailsUtilityClass } from '@mui/material';
+import { Button, CircularProgress, FormControl, InputLabel, MenuItem, Select, TextField, Typography, getAccordionDetailsUtilityClass } from '@mui/material';
 import React, { useCallback, useEffect, useState } from 'react'
 import { useTelegram } from '../hooks/useTelegram';
 import { useStore } from '../store';
 import fetchData from '../nova-poshta';
+import ButtomCustom from '../components/ButtomCustom';
 
 export default function CheckOut() {
     const [name, setName] = React.useState('');
@@ -13,8 +14,9 @@ export default function CheckOut() {
     const [vidilen, setVidilen] = React.useState([]);
     const [placeVidil, setPlaceVidil] = React.useState("");
     const [loading,setLoading]=useState(false)
+    const [text,setText]=useState("")
     const handleChange = (event) => {
-        
+        setAdress("")
         setPlace(event.target.value);
       };  
       const handleChangeVidill=(event)=>{
@@ -81,7 +83,7 @@ export default function CheckOut() {
         fetchData()
       },[name,phone])
   return (
-    <div className='w-[360px] m-auto border p-9 shadow-md'>
+    <div className='w-[330px] m-auto border p-9 shadow-md'>
         <Typography className=' uppercase  ' variant='h7'>Оформлення Замовлення </Typography>
        <div className='mt-8 flex flex-col justify-center items-center'>
     
@@ -107,7 +109,7 @@ export default function CheckOut() {
             setPhone(inputValue);
           }
         }}/>
-            <FormControl sx={{ marginTop: 3, width:"100%"}}>
+            <FormControl sx={{ marginTop: 3, width:"100%",textAlign:"left"}}>
         <InputLabel >Забрати з</InputLabel>
         
         <Select
@@ -158,7 +160,26 @@ export default function CheckOut() {
           
           : ""
         }
+        <TextField
+          id="standard-multiline-static"
+          sx={{marginTop:3}} 
+          label="Короткий коментар"
+          multiline
+          rows={2}
+          value={text}
+          onChange={e=>{
+            setText(e.target.value)
+          }}
+         
+          variant="standard"
+        />
+     
       </FormControl>  
+        <Button sx={{marginTop:3}} variant='outlined' disabled={
+    place !== "30"
+      ? !(name.trim() !== "" && phone.trim() !== "" && adress.trim() !== "")
+      : !(name.trim() !== "" && phone.trim() !== "")
+  }   >Завершити</Button>
         </div>
 
     </div>
