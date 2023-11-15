@@ -33,7 +33,13 @@ export default function CheckOut() {
         accumulator.push({ name: e.name, cost: e.cost, count: e.count });
         return accumulator;
       }, []);
-      let adre=""
+      let adre="";
+      [].forEach(e=>
+        {
+          adre+=`Назва: ${e.name}  Ціна: ${e.unique_price!=0?e.unique_price:e.cost} К-ть: ${e.count}x \n`
+
+        })
+      
       console.log(place);
       switch (place) 
              {
