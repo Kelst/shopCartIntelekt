@@ -29,14 +29,12 @@ export default function CheckOut() {
     const [state,setState]=useState(0)
 
     const handleSendData= async()=>{
-      const gooDate = goodCart.reduce((accumulator, e) => {
-        accumulator.push({ name: e.name, cost: e.cost, count: e.count });
-        return accumulator;
-      }, []);
+     
       let adre="";
+      let gooDate="";
       [].forEach(e=>
         {
-          adre+=`Назва: ${e.name}  Ціна: ${e.unique_price!=0?e.unique_price:e.cost} К-ть: ${e.count}x \n`
+          gooDate+=`Назва: ${e.name}  Ціна: ${e.unique_price!=0?e.unique_price:e.cost} К-ть: ${e.count}x \n`
 
         })
       
