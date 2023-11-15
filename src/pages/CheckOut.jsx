@@ -29,9 +29,10 @@ export default function CheckOut() {
     const [state,setState]=useState(0)
 
     const handleSendData= async()=>{
-      const gooDate=goodCart.map(e=>{
-        return {name:e.name,cost:e.cost,count:e.count}
-      })
+      const gooDate = goodCart.reduce((accumulator, e) => {
+        accumulator.push({ name: e.name, cost: e.cost, count: e.count });
+        return accumulator;
+      }, []);
       let adre=""
       console.log(place);
       switch (place) 
