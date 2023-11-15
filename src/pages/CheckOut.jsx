@@ -32,12 +32,12 @@ export default function CheckOut() {
      
       let adre="";
       let gooDate="";
-      [].forEach(e=>
+    goodCart.forEach(e=>
         {
           gooDate+=`Назва: ${e.name}  Ціна: ${e.unique_price!=0?e.unique_price:e.cost} К-ть: ${e.count}x \n`
 
         })
-      
+      console.log(gooDate);
       console.log(place);
       switch (place) 
              {
@@ -58,7 +58,7 @@ export default function CheckOut() {
         name:name,
         phone:phone,
         telegram_id:telegramId,
-        cart:gooDate.toString(),
+        cart:gooDate,
         adress:adre,
         sum:getPrice(),
         comment:text
