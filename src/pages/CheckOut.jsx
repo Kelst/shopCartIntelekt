@@ -53,7 +53,7 @@ export default function CheckOut() {
         name:name,
         phone:phone,
         telegram_id:telegramId,
-        cart:gooDate,
+        cart:gooDate.toString(),
         adress:adre,
         sum:getPrice(),
         comment:text
@@ -65,6 +65,7 @@ export default function CheckOut() {
         setState(0)
 
         setOpen(true)
+      tg.close()
        setTimeout(()=>{navigation("/")},3000)   
       }else {
         setTectAlert("Виникла помилка при оформленні замовлення будь ласка зв'яжіться із тех. підтримкою")
