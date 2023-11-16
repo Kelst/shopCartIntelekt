@@ -85,7 +85,7 @@ export default function GoodItem({good}) {
       <Divider/>
      
       <CardActions> 
-        <div className='flex justify-center items-center  h-[80px] '>
+        <div className='flex justify-center items-center  h-[80px]   bg-transparent w-[500px]'>
         {
             flagBuy==false?
              <Button color='secondary' variant='outlined' onClick={handleBuy} startIcon={<ShoppingCartIcon/>} size="small">Купити</Button>

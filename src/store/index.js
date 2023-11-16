@@ -70,7 +70,7 @@ catch (e){
     const dataFromLocalStorage=JSON.parse(localStorage.getItem("state"))
     if(!dataFromLocalStorage) return
     if(dataFromLocalStorage.goodCart.length!=0){
-      set(state=>({...state,catNav:dataFromLocalStorage.catNav,operators:dataFromLocalStorage.operators,cat:dataFromLocalStorage.cat,shopCart:dataFromLocalStorage.goodCart.length,goodCart:[...dataFromLocalStorage.goodCart]}))
+      set(state=>({...state,catNav:dataFromLocalStorage.catNav,operators:dataFromLocalStorage.operators,shopCart:dataFromLocalStorage.goodCart.length,goodCart:[...dataFromLocalStorage.goodCart]}))
     }
     console.log("Check",dataFromLocalStorage.goodCart);
   },

@@ -80,20 +80,13 @@ const handleBack=()=>{
         <Toolbar className=' flex justify-center bg-red-600' >
         <div className='flex   justify-between items-center w-[100%]'>
             <div className=' w-[10px] flex-2 justify-centr items-center'>
-          {cat.length>2?
+     
                     <div>
                     <LeftDrawer/>
                     
                     </div>
-                    :
-                    cat.map((item) => (
-                        <Link  key={item.id} to={`/category/${item.id}`}>
-                         <Button className=' shadow-md' color='error' variant='outlined' key={item.id} sx={{ color: '#fff',fontSize:"13px" }}>
-                           {item.cat}
-                         </Button>
-                         </Link>
-                       ))
-        }
+                   
+        
 
             
            
