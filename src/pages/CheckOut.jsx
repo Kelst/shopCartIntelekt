@@ -6,7 +6,8 @@ import fetchData from '../nova-poshta';
 import ButtomCustom from '../components/ButtomCustom';
 import AlertCustum from '../components/AlertCustum';
 import { useNavigate } from 'react-router-dom';
-
+import AnnouncementIcon from '@mui/icons-material/Announcement';
+import AlertDialog from '../components/AlertDialog';
 export default function CheckOut() {
     const [name, setName] = React.useState('');
     const [place, setPlace] = React.useState(10);
@@ -21,6 +22,11 @@ export default function CheckOut() {
     const sendOrder=useStore(state=>state.sendOrder)
     const getPrice=useStore(state=>state.getPrice)
     const telegramId=useStore(state=>state.telegramId)
+
+    const [openAlertDialog,setOpenAlertDialog]=useState(false)
+    const [alertTitle,setAlertTitle]=useState("")
+    const [alertText,setAlertText]=useState("")
+
     const navigation=useNavigate()
 
 
@@ -37,8 +43,6 @@ export default function CheckOut() {
           gooDate+=`Назва: ${e.name}  Ціна: ${e.unique_price!=0?e.unique_price:e.cost} К-ть: ${e.count}x \n`
 
         })
-      console.log(gooDate);
-      console.log(place);
       switch (place) 
              {
               case 10 :adre='ТЦ "Проспект", оф. № 128А (праворуч від ескалатору)' 
@@ -145,7 +149,7 @@ export default function CheckOut() {
         fetchData()
       },[])
   return (
-    <div className='w-[303px] m-auto border p-9 shadow-md'>
+    <div className='w-[303px] m-auto border p-9 shadow-md relative'>
 
        <AlertCustum open={open} setOpen={setOpen} text={textAlert} state={state}/> 
         <Typography className=' uppercase  ' variant='h7'>Оформлення Замовлення </Typography>
@@ -186,7 +190,6 @@ export default function CheckOut() {
           <MenuItem value={10}>ТЦ "Проспект", оф. № 128А (праворуч від ескалатору)</MenuItem>
           <MenuItem value={20}>ТРЦ «DEPOt» (2-й поверх)</MenuItem>
           <MenuItem value={30}>Нова Пошта</MenuItem>
-
         </Select>
         {
           place=='30'?
@@ -239,6 +242,8 @@ export default function CheckOut() {
         />
      
       </FormControl>  
+      
+     
         <Button 
         
         onClick={handleSendData}
@@ -249,7 +254,12 @@ export default function CheckOut() {
       : !(name.trim() !== "" && phone.trim() !== "")
   }   >Завершити</Button>
         </div>
-
+        <div 
+        onClick={()=>{setOpenAlertDialog(true)}}
+        className=' animate-pulse cursor-pointer  absolute right-2'>
+ <AnnouncementIcon />
+ </div>
+ <AlertDialog open={openAlertDialog} setOpen={setOpenAlertDialog} title={alertTitle} text={alertText}/>
     </div>
   )
 }
