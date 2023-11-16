@@ -23,6 +23,7 @@ import small from "../assets/min.png"
 import { useStore } from '../store';
 import { Link, useNavigate } from 'react-router-dom';
 import TurnedInIcon from '@mui/icons-material/TurnedIn';
+import { Backdrop } from '@mui/material';
 const drawerWidth = 200;
 
 
@@ -40,16 +41,16 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function LeftDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [openBack, setOpenBack] = React.useState(false);
   const setValue=useStore(state=>state.setIndex)
   const value=useStore(state=>state.index)
   const navigate=useNavigate()
   const handleDrawerOpen = () => {
+    setOpenBack(true)
     setOpen(true);
   };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  
   const cat=useStore(state=>state.cat) 
 
   return (
@@ -68,6 +69,7 @@ export default function LeftDrawer() {
         </Toolbar>
       <Drawer
         sx={{
+          zIndex:100,
           width: drawerWidth,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
@@ -76,16 +78,20 @@ export default function LeftDrawer() {
           },
         }}
         variant="persistent"
+        
         anchor="left"
         
         open={open}
       >
         <DrawerHeader className='  '>
-          <div onClick={()=>{setOpen(false)}}>
+          <div onClick={()=>{setOpen(false)
+          setOpenBack(false)
+          }}>
           <ChevronLeftIcon  className='relative left-[100px] cursor-pointer'/>
           </div>
         <div onClick={()=>{
           setOpen(false)
+          setOpenBack(false);
           navigate("/")}} className=' relative  right-11   cursor-pointer   '>
                  <img className='w-[95px] h-[50px] object-contain    '
           
@@ -105,7 +111,9 @@ export default function LeftDrawer() {
               <Link onClick={()=>setValue(index)} key={item.id} to={`/category/${item.id}`}>
 
               <ListItem key={item.cat} disablePadding>
-              <ListItemButton onClick={()=>setOpen(false)}>
+              <ListItemButton onClick={()=>{setOpen(false) 
+              setOpenBack(false)}
+              }>
                 <ListItemIcon>
                    <TurnedInIcon  className=''/> 
                 </ListItemIcon>
@@ -131,6 +139,13 @@ export default function LeftDrawer() {
 </ListItem>
 </Link>
       </Drawer>
+      <Backdrop
+        sx={{ zIndex:99 }}
+        open={openBack}
+        onClick={()=>{
+          setOpenBack(false);
+          setOpen(false)}}
+      />
      
     </>
   );
