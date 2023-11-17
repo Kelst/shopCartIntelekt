@@ -10,6 +10,7 @@ import Category from "../pages/Category";
 import Layout from "../pages/Layout";
 import CheckOut from "../pages/CheckOut";
 import $api from "../http";
+import MyOrders from "../pages/MyOrders";
 
 export const router=createBrowserRouter([
     {
@@ -43,6 +44,10 @@ export const router=createBrowserRouter([
                   path: "/check-out/",
                   element: <CheckOut/>,
                 },
+                {
+                  path:"/my-orders/",
+                  element:<MyOrders/>
+                }
         ]
     }
    

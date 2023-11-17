@@ -96,10 +96,10 @@ export default function LeftDrawer() {
                  <img className='w-[95px] h-[50px] object-contain    '
           
                  src={logoNav}
-                  alt="" srcset="" />
+                />
                   <div className=' relative  top-[-40px] left-[17px] '>
-                    <img  className='w-[14px] ml-[-9px] animate-my-spin' src={bigW} alt="" srcset="" />
-                    <img className='w-[10px] ml-[2.5px] mt-[-4px]  animate-reverse-spin ' src={small} alt="" srcset="" />
+                    <img  className='w-[14px] ml-[-9px] animate-my-spin' src={bigW}  />
+                    <img className='w-[10px] ml-[2.5px] mt-[-4px]  animate-reverse-spin ' src={small} alt=""  />
                   </div>
                   
                   </div>

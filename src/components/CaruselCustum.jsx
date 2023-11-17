@@ -26,10 +26,10 @@ setItems(a)
     
    
     
-    sx={{minWidth:"315px", marginTop:"-15px", marginLeft:"-12px", display:"flex", flexDirection:"column", justifyItems:"center", alignItems:"center"}} 
+    sx={{minWidth:"325px", marginTop:"-15px", marginLeft:"-16px", display:"flex", flexDirection:"column", justifyItems:"center", alignItems:"center"}} 
     autoPlay={false}
     swipe 
-    duration={100}
+    duration={200}
     cycleNavigation={true}
    
     >

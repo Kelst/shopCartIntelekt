@@ -5,6 +5,7 @@ export const useStore = create((set,get) => ({
   shopCart: 0,
   cat:[],
   goodCart:[],
+  orders:[],
   cartSum:0,
   operators:0,
   telegramId:"",
@@ -14,6 +15,28 @@ export const useStore = create((set,get) => ({
   operator2:0,
   countSlide:0,
   index:0,
+  async getOrderTelegram (){
+    try {
+      set(state=>({...state,loader:true}))
+        let data=await $api.post('/get-order-telegram',{id:'437781768'})
+        set(state=>({...state,orders:data.data}))
+        console.log(data.data,"Orders");
+
+    }
+    catch(e){
+      console.log(e,"OrderGet");
+      
+      set(state=>({...state,loader:false,orders:[...state.orders]}))
+ 
+    }
+    finally {
+      set(state=>({...state,loader:false})) 
+    }
+   
+     
+
+  },
+
   async sendOrder (order) {
     try {
       set(state=>({...state,loader:true}))
@@ -69,10 +92,16 @@ catch (e){
   checkLocalStorage(){
     const dataFromLocalStorage=JSON.parse(localStorage.getItem("state"))
     if(!dataFromLocalStorage) return
-    if(dataFromLocalStorage.goodCart.length!=0){
-      set(state=>({...state,catNav:dataFromLocalStorage.catNav,operators:dataFromLocalStorage.operators,shopCart:dataFromLocalStorage.goodCart.length,goodCart:[...dataFromLocalStorage.goodCart]}))
+    try {
+      if(dataFromLocalStorage.goodCart.length!=0){
+        set(state=>({...state,catNav:dataFromLocalStorage.catNav,operators:dataFromLocalStorage.operators,shopCart:dataFromLocalStorage.goodCart.length,goodCart:[...dataFromLocalStorage.goodCart]}))
+      }
+      console.log("Check",dataFromLocalStorage.goodCart);
     }
-    console.log("Check",dataFromLocalStorage.goodCart);
+    catch(e){
+console.log("ERROR CHEckLOcal ",e);
+    }
+
   },
   async getAllCat () {
   

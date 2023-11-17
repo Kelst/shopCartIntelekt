@@ -41,13 +41,13 @@ export default function GoodItem({good}) {
       <ShowDetailInfo open={open} good={good} setOpen={setOpen}/>
       <CardMedia
           component="img"
-          
+          loading='true'
          sx={{
-            height: 160,
-            width:200,
+            maxHeight: 160,
+           maxWidth:200,
             margin:"0 auto",
             objectFit: "contain", 
-            paddingTop:10
+            paddingTop:"20px"
           }}
           
         image={`${good.url}`}
@@ -56,10 +56,10 @@ export default function GoodItem({good}) {
       />
       
       <CardContent>
-        <Typography gutterBottom variant="h6" component="div" sx={{fontFamily:"ds"}}>
+        <Typography gutterBottom variant="h7" component="div" sx={{fontFamily:"ds"}}>
           {good.name}
         </Typography>
-        <Typography gutterBottom variant="h7" component="div">
+        <Typography gutterBottom variant="h8" component="div">
         {
   good.unique_price !== 0
     ? (
@@ -75,22 +75,22 @@ export default function GoodItem({good}) {
        
         </Typography>
         <div className=' z-50' >
-        <Typography   variant="body2" height={95} overflow={'scroll'} sx={{fontSize:12,paddingTop:"1px"}} color="text.secondary">
+        <Typography   variant="body2" height={95} overflow={'scroll'} sx={{fontSize:12,paddingTop:"1px",zIndex:"1000"}} color="text.secondary">
             {good.title}
         </Typography>
        
         </div>
-        <Button variant='outlined' onClick={()=>setOpen(true)} fullWidth startIcon={<VisibilityIcon/>} >Детальніше ...</Button>
+        <Button variant='outlined' sx={{fontSize:"10px",mt:"10px"}} onClick={()=>setOpen(true)} fullWidth startIcon={<VisibilityIcon/>} >Детальніше ...</Button>
       </CardContent>
       <Divider/>
      
       <CardActions> 
-        <div className='flex justify-center items-center  h-[80px]   bg-transparent w-[500px]'>
+        <div className='flex justify-center items-center  h-[60px]   bg-transparent w-[500px]'>
         {
             flagBuy==false?
-             <Button color='secondary' variant='outlined' onClick={handleBuy} startIcon={<ShoppingCartIcon/>} size="small">Купити</Button>
+             <Button color='secondary' sx={{fontSize:"10px"}} variant='outlined' onClick={handleBuy} startIcon={<ShoppingCartIcon/>} size="small">Купити</Button>
              :
-            <div> <Button color='error'  variant='outlined' onClick={handleDelete} startIcon={<DeleteForeverIcon/>} size="small">Видалити з кошика</Button> <Button  onClick={handleToShop}>Оформити замовлення</Button></div>
+            <div> <Button color='error'  sx={{fontSize:"10px"}}  variant='outlined' onClick={handleDelete} startIcon={<DeleteForeverIcon/>} size="small">Видалити з кошика</Button> <Button  sx={{fontSize:"10px"}}  onClick={handleToShop}>Оформити замовлення</Button></div>
         }
        
            </div>

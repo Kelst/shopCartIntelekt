@@ -97,10 +97,10 @@ const handleBack=()=>{
                  <img className='w-[95px] h-[50px] object-contain    '
           
                  src={logoNav}
-                  alt="" srcset="" />
+              />
                   <div className=' relative  top-[-7px] left-[-80px] '>
-                    <img  className='w-[10px] ml-[-6px] animate-my-spin' src={bigW} alt="" srcset="" />
-                    <img className='w-2 ml-[4px] mt-[-1px]  animate-reverse-spin ' src={small} alt="" srcset="" />
+                    <img  className='w-[10px] ml-[-6px] animate-my-spin' src={bigW} />
+                    <img className='w-2 ml-[4px] mt-[-1px]  animate-reverse-spin ' src={small}  />
                   </div>
                   
                   </div>
