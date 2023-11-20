@@ -32,7 +32,7 @@ setCount(good.count)
     removeFromCartShop(good)
   }
   return (
-    <div className='flex gap-2   justify-between  items-center mb-3 border w-[100%] mx-auto'>
+    <div className='flex gap-2 mt-2  justify-between  items-center mb-3 border w-[100%] mx-auto'>
       <div className=' pl-2 w-[25%] text-sm '>{good.name}</div>
       
       <div className=''>
