@@ -5,6 +5,7 @@ import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -56,7 +57,7 @@ export default function LeftDrawer() {
   return (
    <>
 
-<Toolbar className=' w-[10%] flex justify-center  items-center'>
+<Toolbar className=' flex justify-center  items-center'>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -129,13 +130,34 @@ export default function LeftDrawer() {
         <Divider />
         <Link to='/shop-cart/'>
 <ListItem  key={"shop-cart"}disablePadding>
-<ListItemButton onClick={()=>setOpen(false)}>
+<ListItemButton onClick={()=>{setOpen(false)
+    setOpenBack(false)
+
+}}>
   <ListItemIcon>
   <ShoppingCartIcon />
 
   </ListItemIcon>
   <ListItemText primary={"Кошик"} />
 </ListItemButton>
+{/* import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing'; */}
+
+</ListItem>
+</Link>
+<Link to='my-orders/'>
+<ListItem  key={"my-orders/"}disablePadding>
+<ListItemButton onClick={()=>{setOpen(false)
+    setOpenBack(false)
+
+}}>
+  <ListItemIcon>
+  <PrecisionManufacturingIcon />
+
+  </ListItemIcon>
+  <ListItemText primary={"Мої замовленння"} />
+</ListItemButton>
+{/* import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing'; */}
+
 </ListItem>
 </Link>
       </Drawer>

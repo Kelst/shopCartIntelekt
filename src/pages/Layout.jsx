@@ -13,15 +13,24 @@ export default function Layout() {
   const checkLocalStorage=useStore(state=>state.checkLocalStorage)
   const setTelegramId=useStore(state=>state.setTelegramId)
   const setAllCat=useStore(state=>state.setAllCat)
+  const getOrderTelegram=useStore(state=>state.getOrderTelegram)
   const {tg,onToggleButton,user}=useTelegram() 
-
+  useEffect(()=>{
+    async function fetch(){
+ 
+       await getOrderTelegram()
+ 
+     }
+     fetch()
+ 
+   },[])
   const datas=useLoaderData()
   useEffect(()=>{
     tg.ready()
     tg.expand()
     tg.onEvent('viewportChanged',()=>{
       tg.expand()
-    })
+    },[])
     
     setTelegramId(user?.id)
  setAllCat(datas)
@@ -35,12 +44,12 @@ checkLocalStorage()
   },[])
   return (
     <div  >
-     <Navigation>
+     <Navigation/>
      
-    
+   
     <Outlet/>
     
-    </Navigation>
+  
     </div>
   )
 }

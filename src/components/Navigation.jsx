@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -59,6 +59,8 @@ const handleForvard=()=>{
     navigate(`/category/${cat[catNav+1].id}`,{replace:true})
   }
 }
+const orders=useStore(state=>state.orders)
+
 const handleBack=()=>{
   setOperator2()
   setOperator2
@@ -74,7 +76,7 @@ const handleBack=()=>{
 
   return (
     <Box sx={{ display: 'flex' }}  >
-      <AppBar component="nav" sx={{bgcolor:"#ea3439"}}>
+      <AppBar component="nav" sx={{bgcolor:"#ea3439",maxWidth:"100%"}}>
        
        <div className=' text-sm'>{price==0?"":`Замовлень на суму: ${price} (грн.)`}</div>
         <Toolbar className=' flex justify-center bg-red-600' >
@@ -106,11 +108,16 @@ const handleBack=()=>{
                   </div>
              
           <div className='flex-2  '>
+         {  orders?.length!=0? <Link to='/my-orders/'>
+          <PrecisionManufacturingIcon/>
+          </Link>:""}
             <Link to='/shop-cart/'>
+              
           <IconButton aria-label="cart" >
          <Badge badgeContent={shopCart}  sx={{color:"#fff"}}>
         <ShoppingCartIcon  />
       </Badge>
+      
     </IconButton>
     </Link>
     </div>

@@ -4,11 +4,13 @@ import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
+import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 import Typography from '@mui/material/Typography';
 import bigW from "../assets/round-bigw.png"
 import SvgIcon from '@mui/material/SvgIcon';
 import { useStore } from '../store';
-
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
@@ -19,6 +21,8 @@ const Accordion = styled((props) => (
   '&:before': {
     display: 'none',
   },
+  borderRadius:"8px",
+  
 }));
 
 const AccordionSummary = styled((props) => (
@@ -35,6 +39,7 @@ const AccordionSummary = styled((props) => (
     theme.palette.mode === 'dark'
       ? 'rgba(255, 255, 255, .05)'
       : 'rgba(232, 222, 185, .05)',
+      
   flexDirection: 'row-reverse',
   '& .MuiAccordionSummary-expandIconWrapper': {
     transition: "all 1s ease-out",
@@ -48,19 +53,21 @@ const AccordionSummary = styled((props) => (
   '& .MuiAccordionSummary-content': {
     marginLeft: theme.spacing(1),
   },
+
  
 }));
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
   borderTop: '1px solid rgba(0, 0, 0, .125)',
+  height:" 100%"
 }));
 
 export default function AccordingCustum({}) {
   
   const [expanded, setExpanded] = React.useState('panel1');
   const orders=useStore(state=>state.orders)
-  console.log(orders);
+
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
@@ -84,16 +91,59 @@ export default function AccordingCustum({}) {
       <>
       {
         orders.map((e,index)=>{
-          return   <Accordion key={index} expanded={expanded === `panel${e.id}`} onChange={handleChange(`panel${e.id}`)}>
-          <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-            <div className='flex'>
-            <Typography >Замовлення # {e.id}</Typography> 
+          return   <Accordion key={index}  expanded={expanded === `panel${e.id}`} onChange={handleChange(`panel${e.id}`)}>
+          <AccordionSummary  aria-controls="panel1d-content" id="panel1d-header">
+           <div className=' flex    items-center flex-col  ml-auto mr-auto '> 
+            <div className='flex flex-col mb-6'>
+            <Typography sx={{fontSize:18}} >Замовлення # {e.id} </Typography> 
+            <Typography sx={{fontSize:10}} className=' border-l-2 pl-1 border-b-2 color  text-sm ' > { formatDateString(e.date)}</Typography> 
            
+            </div>
+            <div className=' right-[50%] bottom-0 flex gap-x-1 items-center'>
+              {e.status==0?" обробляється":e.status=='1'?'опрацьовано':<span className=' text-gray-600'>отримано</span>}
+              
+              
+             
+              {e.status==0? <HourglassBottomIcon className='  text-amber-300' />:e.status=='1'?<HourglassFullIcon className='  text-amber-400' />:<CheckCircleIcon className=' text-lime-600'/>}
+
+            </div>
+               
             </div>
            
           </AccordionSummary>
+       
           <AccordionDetails>
-            <Typography>
+            <ul>
+              <li className=' flex flex-col gap-3    justify-items-center items-center  border-b-2 mb-2'>
+                 <span className=' text-md  font-bold uppercase border-b-2 text-cebter]'>Отримувач  </span>
+                 
+                <span className=' text-sm text-center'>
+                 {e.name} Безкоровайний Андрійович 
+                </span>
+              </li>
+              <li className=' flex flex-col gap-3    justify-items-center items-center  border-b-2 mb-2'>
+                 <span className=' text-md  font-bold uppercase border-b-2 text-cebter]'>Адрес  </span>
+                 
+                <span className=' text-sm text-center'>
+                 {e.address}
+                </span>
+              </li>
+              <li className=' flex flex-col gap-3    justify-items-center items-center  border-b-2 mb-2'>
+                 <span className=' text-md  font-bold uppercase border-b-2 text-cebter]'>Замовлення  </span>
+                 
+                <span className=' text-sm text-center'>
+                 {e.cart_json}
+                </span>
+              </li>
+              <li className=' flex flex-col gap-3    justify-items-center items-center  border-b-2 mb-2'>
+                 <span className=' text-md  font-bold uppercase border-b-2 text-cebter]'>Сума  </span>
+                 
+                <span className=' text-sm text-center'>
+                 {e.sum} грн
+                </span>
+              </li>
+            </ul>
+            {/* <Typography>
             {e.name}
             </Typography>
             <Typography>
@@ -105,7 +155,7 @@ export default function AccordingCustum({}) {
             <Typography>
             
             {e.cart_json}
-            </Typography>
+            </Typography> */}
           </AccordionDetails>
         </Accordion>
         })
@@ -115,7 +165,7 @@ export default function AccordingCustum({}) {
       
       
       
-      :"aaa"
+      :<Typography sx={{fontWeight:"bold", fontSize:"12px",marginTop:"20px",textAlign:"center",textDecoration:"underline"}}> Вибачте у вас немає замовлень</Typography>
       
      }
   

@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        'sm': '350px',
+      },
       animation: {
         'reverse-spin': 'reverse-spin 5s linear infinite',
         'my-spin': 'spin 20s linear infinite'

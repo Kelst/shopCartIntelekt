@@ -8,10 +8,16 @@ import AlertCustum from '../components/AlertCustum';
 import { useNavigate } from 'react-router-dom';
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import AlertDialog from '../components/AlertDialog';
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+
 export default function CheckOut() {
     const [name, setName] = React.useState('');
+    const [nameWifi, setNameWiFi] = React.useState('');
+    const [passWifi, setPassWiFi] = React.useState('');
     const [place, setPlace] = React.useState(10);
-
+    const [wifi,setWifi]=useState(false)
     const [phone, setPhone] = React.useState('');
     const [adress, setAdress] = React.useState('');
     const [vidilen, setVidilen] = React.useState([]);
@@ -74,8 +80,8 @@ export default function CheckOut() {
         setState(0)
 
         setOpen(true)
-      tg.close()
-       setTimeout(()=>{navigation("/")},3000)   
+     
+       setTimeout(()=>{ tg.close()},2000)   
       }else {
         setTectAlert("Виникла помилка при оформленні замовлення будь ласка зв'яжіться із тех. підтримкою")
         setState(1)
@@ -149,7 +155,7 @@ export default function CheckOut() {
         fetchData()
       },[])
   return (
-    <div className='w-[303px] m-auto border p-9 shadow-md relative'>
+    <div className='max-w-[303px] m-auto border p-9 shadow-md relative  overflow-auto'>
 
        <AlertCustum open={open} setOpen={setOpen} text={textAlert} state={state}/> 
         <Typography className=' uppercase  ' variant='h7'>Оформлення Замовлення </Typography>
@@ -226,6 +232,29 @@ export default function CheckOut() {
           </div>
           
           : ""
+        }
+        
+      <FormControlLabel  sx={{fontSize:"10px", marginTop:"10px" }} control={<Checkbox  checked={wifi} value={wifi} onClick={()=>setWifi(pre=>!pre)} />} label="Вказати дані для WIFI" />
+        
+        {
+          wifi?
+         <div className=' bg-gray-100 rounded-md flex justify-center py-2 items-center flex-col'>
+          <TextField
+           label="Назва WIFI"
+           onChange={e=>{
+            setNameWiFi(e.target.value)
+          }}
+          variant="standard"
+          />
+          <TextField
+                    sx={{marginTop:3}} 
+                    onChange={e=>{
+                      setPassWiFi(e.target.value)
+                    }}
+           label="Пароль WIFI"
+          variant="standard"
+          />
+          </div> :""
         }
         <TextField
           id="standard-multiline-static"
