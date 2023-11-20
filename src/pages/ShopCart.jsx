@@ -33,7 +33,7 @@ export default function ShopCart() {
           Оформити замовлення
         </Button>
         </div>
-          :  <div className=' flex justify-center items-center flex-col gap-2 mt-44 uppercase text-red-600 '> Ваш кошик порожній <ProductionQuantityLimitsTwoToneIcon/> </div>
+          :  <div className=' flex justify-center items-center flex-col gap-2  mt-[-100px] uppercase text-red-600   h-[100vh] '> Ваш кошик порожній <ProductionQuantityLimitsTwoToneIcon/> </div>
         }
     </div>
   )
