@@ -60,6 +60,7 @@ export default function AccordingCustum({}) {
   
   const [expanded, setExpanded] = React.useState('panel1');
   const orders=useStore(state=>state.orders)
+  console.log(orders);
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };

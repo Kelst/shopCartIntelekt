@@ -12,7 +12,7 @@ export default function MyOrders() {
 
     }
     fetch()
-    console.log("DE");
+
   },[])
   return (
     <div>

@@ -18,6 +18,8 @@ export default function Layout() {
   const datas=useLoaderData()
   useEffect(()=>{
     tg.ready()
+    tg.expand()
+    
     setTelegramId(user?.id)
  setAllCat(datas)
  console.log(datas);
