@@ -19,6 +19,9 @@ export default function Layout() {
   useEffect(()=>{
     tg.ready()
     tg.expand()
+    tg.onEvent('viewportChanged',()=>{
+      tg.expand()
+    })
     
     setTelegramId(user?.id)
  setAllCat(datas)
