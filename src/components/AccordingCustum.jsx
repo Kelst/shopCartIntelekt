@@ -64,7 +64,19 @@ export default function AccordingCustum({}) {
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
-
+  function formatDateString(isoDateString) {
+    const normalDate = new Date(isoDateString);
+  
+    const year = normalDate.getFullYear();
+    const month = normalDate.getMonth() + 1; // Додаємо 1, так як місяці у JavaScript ідуть від 0 до 11
+    const day = normalDate.getDate();
+    const hours = normalDate.getHours();
+    const minutes = normalDate.getMinutes();
+  
+    const formattedDate = `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day} ${hours}:${minutes}`;
+  
+    return formattedDate;
+  }
   return (
     <div>
      {
@@ -72,7 +84,7 @@ export default function AccordingCustum({}) {
       <>
       {
         orders.map((e,index)=>{
-          return   <Accordion key={index} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+          return   <Accordion key={index} expanded={expanded === `panel${e.id}`} onChange={handleChange(`panel${e.id}`)}>
           <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
             <div className='flex'>
             <Typography >Замовлення # {e.id}</Typography> 
@@ -82,10 +94,17 @@ export default function AccordingCustum({}) {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-              malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
-              sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-              sit amet blandit leo lobortis eget.
+            {e.name}
+            </Typography>
+            <Typography>
+            {e.address}
+            </Typography>
+            <Typography>
+            { formatDateString(e.date)}
+            </Typography>
+            <Typography>
+            
+            {e.cart_json}
             </Typography>
           </AccordionDetails>
         </Accordion>
