@@ -19,7 +19,7 @@ export default function ShopCart() {
     navigate("/check-out")
   ]
   return (
-    <div className=' mt-2 flex flex-col border h-[100%] bg-white' >
+    <div className=' mt-6 flex flex-col border h-[100%] bg-white' >
           <div className='  uppercase font-bold underline'>
             Ваш кошик
           </div>
@@ -29,7 +29,7 @@ export default function ShopCart() {
         <Typography>
           Сума: {sum}
         </Typography>
-        <Button onClick={handleCheckOut} variant='outlined' sx={{marginTop:"20px"}}>
+        <Button onClick={handleCheckOut} variant='outlined' sx={{marginTop:"20px",marginBottom:"20px"}}>
           Оформити замовлення
         </Button>
         </div>

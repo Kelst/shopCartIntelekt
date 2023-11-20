@@ -11,13 +11,44 @@ import AlertDialog from '../components/AlertDialog';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+function hasRouter(goodCart, cat) {
+  for (let i = 0; i < goodCart.length; i++) {
+    const id_cat = goodCart[i].id_cat;
 
+    // Знаходимо об'єкт в масиві cat за збігом id
+    const catObject = cat.find(item => item.id === id_cat);
+
+    // Перевіряємо, чи є об'єкт і чи в полі name міститься слово 'роутер' (незалежно від регістру)
+    if (catObject && catObject.cat.toLowerCase().includes('роутер')) {
+      return true;
+    }
+  }
+  // Якщо жоден елемент не відповідає умовам, повертаємо false
+  return false;
+}
+function hasTV(goodCart, cat) {
+  for (let i = 0; i < goodCart.length; i++) {
+    const id_cat = goodCart[i].id_cat;
+
+    // Знаходимо об'єкт в масиві cat за збігом id
+    const catObject = cat.find(item => item.id === id_cat);
+
+    // Перевіряємо, чи є об'єкт і чи в полі name міститься слово 'роутер' (незалежно від регістру)
+    if (catObject && catObject.cat.toLowerCase().includes('пристав')) {
+      return true;
+    }
+  }
+  // Якщо жоден елемент не відповідає умовам, повертаємо false
+  return false;
+}
 export default function CheckOut() {
     const [name, setName] = React.useState('');
     const [nameWifi, setNameWiFi] = React.useState('');
     const [passWifi, setPassWiFi] = React.useState('');
     const [place, setPlace] = React.useState(10);
     const [wifi,setWifi]=useState(false)
+    const [tvIntelekt,setTvIntelekt]=useState(false)
+    const [openWifi,setOpenWifi]=useState(false)
     const [phone, setPhone] = React.useState('');
     const [adress, setAdress] = React.useState('');
     const [vidilen, setVidilen] = React.useState([]);
@@ -28,6 +59,7 @@ export default function CheckOut() {
     const sendOrder=useStore(state=>state.sendOrder)
     const getPrice=useStore(state=>state.getPrice)
     const telegramId=useStore(state=>state.telegramId)
+    const cat=useStore(state=>state.cat)
 
     const [openAlertDialog,setOpenAlertDialog]=useState(false)
     const [alertTitle,setAlertTitle]=useState("")
@@ -39,11 +71,13 @@ export default function CheckOut() {
     const [open,setOpen]=useState(false)
     const [textAlert,setTectAlert]=useState("")
     const [state,setState]=useState(0)
-
+    
+    
     const handleSendData= async()=>{
      
       let adre="";
       let gooDate="";
+      
     goodCart.forEach(e=>
         {
           gooDate+=`Назва: ${e.name}  Ціна: ${e.unique_price!=0?e.unique_price:e.cost} К-ть: ${e.count}x \n`
@@ -71,7 +105,7 @@ export default function CheckOut() {
         cart:gooDate,
         adress:adre,
         sum:getPrice(),
-        comment:text
+        comment:text+'\n'+`WIFI: ${wifi}`+'\n'+`Password: ${passWifi}`+`\n ${tvIntelekt?'Встановити додаток на приставку':''}`
 
       }
       let flag=await sendOrder(data)
@@ -234,7 +268,18 @@ export default function CheckOut() {
           : ""
         }
         
+    {
+      hasRouter(goodCart,cat)?
       <FormControlLabel  sx={{fontSize:"10px", marginTop:"10px" }} control={<Checkbox  checked={wifi} value={wifi} onClick={()=>setWifi(pre=>!pre)} />} label="Вказати дані для WIFI" />
+      :
+      ""
+    } 
+    {
+      hasTV(goodCart,cat)?
+      <FormControlLabel  sx={{fontSize:"10px", marginTop:"10px" }} control={<Checkbox  checked={tvIntelekt} value={tvIntelekt} onClick={()=>setTvIntelekt(pre=>!pre)} />} label="Встановити Intekekt tv" />
+      :
+      ""
+    } 
         
         {
           wifi?

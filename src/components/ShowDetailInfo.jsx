@@ -36,6 +36,7 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
         onClose={handleClose}
         aria-labelledby="keep-mounted-modal-title"
         aria-describedby="keep-mounted-modal-description"
+       
       >
         
     <Card className=' w-[320px] mt-[5%] h-[80vh] m-auto overflow-auto '>
@@ -55,11 +56,12 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
         image={good.url}
       />
       <Divider/>
-      <CardContent  sx={{overflow:"auto"}}>
+      <CardContent  sx={{maxWidth:"300px",textAlign:"center", overflowY:"auto", padding:"20px"}}>
+
         <Typography gutterBottom variant="h5" component="div">
           {good.name}
         </Typography>
-        <div className='h-[41vh] overflow-scroll pb-4'>
+        <div className='h-[41vh] pb-4 text-center'>
         <Typography  sx={{
             fontSize:"12px"
         }}  color="text.secondary">
