@@ -5,6 +5,7 @@ export const useStore = create((set,get) => ({
   shopCart: 0,
   cat:[],
   goodCart:[],
+  goodsUnique:[],
   orders:[],
   cartSum:0,
   operators:0,
@@ -121,6 +122,18 @@ console.log("ERROR CHEckLOcal ",e);
       const response=await $api.post("/get-all-goods-by-cat",{id_cat:id_cat})
       const data=response.data
       set(state=>({...state,loader:false}))
+     return data
+    } catch (error) {
+      console.log(error);
+      set(state=>({...state,loader:false}))
+    }
+  },
+  async getGoodsUniques () {
+    try {
+      set(state=>({...state,loader:true}))
+      const response=await $api.get("/get-all-goods_unique")
+      const data=response.data
+      set(state=>({...state,goodsUnique:data,loader:false}))
      return data
     } catch (error) {
       console.log(error);

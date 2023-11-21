@@ -47,10 +47,10 @@ function a11yProps(index) {
 export default function TabGoods() {
   const theme = useTheme();
   const cat=useStore(state=>state.cat)
+  const goodsUnique=useStore(state=>state.goodsUnique)
   const value=useStore(state=>state.index)
   const setValue=useStore(state=>state.setIndex)
   
-
   React.useEffect(()=>{
     console.log(cat);
   },[])
@@ -75,12 +75,17 @@ export default function TabGoods() {
           indicatorColor="white"
           textColor="inherit"
         >
+          
             {
                 cat.map((e,index)=>{
                     return  <Tab key={index} label={e.cat} />
                 })
             }
-         
+         {
+            goodsUnique.length>0?
+            <Tab key={cat.length} label={"Ціна тижня"}/>
+            :<>sddd</>
+          }
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -91,12 +96,21 @@ export default function TabGoods() {
       >
         {
           cat.map((e,index)=>{
-           return   <TabPanel value={value} index={index} dir={theme.direction}>
+           return   <TabPanel value={value} index={index}  dir={theme.direction}>
              
-             <CaruselCustum showItem={e.id} />
+             <CaruselCustum showItem={e.id} flag={false} />
              
               </TabPanel>
           })
+        }
+        {
+          goodsUnique.length>0?
+            <TabPanel value={value} index={cat.length} dir={theme.direction}>
+             
+             <CaruselCustum item={[...goodsUnique]} flag={true} />
+             
+              </TabPanel>
+              :<></>
         }
  
        

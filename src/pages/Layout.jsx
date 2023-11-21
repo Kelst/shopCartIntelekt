@@ -14,11 +14,21 @@ export default function Layout() {
   const setTelegramId=useStore(state=>state.setTelegramId)
   const setAllCat=useStore(state=>state.setAllCat)
   const getOrderTelegram=useStore(state=>state.getOrderTelegram)
+  const getGoodsUniques=useStore(state=>state.getGoodsUniques)
   const {tg,onToggleButton,user}=useTelegram() 
   useEffect(()=>{
     async function fetch(){
  
        await getOrderTelegram()
+ 
+     }
+     fetch()
+ 
+   },[])
+   useEffect(()=>{
+    async function fetch(){
+ 
+       await getGoodsUniques()
  
      }
      fetch()

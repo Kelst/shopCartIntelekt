@@ -74,8 +74,8 @@ export default function GoodItem({good}) {
 }
        
         </Typography>
-        <div className=' z-50' >
-        <Typography   variant="body2" height={95} overflow={'scroll'} sx={{fontSize:12,paddingTop:"1px",zIndex:"1000"}} color="text.secondary">
+        <div className=' z-50 overflow-auto'  >
+        <Typography   variant="body2" height={95}  sx={{fontSize:12,paddingTop:"1px",zIndex:"1000",overflow:"auto"}} color="text.secondary">
             {good.title}
         </Typography>
        
