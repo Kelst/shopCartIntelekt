@@ -45,6 +45,8 @@ export default function LeftDrawer() {
   const [openBack, setOpenBack] = React.useState(false);
   const setValue=useStore(state=>state.setIndex)
   const value=useStore(state=>state.index)
+  const goodsUnique=useStore(state=>state.goodsUnique)
+
   const navigate=useNavigate()
   const handleDrawerOpen = () => {
     setOpenBack(true)
@@ -107,6 +109,24 @@ export default function LeftDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
+          {
+           goodsUnique.length>0?
+           <Link onClick={()=>setValue(cat.length)} key={cat.length} to={`/category/${cat.length}`}>
+
+           <ListItem key={'Ціна тижня'} className='bg-red-600 text-white' disablePadding>
+           <ListItemButton onClick={()=>{setOpen(false) 
+           setOpenBack(false)}
+           }>
+             <ListItemIcon>
+                <TurnedInIcon  className=' text-white '/> 
+             </ListItemIcon>
+             <ListItemText  className='  uppercase'  primary={'Ціна тижня'} />
+           </ListItemButton>
+         </ListItem>
+         </Link>
+         :<>
+         </>
+          }
           {
              cat.map((item,index) => (
               <Link onClick={()=>setValue(index)} key={item.id} to={`/category/${item.id}`}>

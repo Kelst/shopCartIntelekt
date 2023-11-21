@@ -7,8 +7,12 @@ import ButtomCustom from '../components/ButtomCustom';
 export default function Cart() {
   const cat=useStore(state=>state.cat)
   const navigate=useNavigate()
+  const goodsUnique=useStore(state=>state.goodsUnique)
+
   const setShovDynamicsNavigation=useStore(state=>state.setShovDynamicsNavigation)
-  const setValue=useStore(state=>state.setIndex)
+  const setValue=useStore(state=>state.setIndex
+    )
+
   const handleTo=(id,index)=>{
     setValue(index)
     navigate(`/category/${id}`,{ state: { id: id } })
@@ -23,11 +27,17 @@ export default function Cart() {
      <Divider/>
      <span className=' block mt-5 uppercase'>Виберіть категорію товару який вас цікавить:</span>
 <div className='mt-12 grid grid-cols-1 gap-6  sm:grid-cols-2 '>
+  {
+    goodsUnique.length>0?
+    <ButtomCustom key={cat.length}  flag={false} onClick={()=>handleTo(cat.length,cat.length)} text={'ціна тижня'} />
+  :<></>
+  }
      {
-      cat.map((e,index)=><ButtomCustom key={e.id}   onClick={()=>handleTo(e.id,index)} text={e.cat} />
+      cat.map((e,index)=><ButtomCustom key={e.id} flag={true}  onClick={()=>handleTo(e.id,index)} text={e.cat} />
       )
-     }
+     } 
      </div>
+    
     </div>
    
    </div>
