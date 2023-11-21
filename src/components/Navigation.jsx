@@ -16,10 +16,14 @@ import { useEffect } from 'react';
 import LeftDrawer from './LeftDrawer';
 import { Drawer } from '@mui/material';
 import BackDroopCustum from './BackDroopCustum';
+import SvgIcon from '@mui/material/SvgIcon';
 
-import logoNav from "../assets/new-logow.png"
+
+import logoNav from "../assets/new-logow1.png"
 import bigW from "../assets/round-bigw.png"
-import small from "../assets/round-small.png"
+import small from "../assets/min.png"
+import Done from "../assets/s.svg"
+import CustumeIcon from './CustumeIcon';
 
 function Navigation(props) {
   const { window,children } = props;
@@ -100,16 +104,18 @@ const handleBack=()=>{
           
                  src={logoNav}
               />
-                  <div className=' relative  top-[-7px] left-[-80px] '>
-                    <img  className='w-[10px] ml-[-6px] animate-my-spin' src={bigW} />
-                    <img className='w-2 ml-[4px] mt-[-1px]  animate-reverse-spin ' src={small}  />
+                  <div className=' relative  top-[-5px] left-[-80px] '>
+                    <img  className='w-[12px] ml-[-6px] mb-1  animate-my-spin' src={bigW} />
+                    <img className='w-2 ml-[5px] mt-[-5px]  animate-reverse-spin ' src={small}  />
                   </div>
                   
                   </div>
              
           <div className='flex-2  '>
          {  orders?.length!=0? <Link to='/my-orders/'>
-          <PrecisionManufacturingIcon/>
+                  <div className=' bg-slate-700'> <CustumeIcon /></div>
+                 
+    
           </Link>:""}
             <Link to='/shop-cart/'>
               

@@ -60,7 +60,9 @@ const AccordionSummary = styled((props) => (
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
   borderTop: '1px solid rgba(0, 0, 0, .125)',
-  height:" 100%"
+  height:" 100%",
+
+
 }));
 
 export default function AccordingCustum({}) {
@@ -112,7 +114,7 @@ export default function AccordingCustum({}) {
            
           </AccordionSummary>
        
-          <AccordionDetails>
+          <AccordionDetails >
             <ul>
               <li className=' flex flex-col gap-3    justify-items-center items-center  border-b-2 mb-2'>
                  <span className=' text-md  font-bold uppercase border-b-2 text-cebter]'>Отримувач  </span>
