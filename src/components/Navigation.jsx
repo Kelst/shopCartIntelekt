@@ -7,6 +7,9 @@ import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturi
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Shop2RoundedIcon from '@mui/icons-material/Shop2Rounded';
+import StoreRoundedIcon from '@mui/icons-material/StoreRounded';
+import ShoppingBasketRoundedIcon from '@mui/icons-material/ShoppingBasketRounded';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -17,6 +20,7 @@ import LeftDrawer from './LeftDrawer';
 import { Drawer } from '@mui/material';
 import BackDroopCustum from './BackDroopCustum';
 import SvgIcon from '@mui/material/SvgIcon';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 
 import logoNav from "../assets/new-logow1.png"
@@ -113,7 +117,7 @@ const handleBack=()=>{
              
           <div className='flex-2  '>
          {  orders?.length!=0? <Link to='/my-orders/'>
-                  <div className=' bg-slate-700'> <CustumeIcon /></div>
+          <CustumeIcon  stroke="currentColor" fill="#fff"/>
                  
     
           </Link>:""}
@@ -121,7 +125,7 @@ const handleBack=()=>{
               
           <IconButton aria-label="cart" >
          <Badge badgeContent={shopCart}  sx={{color:"#fff"}}>
-        <ShoppingCartIcon  />
+        <ShoppingCartOutlinedIcon  />
       </Badge>
       
     </IconButton>

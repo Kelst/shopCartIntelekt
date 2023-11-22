@@ -11,6 +11,7 @@ import Layout from "../pages/Layout";
 import CheckOut from "../pages/CheckOut";
 import $api from "../http";
 import MyOrders from "../pages/MyOrders";
+import ReadMe from "../pages/ReadMe";
 
 export const router=createBrowserRouter([
     {
@@ -47,6 +48,10 @@ export const router=createBrowserRouter([
                 {
                   path:"/my-orders/",
                   element:<MyOrders/>
+                },
+                {
+                  path:"/read-me/",
+                  element:<ReadMe/>
                 }
         ]
     }

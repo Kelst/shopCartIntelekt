@@ -5,6 +5,7 @@ import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
@@ -24,7 +25,10 @@ import small from "../assets/min.png"
 import { useStore } from '../store';
 import { Link, useNavigate } from 'react-router-dom';
 import TurnedInIcon from '@mui/icons-material/TurnedIn';
+import TurnedInNotOutlinedIcon from '@mui/icons-material/TurnedInNotOutlined';
 import { Backdrop } from '@mui/material';
+import CustumeIcon from './CustumeIcon';
+import CustumeDone from './CustumDone';
 const drawerWidth = 200;
 
 
@@ -118,9 +122,9 @@ export default function LeftDrawer() {
            setOpenBack(false)}
            }>
              <ListItemIcon>
-                <TurnedInIcon  className=' text-white '/> 
+                <TurnedInNotOutlinedIcon  className=' text-white '/> 
              </ListItemIcon>
-             <ListItemText  className='  uppercase'  primary={'Ціна тижня'} />
+             <ListItemText className=' uppercase'  primary={'Ціна тижня'} />
            </ListItemButton>
          </ListItem>
          </Link>
@@ -136,7 +140,7 @@ export default function LeftDrawer() {
               setOpenBack(false)}
               }>
                 <ListItemIcon>
-                   <TurnedInIcon  className=''/> 
+                   <TurnedInNotOutlinedIcon  className=''/> 
                 </ListItemIcon>
                 <ListItemText primary={item.cat} />
               </ListItemButton>
@@ -155,7 +159,7 @@ export default function LeftDrawer() {
 
 }}>
   <ListItemIcon>
-  <ShoppingCartIcon />
+  <ShoppingCartOutlinedIcon />
 
   </ListItemIcon>
   <ListItemText primary={"Кошик"} />
@@ -171,10 +175,26 @@ export default function LeftDrawer() {
 
 }}>
   <ListItemIcon>
-  <PrecisionManufacturingIcon />
+  <CustumeIcon  /> 
 
   </ListItemIcon>
   <ListItemText primary={"Мої замовленння"} />
+</ListItemButton>
+{/* import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing'; */}
+
+</ListItem>
+</Link>
+<Link to='/read-me/'>
+<ListItem  key={"read-me"}disablePadding>
+<ListItemButton onClick={()=>{setOpen(false)
+    setOpenBack(false)
+
+}}>
+  <ListItemIcon>
+  <CustumeDone  /> 
+
+  </ListItemIcon>
+  <ListItemText primary={"Умови доставки та повернення"} />
 </ListItemButton>
 {/* import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing'; */}
 
