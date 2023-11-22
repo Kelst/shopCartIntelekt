@@ -9,6 +9,24 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Divider } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+function splitText(paragraph) {
+   // Split the text into words using spaces
+   const words = paragraph.split(' ');
+
+   // Find the middle index of the words array
+   const middleIndex = Math.floor(words.length / 2);
+
+   // Join the words from the start to the middle (exclusive) as the first half
+   const firstHalf = words.slice(0, middleIndex).join(' ');
+
+   // Join the words from the middle to the end as the second half
+   const secondHalf = words.slice(middleIndex).join(' ');
+
+   // Return an array with the two halves
+   return [firstHalf, secondHalf];
+}
 
 const style = {
   position: 'absolute',
@@ -24,7 +42,16 @@ const style = {
 
 export default function ShowDetailInfo({ good,open,setOpen}) {
 
-  
+  const [page, setPage] = React.useState(1);
+  const [textInfo,setTextInfo]=React.useState([])
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
+
+  React.useEffect(()=>{
+    setTextInfo(splitText(good.title +' '+good.text))
+  },
+  [])
   const handleClose = () => setOpen(false);
 
   return (
@@ -39,9 +66,9 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
        
       >
         
-    <Card className=' w-[320px] mt-[5%] h-[80vh] m-auto overflow-auto '>
+    <Card className=' relative w-[320px] mt-[5%] h-[80vh] m-auto overflow-auto '>
         <div onClick={()=>setOpen(false)}>
-    <CloseIcon  className=' hover:animate-pulse text-red-800 relative top-2 left-[289px]  cursor-pointer' />
+    <CloseIcon  className=' hover:animate-pulse text-red-800 relative top-2 left-[279px]  cursor-pointer' />
 </div>
       <CardMedia
         component="img"
@@ -56,19 +83,27 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
         image={good.url}
       />
       <Divider/>
-      <CardContent  sx={{maxWidth:"300px",textAlign:"center", overflowY:"auto", padding:"20px"}}>
+      <CardContent  sx={{ maxWidth:"300px",textAlign:"center", overflowY:"auto", padding:"20px", display:"flex",flexDirection:"column", alignItems:"center",justifyContent:"center"}}>
 
         <Typography gutterBottom variant="h5" component="div">
           {good.name}
         </Typography>
-        <div className='h-[41vh] pb-4 text-center'>
+       <div className=' pb-4 text-center'>
         <Typography  sx={{
             fontSize:"12px"
         }}  color="text.secondary">
-           {good.title}
-        {good.text}
+        {textInfo[page-1]}
+        
+        
         </Typography>
+        </div> 
+        
+        <div className=' absolute bottom-0 '>
+        <Stack spacing={2} >
+      <Pagination className=' pb-4' count={2} page={page} onChange={handleChange} />
+    </Stack>
         </div>
+       
       </CardContent>
  
     </Card>
