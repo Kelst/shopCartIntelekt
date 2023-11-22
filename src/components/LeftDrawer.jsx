@@ -94,12 +94,12 @@ export default function LeftDrawer() {
           <div onClick={()=>{setOpen(false)
           setOpenBack(false)
           }}>
-          <ChevronLeftIcon  className='relative left-[100px] cursor-pointer'/>
+          <ChevronLeftIcon  className='  relative left-[100px] cursor-pointer  bg-red-300 rounded-lg '/>
           </div>
         <div onClick={()=>{
           setOpen(false)
           setOpenBack(false);
-          navigate("/")}} className=' relative  right-11   cursor-pointer   '>
+          navigate("/")}} className=' relative  right-11   cursor-pointer  mt-8 mb-1 '>
                  <img className='w-[95px] h-[50px] object-contain    '
           
                  src={logoNav}
