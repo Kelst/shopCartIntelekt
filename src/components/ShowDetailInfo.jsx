@@ -27,7 +27,10 @@ function splitText(paragraph) {
    // Return an array with the two halves
    return [firstHalf, secondHalf];
 }
-
+const unescapeHTML = (text) => {
+  const doc = new DOMParser().parseFromString(text, "text/html");
+  return doc.body.innerHTML;
+};
 const style = {
   position: 'absolute',
   top: '50%',
@@ -70,18 +73,25 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
         <div onClick={()=>setOpen(false)}>
     <CloseIcon  className=' hover:animate-pulse text-red-800 relative top-2 left-[279px]  cursor-pointer' />
 </div>
-      <CardMedia
-        component="img"
-        sx={{
-            height: 160,
-            width:120,
-            margin:"0 auto",
-            objectFit: "contain", 
-            paddingTop:5,
-            paddingBottom:1
-          }}
-        image={good.url}
-      />
+<CardMedia
+  component="div"
+  sx={{
+    height: 100,
+    width: 120,
+    margin: "0 auto",
+    objectFit: "contain",
+    paddingTop: 5,
+    paddingBottom: 1,
+   
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    contain: "none",
+    backgroundImage: `url(${good.url})`, // Вставте URL вашої картини тут
+    backgroundSize: "contain", // Зробити так, щоб зображення не розтягувалося
+    backgroundRepeat: "no-repeat", // Запобігає повторенню фонового зображення
+  }}
+/>
       <Divider/>
       <CardContent  sx={{ maxWidth:"300px",textAlign:"center", overflowY:"auto", padding:"20px", display:"flex",flexDirection:"column", alignItems:"center",justifyContent:"center"}}>
 
@@ -89,13 +99,15 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
           {good.name}
         </Typography>
        <div className=' pb-4 text-center'>
-        <Typography  sx={{
-            fontSize:"12px"
-        }}  color="text.secondary">
-        {textInfo[page-1]}
-        
-        
-        </Typography>
+       <Typography
+  sx={{
+    fontSize: "12px",
+    whiteSpace: "pre-line"
+  }}
+  color="text.secondary"
+>
+  {textInfo[page - 1]}
+</Typography>
         </div> 
         
         <div className=' absolute bottom-0 '>
