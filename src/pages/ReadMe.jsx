@@ -4,7 +4,7 @@ import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
 export default function ReadMe() {
   return (
     <div>
-        <h2 className="text-2xl font-bold mb-4 font-medium">Умови доставки на повернення</h2>
+        <h2 className="text-2xl mb-4 font-medium">Умови доставки та повернення</h2>
         <div>
             <ul>
                 <li className='flex gap-2 mb-2 shadow-md p-2'>

@@ -124,7 +124,7 @@ export default function AccordingCustum({}) {
                 </span>
               </li>
               <li className=' flex flex-col gap-3    justify-items-center items-center  border-b-2 mb-2'>
-                 <span className=' text-md  font-bold uppercase border-b-2 text-cebter]'>Адрес  </span>
+                 <span className=' text-md  font-bold uppercase border-b-2 text-cebter]'>Адреса  </span>
                  
                 <span className=' text-sm text-center'>
                  {e.address}
