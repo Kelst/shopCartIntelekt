@@ -19,7 +19,7 @@ export default function Layout() {
   useEffect(()=>{
     async function fetch(){
  
-       await getOrderTelegram()
+       await getOrderTelegram(user.id)
  
      }
      fetch()
