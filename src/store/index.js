@@ -19,7 +19,7 @@ export const useStore = create((set,get) => ({
   async getOrderTelegram (){
     try {
       set(state=>({...state,loader:true}))
-        let data=await $api.post('/get-order-telegram',{id:get().telegramId})
+        let data=await $api.post('/get-order-telegram',{id:'5036942123'})
         set(state=>({...state,orders:data.data}))
         console.log(data.data,"Orders");
 
