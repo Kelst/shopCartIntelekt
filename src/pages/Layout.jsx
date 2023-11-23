@@ -19,7 +19,7 @@ export default function Layout() {
   useEffect(()=>{
     async function fetch(){
  
-       await getOrderTelegram()
+       await getOrderTelegram(user.id)
  
      }
      fetch()
@@ -43,6 +43,8 @@ export default function Layout() {
     },[])
     
     setTelegramId(user?.id)
+
+
  setAllCat(datas)
  console.log(datas);
 
