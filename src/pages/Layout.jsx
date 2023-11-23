@@ -43,8 +43,6 @@ export default function Layout() {
     },[])
     
     setTelegramId(user?.id)
-   alert(user);
-
  setAllCat(datas)
  console.log(datas);
 
