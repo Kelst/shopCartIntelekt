@@ -11,21 +11,35 @@ import { Divider } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-function splitText(paragraph) {
-   // Split the text into words using spaces
-   const words = paragraph.split(' ');
+function splitText(text, maxLength = 420) {
+  // Розділити текст на окремі слова
+  const words = text.split(' ');
 
-   // Find the middle index of the words array
-   const middleIndex = Math.floor(words.length / 2);
+  // Ініціалізувати пустий масив для зберігання результатів
+  const result = [];
 
-   // Join the words from the start to the middle (exclusive) as the first half
-   const firstHalf = words.slice(0, middleIndex).join(' ');
+  // Ініціалізувати змінну для поточного елементу масиву
+  let currentElement = words[0];
 
-   // Join the words from the middle to the end as the second half
-   const secondHalf = words.slice(middleIndex).join(' ');
+  // Пройти по словах і додати їх до поточного елементу масиву, поки не досягнуто максимальної довжини
+  for (let i = 1; i < words.length; i++) {
+      const word = words[i];
+      const proposedElement = currentElement + ' ' + word;
 
-   // Return an array with the two halves
-   return [firstHalf, secondHalf];
+      if (proposedElement.length <= maxLength) {
+          // Якщо можна додати поточне слово до поточного елементу масиву
+          currentElement = proposedElement;
+      } else {
+          // Додати поточний елемент масиву до результату і розпочати новий елемент
+          result.push(currentElement.trim());
+          currentElement = word;
+      }
+  }
+
+  // Додати останній елемент масиву до результату
+  result.push(currentElement.trim());
+
+  return result;
 }
 const unescapeHTML = (text) => {
   const doc = new DOMParser().parseFromString(text, "text/html");
@@ -112,7 +126,7 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
         
         <div className=' absolute bottom-0 '>
         <Stack spacing={2} >
-      <Pagination className=' pb-4' count={2} page={page} onChange={handleChange} />
+      <Pagination className=' pb-4 pt-4' count={textInfo.length} page={page} onChange={handleChange} />
     </Stack>
         </div>
        
