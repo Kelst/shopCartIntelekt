@@ -94,7 +94,7 @@ export default function LeftDrawer() {
           <div onClick={()=>{setOpen(false)
           setOpenBack(false)
           }}>
-          <ChevronLeftIcon  className='  relative left-[100px] cursor-pointer  bg-red-300 rounded-lg '/>
+          <ChevronLeftIcon  className='  relative left-[100px] cursor-pointer text-white  bg-red-600 rounded-lg '/>
           </div>
         <div onClick={()=>{
           setOpen(false)
