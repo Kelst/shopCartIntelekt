@@ -19,7 +19,7 @@ export const useStore = create((set,get) => ({
   async getOrderTelegram (){
     try {
       set(state=>({...state,loader:true}))
-        let data=await $api.post('/get-order-telegram',{id:telegramId})
+        let data=await $api.post('/get-order-telegram',{id:get().telegramId})
         set(state=>({...state,orders:data.data}))
         console.log(data.data,"Orders");
 
@@ -74,6 +74,8 @@ setCatNav(id){
     set(state=>({...state,loader:val}))
   },
   setTelegramId(id){
+    alert(id)
+    alert(get().telegramId)
     set(state=>({...state,telegramId:`${id}`}))
   },
  async getPhone(id){
