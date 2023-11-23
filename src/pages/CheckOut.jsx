@@ -105,7 +105,7 @@ export default function CheckOut() {
         cart:gooDate,
         adress:adre,
         sum:getPrice(),
-        comment:text+'\n'+wifi?`WIFI: ${nameWifi}`+'\n'+`Password: ${passWifi}`:''+`\n ${tvIntelekt?'Встановити додаток на приставку':''}`
+        comment: text + '\n' + (wifi ? `WIFI: ${nameWifi}\nPassword: ${passWifi}\n` : '') + (tvIntelekt ? 'Встановити додаток на приставку\n' : '')
 
       }
       let flag=await sendOrder(data)
