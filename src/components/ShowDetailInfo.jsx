@@ -80,7 +80,7 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
         onClose={handleClose}
         aria-labelledby="keep-mounted-modal-title"
         aria-describedby="keep-mounted-modal-description"
-       
+        
       >
         
     <Card className=' relative w-[320px] mt-[5%] h-[80vh] m-auto overflow-auto '>
@@ -116,7 +116,8 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
        <Typography
   sx={{
     fontSize: "12px",
-    whiteSpace: "pre-line"
+    whiteSpace: "pre-line",
+    lineHeight:1.4  
   }}
   color="text.secondary"
 >

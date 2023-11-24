@@ -17,3 +17,10 @@
   ::-webkit-scrollbar-thumb {
     background: transparent; /* Зробити ползунок смуги прокрутки прозорим */
   }
+
+  /* body{
+    background-image: url('./assets/bg.png');
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+  } */
