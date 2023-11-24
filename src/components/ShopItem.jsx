@@ -44,8 +44,8 @@ setCount(good.count)
         <Typography className='font-bold'>{count}</Typography>
         <div onClick={handleRem}className=' cursor-pointer hover:scale-125 transition duration-400 hover:bg-red-200 hover:rounded-full rounded-full justify-center items-center' ><RemoveIcon/></div>
       </div>
-      <div onClick={handleDeleteFromCart} className='mr-2 cursor-pointer'>
-        <DeleteForeverIcon />
+      <div onClick={handleDeleteFromCart} className=' mr-2 cursor-pointer'>
+        <DeleteForeverIcon className=' transition-all  duration-1000 ease-in-out hover:text-red-500  hover:rotate-12' />
       </div>
       
     </div>
