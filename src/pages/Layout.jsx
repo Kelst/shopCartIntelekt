@@ -43,7 +43,9 @@ export default function Layout() {
     },[])
     
     setTelegramId(user?.id)
-
+tg.onEvent('backButtonClicked',()=>{
+  return
+})
 
  setAllCat(datas)
  console.log(datas);
