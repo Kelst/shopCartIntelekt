@@ -117,7 +117,8 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
   sx={{
     fontSize: "12px",
     whiteSpace: "pre-line",
-    lineHeight:1.4  
+    lineHeight:1.4 ,
+    marginBottom:"1px"
   }}
   color="text.secondary"
 >

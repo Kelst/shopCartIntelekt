@@ -86,7 +86,7 @@ const handleBack=()=>{
     <Box sx={{ display: 'flex' }}  >
       <AppBar component="nav" sx={{bgcolor:"#ea3439",maxWidth:"100%"}}>
        
-       <div className=' text-sm'>{price==0?"":`Замовлень на суму: ${price} (грн.)`}</div>
+       <div className='  text-sm'>{price==0?"":`Замовлень на суму: ${price} (грн.)`}</div>
         <Toolbar className=' flex justify-center bg-red-600' >
         <div className='flex   justify-between items-center w-[100%]'>
             <div className=' w-[10px] flex-2 justify-centr items-center'>

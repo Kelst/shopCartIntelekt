@@ -42,6 +42,7 @@ export default function GoodItem({good}) {
       <CardMedia
           component="img"
           loading='true'
+        
          sx={{
             maxHeight: 160,
            maxWidth:200,
