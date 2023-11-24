@@ -31,6 +31,7 @@ const datas=useLoaderData()
   },[])
   return (
     <div className=' flex  items-center justify-center w-[100%] mt-5  bg-white'>
+      
       <TabGoods/>
 
     {/* {

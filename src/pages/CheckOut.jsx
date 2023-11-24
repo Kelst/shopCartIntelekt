@@ -270,7 +270,7 @@ export default function CheckOut() {
         
     {
       hasRouter(goodCart,cat)?
-      <FormControlLabel  sx={{fontSize:"10px", marginTop:"10px" }} control={<Checkbox  checked={wifi} value={wifi} onClick={()=>setWifi(pre=>!pre)} />} label="Вказати дані для WIFI" />
+      <FormControlLabel  color='secondary' sx={{fontSize:"10px", marginTop:"10px" }} control={<Checkbox  checked={wifi} value={wifi} onClick={()=>setWifi(pre=>!pre)} />} label="Вказати дані для WIFI" />
       :
       ""
     } 
