@@ -55,7 +55,9 @@ checkLocalStorage()
 
   },[])
   return (
-    <div  >
+    <div  className='' style={{
+      backgroundImage:"bg-url(../assets/big.png) bg-cover bg-center"
+    }} >
      <Navigation/>
      
    
