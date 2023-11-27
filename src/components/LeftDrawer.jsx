@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
+import RotateLeftOutlinedIcon from '@mui/icons-material/RotateLeftOutlined';
 import Toolbar from '@mui/material/Toolbar';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
@@ -178,12 +179,13 @@ export default function LeftDrawer() {
   <CustumeIcon  /> 
 
   </ListItemIcon>
-  <ListItemText primary={"Мої замовленння"} />
+  <ListItemText  primary={"Замовленння"} />
 </ListItemButton>
 {/* import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing'; */}
 
 </ListItem>
 </Link>
+<Divider/>
 <Link to='/read-me/'>
 <ListItem  key={"read-me"}disablePadding>
 <ListItemButton onClick={()=>{setOpen(false)
@@ -194,7 +196,23 @@ export default function LeftDrawer() {
   <CustumeDone  /> 
 
   </ListItemIcon>
-  <ListItemText primary={"Умови доставки та повернення"} />
+  <ListItemText  sx={{fontSize:"5px"}} primary={"Оплата та доставка"} />
+</ListItemButton>
+{/* import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing'; */}
+
+</ListItem>
+</Link>
+<Link to='/warranty/'>
+<ListItem  key={"warranty"}disablePadding>
+<ListItemButton onClick={()=>{setOpen(false)
+    setOpenBack(false)
+
+}}>
+  <ListItemIcon>
+  <RotateLeftOutlinedIcon  /> 
+
+  </ListItemIcon>
+  <ListItemText  sx={{fontSize:"5px"}} primary={"Гарантія та повернення"} />
 </ListItemButton>
 {/* import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing'; */}
 

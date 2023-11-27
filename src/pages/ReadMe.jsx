@@ -4,23 +4,21 @@ import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
 export default function ReadMe() {
   return (
     <div>
-        <h2 className="text-2xl mb-4 font-medium">Умови доставки та повернення</h2>
-        <div>
-            <ul>
-                <li className='flex gap-2 mb-2 shadow-md p-2'>
-                        <AttachFileOutlinedIcon sx={{fontSize:"32px",textAlign:"lefr"}} className='text-red-800  font-bold text-2xl text-left' />
-                       <span className=' text-[12px]' > Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores doloribus officia possimus doloremque esse quia voluptates sequi mollitia itaque, animi, ad, maxime iste suscipit unde! Veritatis nemo dolores a modi.</span></li>
-                       <li className='flex gap-2 mb-2 shadow-md p-2'>
-                        <AttachFileOutlinedIcon sx={{fontSize:"32px",textAlign:"lefr"}} className='text-red-800  font-bold text-2xl text-left' />
-                       <span className=' text-[12px]' > Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores doloribus officia possimus doloremque esse quia voluptates sequi mollitia itaque, animi, ad, maxime iste suscipit unde! Veritatis nemo dolores a modi.</span></li>
-                       <li className='flex gap-2 mb-2 shadow-md p-2'>
-                        <AttachFileOutlinedIcon sx={{fontSize:"32px",textAlign:"lefr"}} className='text-red-800  font-bold text-2xl text-left' />
-                       <span className=' text-[12px]' > Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores doloribus officia possimus doloremque esse quia voluptates sequi mollitia itaque, animi, ad, maxime iste suscipit unde! Veritatis nemo dolores a modi.</span></li>
-                
-                
-            </ul>        
-             
-        </div>
+        <h2 className="text-2xl mb-4 font-medium">Умови доставки та оплати</h2>
+        <div class="max-w-2xl mx-auto p-4">
+  <h2 class="text-xl font-bold mb-4">Способи доставки:</h2>
+
+  <div class="mb-6">
+    <p class="text-lg">Нова пошта (за тарифами перевізника).</p>
+    <p class="text-sm">Доставкою Нова Пошта- 100% предоплата на обраний товар.</p>
+  </div>
+
+  <div class="mb-6">
+    <p class="text-lg">Самовивіз:</p>
+    <p class="text-sm">м. Чернівці, проспект Незалежності, 131, ТЦ "Проспект", оф. № 128А (праворуч від ескалатору)</p>
+    <p class="text-sm">м. Чернівці, вул. Головна, 265а, ТРЦ «DEPOt» (2-й поверх)</p>
+  </div>
+</div>
     </div>
   )
 }

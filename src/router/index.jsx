@@ -12,6 +12,7 @@ import CheckOut from "../pages/CheckOut";
 import $api from "../http";
 import MyOrders from "../pages/MyOrders";
 import ReadMe from "../pages/ReadMe";
+import Warranty from "../pages/Warranty";
 
 export const router=createBrowserRouter([
     {
@@ -52,7 +53,12 @@ export const router=createBrowserRouter([
                 {
                   path:"/read-me/",
                   element:<ReadMe/>
-                }
+                },
+                {
+                  path:"/warranty/",
+                  element:<Warranty/>
+                },
+                
         ]
     }
    
