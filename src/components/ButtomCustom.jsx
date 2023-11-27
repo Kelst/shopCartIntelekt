@@ -14,7 +14,7 @@ export default function ButtomCustom({onClick,text,flag}) {
       duration-500 ease-in-out delay-200 -translate-x-full translate-y-full bg-red-600 rounded-2xl group-hover:mb-12 group-hover:translate-x-0"></span>
   
 
-    <span className=" flex justify-center relative w-full text-left text-white transition-colors duration-200 ease-in-out group-hover:text-white">
+    <span className=" flex justify-center relative w-full text-left  uppercase text-white transition-colors duration-200 ease-in-out group-hover:text-white">
         
        {text}
        </span>
