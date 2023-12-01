@@ -20,9 +20,9 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import logoNav from "../assets/new-logow.png"
+import logoNav from "../assets/new-logow2.png"
 import bigW from "../assets/big.png"
-import small from "../assets/min.png"
+import small from "../assets/min1.png"
 import { useStore } from '../store';
 import { Link, useNavigate } from 'react-router-dom';
 import TurnedInIcon from '@mui/icons-material/TurnedIn';
@@ -107,7 +107,7 @@ export default function LeftDrawer() {
                 />
                   <div className=' relative  top-[-40px] left-[17px] '>
                     <img  className='w-[14px] ml-[-9px] animate-my-spin' src={bigW}  />
-                    <img className='w-[10px] ml-[2.5px] mt-[-4px]  animate-reverse-spin ' src={small} alt=""  />
+                    <img className='w-[10px] ml-[2.5px] mt-[-4px]  animate-reverse-spin ' color='red' src={small} alt=""  />
                   </div>
                   
                   </div>
@@ -136,7 +136,7 @@ export default function LeftDrawer() {
              cat.map((item,index) => (
               <Link onClick={()=>setValue(index)} key={item.id} to={`/category/${item.id}`}>
 
-              <ListItem key={item.cat} disablePadding>
+              <ListItem  sx={{textTransform:'lowercase'}} key={item.cat} disablePadding>
               <ListItemButton onClick={()=>{setOpen(false) 
               setOpenBack(false)}
               }>
@@ -163,7 +163,7 @@ export default function LeftDrawer() {
   <ShoppingCartOutlinedIcon />
 
   </ListItemIcon>
-  <ListItemText primary={"Кошик"} />
+  <ListItemText  sx={{textTransform:'lowercase'}} primary={"Кошик"} />
 </ListItemButton>
 {/* import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing'; */}
 
@@ -179,7 +179,7 @@ export default function LeftDrawer() {
   <CustumeIcon  /> 
 
   </ListItemIcon>
-  <ListItemText  primary={"Замовленння"} />
+  <ListItemText  sx={{textTransform:'lowercase'}}  primary={"Замовленння"} />
 </ListItemButton>
 {/* import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing'; */}
 
@@ -196,7 +196,7 @@ export default function LeftDrawer() {
   <CustumeDone  /> 
 
   </ListItemIcon>
-  <ListItemText  sx={{fontSize:"5px"}} primary={"Оплата та доставка"} />
+  <ListItemText   sx={{fontSize:"5px",textTransform:'lowercase'}} primary={"Оплата та доставка"} />
 </ListItemButton>
 {/* import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing'; */}
 
@@ -212,7 +212,7 @@ export default function LeftDrawer() {
   <RotateLeftOutlinedIcon  /> 
 
   </ListItemIcon>
-  <ListItemText  sx={{fontSize:"5px"}} primary={"Гарантія та повернення"} />
+  <ListItemText  sx={{fontSize:"5px",textTransform:'lowercase'}} primary={"Гарантія та повернення"} />
 </ListItemButton>
 {/* import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing'; */}
 

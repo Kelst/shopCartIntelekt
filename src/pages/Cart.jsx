@@ -25,7 +25,7 @@ export default function Cart() {
     <div>
        <Typography variant='h4'>Вітаємо в онлайн-магазині </Typography> <span className='  leading-loose text-xl font-bold'> INTELEKT!</span>
      <Divider/>
-     <span className=' block mt-5 uppercase'>Виберіть категорію товару який вас цікавить:</span>
+     <span className=' block mt-5 uppercase'>Оберіть категорію товару який вас цікавить:</span>
 <div className='mt-12 grid grid-cols-1 gap-6  sm:grid-cols-2 '>
   {
     goodsUnique.length>0?
