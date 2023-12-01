@@ -49,7 +49,6 @@ export default function AlertDialog({open,setOpen,title,text}) {
 
   <div class="mb-6">
     <p class="text-sm">При замовленні доставки товару "Новою Поштою" - обов'язкова 100% передоплата замовлення.  Вартість доставки замовлення оплачує покупець, згідно тарифів "Нової Пошти".</p>
-    <p class="text-sm">Доставкою Нова Пошта- 100% предоплата на обраний товар.</p>
   </div>
 </div>
           </DialogContentText>
