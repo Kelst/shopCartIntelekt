@@ -1,16 +1,25 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 import Typography from '@mui/material/Typography';
-import bigW from "../assets/round-bigw.png"
+
+
 import SvgIcon from '@mui/material/SvgIcon';
 import { useStore } from '../store';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
+
+import MenuItem from '@mui/material/MenuItem';
+
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+
+
+
+
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
@@ -69,7 +78,56 @@ export default function AccordingCustum({}) {
   
   const [expanded, setExpanded] = React.useState('panel1');
   const orders=useStore(state=>state.orders)
+  const [filteredOrders,setFilteredOrders]=React.useState([])
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [title,setTitle]=React.useState("Усі замовлення")
+  const open = Boolean(anchorEl);
 
+  React.useEffect(()=>{
+setFilteredOrders(orders)
+  },[])
+  const handleFilter=(filter)=>{
+    switch (filter ){
+      case "all":
+          setTitle('Усі замовлення')
+          setFilteredOrders(orders)
+          setAnchorEl(null);
+       break
+      case "in":
+      setTitle('Опрацьовуються')
+      const arr=orders.filter(e=>{
+        return e.status==0
+      })
+      setFilteredOrders(arr)
+      setAnchorEl(null);
+
+        break
+      case "prog":
+       { setTitle('Опрацьовані')  
+        const arr=orders.filter(e=>{
+          return e.status==1
+        })
+        setFilteredOrders(arr)
+        setAnchorEl(null);}
+
+      break
+      case "done":
+       { setTitle('Отримані')
+        const arr=orders.filter(e=>{
+          return e.status==2
+        })
+        setFilteredOrders(arr)
+        setAnchorEl(null);}
+
+      
+    }
+  }
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
@@ -91,8 +149,38 @@ export default function AccordingCustum({}) {
      {
       orders?.length!=0?
       <>
+        <div className=' flex flex-col items-center justify-center gap-1'>
+        <Button
+        id="basic-button"
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+        sx={{ color: 'black', borderColor: 'black', '&:hover': { borderColor: 'black' } }}
+        variant='outlined'
+      >
+        Фільтр замовлень
+      </Button>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      > 
+        <MenuItem onClick={()=>{handleFilter('all')}}>Усі замовлення</MenuItem>
+        <MenuItem onClick={()=>{handleFilter('in')}}>Опрацьовуються</MenuItem>
+        <MenuItem onClick={()=>{handleFilter('prog')}}>Опрацьовані</MenuItem>
+        <MenuItem onClick={()=>{handleFilter('done')}}>Отримані</MenuItem>
+        
+      </Menu>
+      <div className=' uppercase font-bold font-sm border-b-orange-800'>{title}</div>
+      </div>
       {
-        orders.map((e,index)=>{
+    
+        filteredOrders.map((e,index)=>{
           return   <Accordion key={index}  expanded={expanded === `panel${e.id}`} onChange={handleChange(`panel${e.id}`)}>
           <AccordionSummary  aria-controls="panel1d-content" id="panel1d-header">
            <div className=' flex    items-center flex-col  ml-auto mr-auto '> 
@@ -120,7 +208,7 @@ export default function AccordingCustum({}) {
                  <span className=' text-md  font-bold uppercase border-b-2 text-cebter]'>Отримувач  </span>
                  
                 <span className=' text-sm text-center'>
-                 {e.name} Безкоровайний Андрійович 
+                 {e.name}
                 </span>
               </li>
               <li className=' flex flex-col gap-3    justify-items-center items-center  border-b-2 mb-2'>
@@ -167,7 +255,9 @@ export default function AccordingCustum({}) {
       
       
       
-      :<Typography sx={{fontWeight:"bold", fontSize:"12px",marginTop:"20px",textAlign:"center",textDecoration:"underline"}}> Вибачте у вас немає замовлень</Typography>
+      :<div>
+     
+        <Typography sx={{fontWeight:"bold", fontSize:"12px",marginTop:"20px",textAlign:"center",textDecoration:"underline"}}> Вибачте у вас немає замовлень</Typography></div>
       
      }
   
