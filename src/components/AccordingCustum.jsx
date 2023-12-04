@@ -180,7 +180,7 @@ setFilteredOrders(orders)
       </div>
       {
     
-        filteredOrders.map((e,index)=>{
+    filteredOrders.length!==0?  filteredOrders.map((e,index)=>{
           return   <Accordion key={index}  expanded={expanded === `panel${e.id}`} onChange={handleChange(`panel${e.id}`)}>
           <AccordionSummary  aria-controls="panel1d-content" id="panel1d-header">
            <div className=' flex    items-center flex-col  ml-auto mr-auto '> 
@@ -248,7 +248,7 @@ setFilteredOrders(orders)
             </Typography> */}
           </AccordionDetails>
         </Accordion>
-        })
+        }):<div>Порожньо</div>
       }
    
      </>
