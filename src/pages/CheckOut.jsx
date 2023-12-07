@@ -6,11 +6,13 @@ import fetchData from '../nova-poshta';
 import ButtomCustom from '../components/ButtomCustom';
 import AlertCustum from '../components/AlertCustum';
 import { useNavigate } from 'react-router-dom';
+
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import AlertDialog from '../components/AlertDialog';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import CustumeDone from '../components/CustumDone';
 function hasRouter(goodCart, cat) {
   for (let i = 0; i < goodCart.length; i++) {
     const id_cat = goodCart[i].id_cat;
@@ -49,7 +51,7 @@ export default function CheckOut() {
     const [wifi,setWifi]=useState(false)
     const [tvIntelekt,setTvIntelekt]=useState(false)
     const [openWifi,setOpenWifi]=useState(false)
-    const [phone, setPhone] = React.useState('');
+    const [phone, setPhone] = React.useState('380');
     const [adress, setAdress] = React.useState('');
     const [vidilen, setVidilen] = React.useState([]);
     const [placeVidil, setPlaceVidil] = React.useState("");
@@ -71,10 +73,11 @@ export default function CheckOut() {
     const [open,setOpen]=useState(false)
     const [textAlert,setTectAlert]=useState("")
     const [state,setState]=useState(0)
+    const [pay,setPay]=useState(false)
     
     
     const handleSendData= async()=>{
-     
+      
       let adre="";
       let gooDate="";
       
@@ -97,7 +100,7 @@ export default function CheckOut() {
                 
              }
       
-
+         
       let data={
         name:name,
         phone:phone,
@@ -108,14 +111,18 @@ export default function CheckOut() {
         comment: text + '\n' + (wifi ? `WIFI: ${nameWifi}\nPassword: ${passWifi}\n` : '') + (tvIntelekt ? 'Встановити додаток на приставку\n' : '')
 
       }
-      let flag=await sendOrder(data)
-      if(flag){
+      // let flag=await sendOrder(data)
+      if(true){
         setTectAlert("Ваше замовлення принято !!! очікуйте повідомлення про номер замовлення")
         setState(0)
 
         setOpen(true)
      
-       setTimeout(()=>{ tg.close()},2000)   
+        if(place==30){
+           setPay(true)   
+        } else {
+          navigation("/")
+        }
       }else {
         setTectAlert("Виникла помилка при оформленні замовлення будь ласка зв'яжіться із тех. підтримкою")
         setState(1)
@@ -139,7 +146,7 @@ export default function CheckOut() {
         phone,name
       }
       window.Telegram.WebApp.sendData(JSON.stringify(data))
-      tg.close()
+      
      },[phone,name])
 
         useEffect(()=>{
@@ -190,7 +197,17 @@ export default function CheckOut() {
       },[])
   return (
     <div className='max-w-[303px] m-auto border p-9 shadow-md relative  overflow-auto'>
+{pay ? <>
+  <span className=' uppercase text-lg font-bold'>До оплати : {getPrice()} (грн) </span>
+  <div class="mb-6">
+    <p class="text-sm">При замовленні доставки товару "Новою Поштою" - обов'язкова 100% передоплата замовлення.  Вартість доставки замовлення оплачує покупець, згідно тарифів "Нової Пошти".</p>
+   
+  </div>
+ <Button onClick={()=>{ window.location.href = 'http://www.google.com.ua';}} sx={{borderColor:"black",color:"black"}} variant='outlined'>Оплатити </Button>
 
+
+</>:
+<>
        <AlertCustum open={open} setOpen={setOpen} text={textAlert} state={state}/> 
         <Typography className=' uppercase  ' variant='h7'>Оформлення Замовлення </Typography>
        <div className='mt-8 flex flex-col justify-center items-center'>
@@ -206,6 +223,7 @@ export default function CheckOut() {
         value={phone}
         sx={{width:"100%",marginTop: 1}}
         variant='standard'
+  
        
         onChange={(event) => {
           const inputValue =event.target.value;
@@ -334,6 +352,8 @@ export default function CheckOut() {
  <AnnouncementIcon />
  </div>
  <AlertDialog open={openAlertDialog} setOpen={setOpenAlertDialog} title={alertTitle} text={alertText}/>
+ </>
+}
     </div>
   )
 }
