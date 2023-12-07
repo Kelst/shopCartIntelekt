@@ -111,8 +111,8 @@ export default function CheckOut() {
         comment: text + '\n' + (wifi ? `WIFI: ${nameWifi}\nPassword: ${passWifi}\n` : '') + (tvIntelekt ? 'Встановити додаток на приставку\n' : '')
 
       }
-      // let flag=await sendOrder(data)
-      if(true){
+   let flag=await sendOrder(data)
+      if(flag){
         setTectAlert("Ваше замовлення принято !!! очікуйте повідомлення про номер замовлення")
         setState(0)
 
