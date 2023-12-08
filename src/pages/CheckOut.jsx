@@ -43,15 +43,15 @@ function hasTV(goodCart, cat) {
   // Якщо жоден елемент не відповідає умовам, повертаємо false
   return false;
 }
-function makerLinksToFastPayEasyPay(amount, login) {
-  const param = Buffer.from(`account=${login}&amount=${amount}&readonly=account`, 'ascii');
+const makerLinksToFastPayEasyPay = (amount, login) => {
+  const param = `account=${login}&amount=${amount}&readonly=account`;
   console.log(param);
-  
-  const encodedData = param.toString('base64');
+
+  const encodedData = btoa(param);
   console.log(encodedData);
-  
+
   return encodedData;
-}
+};
 export default function CheckOut() {
     const [name, setName] = React.useState('');
     const [nameWifi, setNameWiFi] = React.useState('');
@@ -70,6 +70,7 @@ export default function CheckOut() {
     const sendOrder=useStore(state=>state.sendOrder)
     const getPrice=useStore(state=>state.getPrice)
     const telegramId=useStore(state=>state.telegramId)
+    const [price,setPrice]=useState(0)
     const cat=useStore(state=>state.cat)
 
     const [openAlertDialog,setOpenAlertDialog]=useState(false)
@@ -83,7 +84,11 @@ export default function CheckOut() {
     const [textAlert,setTectAlert]=useState("")
     const [state,setState]=useState(0)
     const [pay,setPay]=useState(false)
-    
+    useEffect(()=>{
+        if(goodCart.length===0){
+          navigation("/")
+        }
+    },[])
     
     const handleSendData= async()=>{
       
@@ -120,6 +125,8 @@ export default function CheckOut() {
         comment: text + '\n' + (wifi ? `WIFI: ${nameWifi}\nPassword: ${passWifi}\n` : '') + (tvIntelekt ? 'Встановити додаток на приставку\n' : '')
 
       }
+
+      setPrice(data.sum)
    let flag=await sendOrder(data)
       if(flag){
         setTectAlert("Ваше замовлення принято !!! очікуйте повідомлення про номер замовлення")
@@ -158,7 +165,9 @@ export default function CheckOut() {
       
      },[phone,name])
 
+      
         useEffect(()=>{
+
           let timerId;
            setVidilen([])
            setPlaceVidil("")
@@ -207,12 +216,12 @@ export default function CheckOut() {
   return (
     <div className='max-w-[303px] m-auto border p-9 shadow-md relative  overflow-auto'>
 {pay ? <>
-  <span className=' uppercase text-lg font-bold'>До оплати : {getPrice()} (грн) </span>
+  <span className=' uppercase text-lg font-bold'>До оплати : {price} (грн) </span>
   <div class="mb-6">
     <p class="text-sm">При замовленні доставки товару "Новою Поштою" - обов'язкова 100% передоплата замовлення.  Вартість доставки замовлення оплачує покупець, згідно тарифів "Нової Пошти".</p>
    
   </div>
- <Button onClick={()=>{ window.location.href = 'https://easypay.ua/ua/partners/intelekt-group/intelekt-group?hash='+makerLinksToFastPayEasyPay(getPrice(),'buyer')}} sx={{borderColor:"black",color:"black"}} variant='outlined'>Оплатити </Button>
+ <Button onClick={()=>{ window.location.href ='https://easypay.ua/ua/partners/intelekt-group/intelekt-group?hash='+makerLinksToFastPayEasyPay(price,'buyer')}} sx={{borderColor:"black",color:"black"}} variant='outlined'>Оплатити </Button>
 
 
 </>:
