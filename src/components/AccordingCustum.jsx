@@ -233,19 +233,7 @@ setFilteredOrders(orders)
                 </span>
               </li>
             </ul>
-            {/* <Typography>
-            {e.name}
-            </Typography>
-            <Typography>
-            {e.address}
-            </Typography>
-            <Typography>
-            { formatDateString(e.date)}
-            </Typography>
-            <Typography>
-            
-            {e.cart_json}
-            </Typography> */}
+      
           </AccordionDetails>
         </Accordion>
         }):<div>Порожньо</div>

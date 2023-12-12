@@ -6,6 +6,7 @@ import fetchData from '../nova-poshta';
 import ButtomCustom from '../components/ButtomCustom';
 import AlertCustum from '../components/AlertCustum';
 import { useNavigate } from 'react-router-dom';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import AlertDialog from '../components/AlertDialog';
@@ -60,7 +61,7 @@ export default function CheckOut() {
     const [wifi,setWifi]=useState(false)
     const [tvIntelekt,setTvIntelekt]=useState(false)
     const [openWifi,setOpenWifi]=useState(false)
-    const [phone, setPhone] = React.useState('380');
+    const [phone, setPhone] = React.useState('38');
     const [adress, setAdress] = React.useState('');
     const [vidilen, setVidilen] = React.useState([]);
     const [placeVidil, setPlaceVidil] = React.useState("");
@@ -227,6 +228,8 @@ export default function CheckOut() {
 </>:
 <>
        <AlertCustum open={open} setOpen={setOpen} text={textAlert} state={state}/> 
+       {/* <div className=' absolute left-[50px] md:left-[80px] cursor-pointer' onClick={()=>setOpen(true)} >
+          <LocalPhoneIcon /></div> */}
         <Typography className=' uppercase  ' variant='h7'>Оформлення Замовлення </Typography>
        <div className='mt-8 flex flex-col justify-center items-center'>
     
@@ -238,6 +241,9 @@ export default function CheckOut() {
           setName(event.target.value);
         }}/>
          <TextField  label="Телефон"
+         inputProps={{
+          selectionStart: 2, // Задаємо позначку (caret) після двох символів
+        }}
         value={phone}
         sx={{width:"100%",marginTop: 1}}
         variant='standard'

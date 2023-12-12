@@ -4,6 +4,7 @@ import ShopItem from '../components/ShopItem'
 import ProductionQuantityLimitsTwoToneIcon from '@mui/icons-material/ProductionQuantityLimitsTwoTone';
 import { Button, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 
 export default function ShopCart() {
   const goodCart=useStore(state=>state.goodCart)
@@ -20,6 +21,8 @@ export default function ShopCart() {
   ]
   return (
     <div className=' mt-6 flex flex-col border h-[100%] bg-white' >
+        {/* <div className=' absolute left-[50px] md:left-[80px] cursor-pointer' onClick={()=>setOpen(true)} >
+          <LocalPhoneIcon /></div> */}
           <div className='  uppercase font-bold underline'>
             Ваш кошик
           </div>

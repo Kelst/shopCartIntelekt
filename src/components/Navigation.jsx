@@ -28,6 +28,8 @@ import bigW from "../assets/round-bigw.png"
 import small from "../assets/min.png"
 import Done from "../assets/s.svg"
 import CustumeIcon from './CustumeIcon';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import CallDialog from './CallDialog';
 
 function Navigation(props) {
   const { window,children } = props;
@@ -40,6 +42,7 @@ function Navigation(props) {
   const operator2=useStore(state=>state.operator2)
   const setOperator2=useStore(state=>state.setOperator2)
   const shovDynamicsNavigation=useStore(state=>state.shovDynamicsNavigation)
+  const [open,setOpen]=useState(false)
 
 const navigate=useNavigate()
 const loc=useLocation()
@@ -84,12 +87,14 @@ const handleBack=()=>{
 
   return (
     <Box sx={{ display: 'flex' }}  >
+      <CallDialog open={open} setOpen={setOpen}/>
       <AppBar component="nav" sx={{bgcolor:"#ea3439",maxWidth:"100%"}}>
-       
+      
        <div className='  text-sm'>{price==0?"":`Замовлень на суму: ${price} (грн.)`}</div>
         <Toolbar className=' flex justify-center bg-red-600' >
-        <div className='flex   justify-between items-center w-[100%]'>
-            <div className=' w-[10px] flex-2 justify-centr items-center'>
+        <div className='flex   justify-between items-center w-[100%]  '>
+          
+            <div className=' w-[10px] flex-2 justify-centr items-center '>
      
                     <div>
                     <LeftDrawer/>
@@ -101,7 +106,8 @@ const handleBack=()=>{
             
            
           </div>
-          
+          <div className=' absolute left-[50px] md:left-[80px] cursor-pointer' onClick={()=>setOpen(true)} >
+          <LocalPhoneIcon /></div>
             
               <div onClick={()=>navigate("/")} className='mt-1 ml-[39px] flex justify-center  items-center   cursor-pointer  '>
                  <img className='w-[95px] h-[50px] object-contain    '

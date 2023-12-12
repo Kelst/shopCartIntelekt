@@ -29,7 +29,7 @@ setItems(a)
     async function fetch(){
     let goods=await getGoodsUniques(showItem)
 let a=   goods.map(e=><GoodItem key={e.id} good={e}/>) 
-console.log("AAAAAAA",goods);
+
 setItems(a)}
 fetch()
  } catch (error) {

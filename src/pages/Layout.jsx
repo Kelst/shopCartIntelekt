@@ -7,6 +7,13 @@ import { useTelegram } from '../hooks/useTelegram'
 import $api_nova from '../nova-poshta'
 import fetchData from '../nova-poshta'
 import AlertCustum from '../components/AlertCustum'
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import NavigationIcon from '@mui/icons-material/Navigation';
 
 export default function Layout() {
   const getAllCat=useStore(state=>state.getAllCat)
@@ -60,6 +67,7 @@ checkLocalStorage()
     <div  className='' style={{
       backgroundImage:"bg-url(../assets/big.png) bg-cover bg-center"
     }} >
+
      <Navigation/>
      
    
