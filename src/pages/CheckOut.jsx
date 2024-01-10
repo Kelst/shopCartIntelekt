@@ -368,7 +368,7 @@ export default function CheckOut() {
     place == "30"
       ? !(name.trim() !== "" && phone.trim() !== "" && adress.trim() !== "")
       : !(name.trim() !== "" && phone.trim() !== "")
-  }   >Завершити</Button>
+  }   >Оформити замовлення</Button>
         </div>
         <div 
         onClick={()=>{setOpenAlertDialog(true)}}
