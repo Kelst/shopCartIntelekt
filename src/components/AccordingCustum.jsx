@@ -245,7 +245,7 @@ setFilteredOrders(orders)
       
       :<div>
      
-        <Typography sx={{fontWeight:"bold", fontSize:"12px",marginTop:"20px",textAlign:"center",textDecoration:"underline"}}> Вибачте у вас немає замовлень</Typography></div>
+        <Typography sx={{fontWeight:"bold", fontSize:"12px",marginTop:"20px",textAlign:"center",textDecoration:"underline"}}> Немає замовлень</Typography></div>
       
      }
   

@@ -85,7 +85,7 @@ export default function TabGoods() {
          {
             goodsUnique.length>0?
             <Tab key={cat.length} label={"Ціна тижня"}/>
-            :<>sddd</>
+            :<></>
           }
         </Tabs>
       </AppBar>
