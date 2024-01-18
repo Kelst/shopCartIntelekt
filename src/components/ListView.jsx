@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Carousel from 'react-material-ui-carousel'
 import { useStore } from '../store'
-import { useLoaderData, useParams } from 'react-router-dom';
-import SwipeableViews from 'react-swipeable-views';
+
 import GoodItem from './GoodItem';
+import ListItem from './ListItem';
 
 
-export default function CaruselCustum({showItem,flag,item=[]}) {
+export default function ListView({showItem,flag,item=[]}) {
 const [items,setItems]= useState([])
 const getGoods=useStore(state=>state.getGoods)
 const getGoodsUniques=useStore(state=>state.getGoodsUniques)
@@ -17,7 +17,7 @@ console.log("");
   if(flag==false)
    { async function fetch(){
         let goods=await getGoods(showItem)
-    let a=   goods.map(e=><GoodItem key={e.id} good={e}/>) 
+    let a=   goods.map(e=><ListItem key={e.id} good={e}/>) 
 setItems(a)
     }
     fetch()
@@ -28,7 +28,7 @@ setItems(a)
    
     async function fetch(){
     let goods=await getGoodsUniques(showItem)
-let a=   goods.map(e=><GoodItem key={e.id} good={e}/>) 
+let a=   goods.map(e=><ListItem key={e.id} good={e}/>) 
 
 setItems(a)}
 fetch()
@@ -42,22 +42,11 @@ fetch()
 },[]) 
   return (
     
-    <Carousel 
-    
-   
-    
-    sx={{minWidth:"325px", marginTop:"-15px", marginLeft:"-16px", display:"flex", flexDirection:"column", justifyItems:"center", alignItems:"center"}} 
-    autoPlay={false}
-    swipe 
-    duration={200}
-    cycleNavigation={true}
-   
-    >
-    { 
-    ...items
+<div className='w-[350px]  grid grid-cols-2 gap-2'>
+    {
+      ...items  
     }
-
-    </Carousel>
+</div>
   )
 }
 

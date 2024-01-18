@@ -64,7 +64,7 @@ checkLocalStorage()
 
   },[])
   return (
-    <div  className='' style={{
+    <div  className='p-0' style={{
       backgroundImage:"bg-url(../assets/big.png) bg-cover bg-center"
     }} >
 
