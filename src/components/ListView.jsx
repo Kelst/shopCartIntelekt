@@ -41,8 +41,8 @@ fetch()
 
 },[]) 
   return (
-    
-<div className='w-[350px]  grid grid-cols-2 gap-2'>
+    // w-[250px]  m-auto
+<div className={items.length==1?`w-[210px]  m-auto`: `w-[350px]  grid grid-cols-2 gap-2  `}>
     {
       ...items  
     }

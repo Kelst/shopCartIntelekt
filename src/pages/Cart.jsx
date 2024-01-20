@@ -29,7 +29,7 @@ export default function Cart() {
 <div className='mt-[20px] grid grid-cols-1 gap-6 gap-x-4  sm:grid-cols-2 '>
   {
     goodsUnique.length>0?
-    <ButtomCustom key={cat.length}  flag={false} onClick={()=>handleTo(cat.length,cat.length)} text={'ціна тижня'} />
+    <ButtomCustom key={cat.length}  flag={false} onClick={()=>handleTo(cat.length,cat.length)} text={'ЦІНА ТИЖНЯ'} />
   :<></>
   }
      {

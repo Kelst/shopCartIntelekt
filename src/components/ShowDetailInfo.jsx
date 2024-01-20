@@ -45,17 +45,7 @@ const unescapeHTML = (text) => {
   const doc = new DOMParser().parseFromString(text, "text/html");
   return doc.body.innerHTML;
 };
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+
 
 export default function ShowDetailInfo({ good,open,setOpen}) {
 
@@ -136,7 +126,6 @@ export default function ShowDetailInfo({ good,open,setOpen}) {
  
     </Card>
     
-
       </Modal>
     </div>
   );

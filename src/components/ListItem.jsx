@@ -37,7 +37,7 @@ export default function ListItem({good}) {
       nav("/shop-cart/")
     }
   return (
-<Card raised className=' flex flex-col justify-end' sx={{border:`${good.unique_price!=0?"2px solid red":"1px solid gray"}` }} >
+<Card raised className=' bg-transparent flex flex-col justify-end ' sx={{border:`${good.unique_price!=0?"2px solid red":"1px solid gray"}` }} >
   
 <ShowDetailInfo open={open} good={good} setOpen={setOpen}/>
       <CardMedia
@@ -45,7 +45,7 @@ export default function ListItem({good}) {
           loading='true'
         
          sx={{
-            maxHeight: 160,
+            maxHeight: 100,
            maxWidth:200,
             margin:"0 auto",
             objectFit: "contain", 
@@ -58,7 +58,7 @@ export default function ListItem({good}) {
       />
       
       <CardContent>
-        <Typography gutterBottom variant="h7" component="div" sx={{fontFamily:"ds"}}>
+        <Typography gutterBottom variant="h7" className=' text-[12px]' component="div" sx={{  fontFamily:"ds"}}>
           {good.name}
         </Typography>
         <Typography gutterBottom variant="h8" component="div">
@@ -77,12 +77,12 @@ export default function ListItem({good}) {
        
         </Typography>
         <div className=' z-50 overflow-auto'  >
-        <Typography   variant="body2" height={95}  sx={{fontSize:12,paddingTop:"1px",zIndex:"1000",overflow:"auto"}} color="text.secondary">
+        {/* <Typography   variant="body2" height={95}  sx={{fontSize:12,paddingTop:"1px",zIndex:"1000",overflow:"auto"}} color="text.secondary">
             {good.title}
-        </Typography>
+        </Typography> */}
        
         </div>
-        <Button variant='outlined' sx={{fontSize:"10px",mt:"10px"}} onClick={()=>setOpen(true)} fullWidth startIcon={<VisibilityIcon/>} >Детальніше ...</Button>
+        <Button variant='outlined' sx={{fontSize:"8px",mt:"5px"}} onClick={()=>setOpen(true)} fullWidth startIcon={<VisibilityIcon/>} >Детальніше ...</Button>
       </CardContent>
       <Divider/>
      
@@ -90,9 +90,9 @@ export default function ListItem({good}) {
         <div className='flex justify-center items-center  h-[60px]   bg-transparent w-[500px]'>
         {
             flagBuy==false?
-             <Button color='secondary' sx={{fontSize:"10px"}} variant='outlined' onClick={handleBuy} startIcon={<ShoppingCartIcon/>} size="small">Купити</Button>
+             <Button color='secondary' sx={{fontSize:"8px"}} variant='outlined' onClick={handleBuy} startIcon={<ShoppingCartIcon/>} size="small">Купити</Button>
              :
-            <div> <Button color='error'  sx={{fontSize:"10px"}}  variant='outlined' onClick={handleDelete} startIcon={<DeleteForeverIcon/>} size="small">Видалити з кошика</Button> <Button  sx={{fontSize:"10px"}}  onClick={handleToShop}>Оформити замовлення</Button></div>
+            <div> <Button color='error'  sx={{fontSize:"8px"}}  variant='outlined' onClick={handleDelete} startIcon={<DeleteForeverIcon/>} size="small">Видалити з кошика</Button> <Button  sx={{fontSize:"10px"}}  onClick={handleToShop}>Оформити замовлення</Button></div>
         }
        
            </div>

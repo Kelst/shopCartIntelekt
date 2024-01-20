@@ -10,12 +10,14 @@ import Box from '@mui/material/Box';
 import { useStore } from '../store';
 import CaruselCustum from './CaruselCustum';
 import ListView from './ListView';
+import IOSSwitch from './IOSSwitch';
 
 function TabPanel(props) {
-  const { children, value, index, ...other } = props;
+  const { children, value, index,flagList, ...other } = props;
 
   return (
     <div
+    className=' '
       role="tabpanel"
       hidden={value !== index}
       id={`full-width-tabpanel-${index}`}
@@ -23,7 +25,8 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+          // p:3,paddingLeft:4 
+        <Box sx={flagList==false?{ p:3,paddingLeft:4  }:{ paddingTop: 1,paddingLeft:0.5}}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -48,6 +51,7 @@ export default function TabGoods() {
   const theme = useTheme();
   const cat = useStore((state) => state.cat);
   const goodsUnique = useStore((state) => state.goodsUnique);
+  const flagList = useStore((state) => state.flagList);
   const value = useStore((state) => state.index);
   const setValue = useStore((state) => state.setIndex);
 
@@ -86,21 +90,27 @@ export default function TabGoods() {
             />
           )}
         </Tabs>
+        
       </AppBar>
+      <IOSSwitch/>
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}
         onChangeIndex={handleChangeIndex}
+        className=''
       >
+     
         {cat.map((e, index) => (
-          <TabPanel key={index} value={value} index={index} dir={theme.direction}>
-            {/* <CaruselCustum showItem={e.id} flag={false} /> */}
-          <ListView  showItem={e.id} flag={false}/>
+          <TabPanel  key={index} value={value} index={index} dir={theme.direction} flagList={flagList} >
+          {flagList==false?<CaruselCustum showItem={e.id} flag={false} />: <ListView  showItem={e.id} flag={false}/>}  
+          {/* <ListView  showItem={e.id} flag={false}/> */}
           </TabPanel>
         ))}
         {goodsUnique.length > 0 && (
-          <TabPanel value={value} index={cat.length} dir={theme.direction}>
-            <CaruselCustum item={[...goodsUnique]} flag={true} />
+          <TabPanel value={value} index={cat.length} dir={theme.direction} flagList={false}>
+            <CaruselCustum item={[...goodsUnique]} flag={true} /> 
+            {/* <ListView item={[...goodsUnique]} flag={true} /> */}
+            
           </TabPanel>
         )}
       </SwipeableViews>

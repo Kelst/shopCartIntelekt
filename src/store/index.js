@@ -16,6 +16,10 @@ export const useStore = create((set,get) => ({
   operator2:0,
   countSlide:0,
   index:0,
+  flagList:false,
+  switchFlagList(){
+    set(state=>({...state,flagList:!state.flagList}))
+  },
   async makeCall(phone){
     let resp=await $api.post('/makeCall',{phone:`${phone}`}) 
     console.log("ВІдправлено смс  дзвінок",resp.data);
