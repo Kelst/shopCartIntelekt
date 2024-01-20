@@ -18,7 +18,7 @@ export default function Category() {
 const datas=useLoaderData()
   useEffect(()=>{
 
-    console.log(datas,"DAT");
+    
     setShovDynamicsNavigation(true)
     let index=cat.findIndex(e=>e.id==id)
     setCatNav(index)

@@ -73,7 +73,7 @@ export default function CheckOut() {
     const telegramId=useStore(state=>state.telegramId)
     const [price,setPrice]=useState(0)
     const cat=useStore(state=>state.cat)
-
+    const removeOrder=useStore(state=>state.removeOrder)
     const [openAlertDialog,setOpenAlertDialog]=useState(false)
     const [alertTitle,setAlertTitle]=useState("")
     const [alertText,setAlertText]=useState("")
@@ -147,6 +147,16 @@ export default function CheckOut() {
       }
 
     }
+    const resetData=()=>{
+     let flag= removeOrder()
+     if(flag){
+      setTectAlert("Ваше замовлення скасовано ")
+        setState(0)
+        setOpen(true)
+     setTimeout(()=>{navigation("/")},1000)
+      
+     }
+    }
     const handleChange = (event) => {
         setAdress("")
         setPlace(event.target.value);
@@ -156,7 +166,7 @@ export default function CheckOut() {
       }
       const {tg,onToggleButton,user}=useTelegram()
       const getPhone=useStore(state=>state.getPhone)
-
+     
      const onSendData=useCallback(()=>{
       data
       const data={
@@ -369,6 +379,12 @@ export default function CheckOut() {
       ? !(name.trim() !== "" && phone.trim() !== "" && adress.trim() !== "")
       : !(name.trim() !== "" && phone.trim() !== "")
   }   >Оформити замовлення</Button>
+   <Button 
+        onClick={()=>resetData()}
+        
+        sx={{marginTop:1,borderColor:'black',color:'black',":focus":{borderColor:'black'}}} fullWidth variant='outlined'>
+            Скасувати
+    </Button>
         </div>
         <div 
         onClick={()=>{setOpenAlertDialog(true)}}

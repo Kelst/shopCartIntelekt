@@ -11,6 +11,9 @@ import { useStore } from '../store';
 import CaruselCustum from './CaruselCustum';
 import ListView from './ListView';
 import IOSSwitch from './IOSSwitch';
+import GridViewIcon from '@mui/icons-material/GridView';
+import ReorderIcon from '@mui/icons-material/Reorder';
+import Tooltip from '@mui/material/Tooltip';
 
 function TabPanel(props) {
   const { children, value, index,flagList, ...other } = props;
@@ -43,7 +46,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
+   
   };
 }
 
@@ -54,7 +57,7 @@ export default function TabGoods() {
   const flagList = useStore((state) => state.flagList);
   const value = useStore((state) => state.index);
   const setValue = useStore((state) => state.setIndex);
-
+const switchFlagList=useStore(state=>state.switchFlagList)
   React.useEffect(() => {
     console.log(cat);
   }, [cat]); // Додано cat до залежностей
@@ -69,10 +72,13 @@ export default function TabGoods() {
 
   return (
     <Box sx={{ bgcolor: 'white', width:'95vw', marginTop: '-6px' }}>
-      <AppBar position="static">
+      <AppBar position="static ">
         <Tabs
-          scrollButtons="auto"
-          variant="scrollable"
+         variant="scrollable"
+         scrollButtons
+         allowScrollButtonsMobile
+         aria-label="scrollable force tabs example"
+          className='p-1 z-50 '
           sx={{ bgcolor: 'red' }}
           value={value}
           onChange={handleChange}
@@ -92,7 +98,12 @@ export default function TabGoods() {
         </Tabs>
         
       </AppBar>
-      <IOSSwitch/>
+      <div className='w-[150px] ml-3 mr-auto h-[30px] mt-1 flex  justify-start items-center gap-1'>
+      <Tooltip title="grid" placement="top"> <GridViewIcon onClick={()=>{switchFlagList(true)}} className={`${flagList==true?' bg-red-800 rounded-md text-white':''}`}/></Tooltip>
+      <Tooltip title="slide" placement="top"> <ReorderIcon onClick={()=>{switchFlagList(false)}} className={`rotate-90 ${flagList==false?' bg-red-800  text-white rounded-md':''}`}/></Tooltip>
+      
+      </div>
+      
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}

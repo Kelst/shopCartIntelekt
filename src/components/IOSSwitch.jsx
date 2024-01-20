@@ -101,7 +101,7 @@ const IOSSwitch = styled((props) => (
       transform: 'translateX(16px)',
       color: '#fff',
       '& + .MuiSwitch-track': {
-        backgroundColor: theme.palette.mode === 'dark' ? '#2ECA45' : '#65C466',
+        backgroundColor: theme.palette.mode === 'dark' ? '#DC143C' : '#FF0000', // Replace green with red color
         opacity: 1,
         border: 0,
       },
@@ -110,7 +110,7 @@ const IOSSwitch = styled((props) => (
       },
     },
     '&.Mui-focusVisible .MuiSwitch-thumb': {
-      color: '#33cf4d',
+      color: '#FF6347', // Replace green with red color
       border: '6px solid #fff',
     },
     '&.Mui-disabled .MuiSwitch-thumb': {
@@ -137,6 +137,7 @@ const IOSSwitch = styled((props) => (
     }),
   },
 }));
+
 
 const AntSwitch = styled(Switch)(({ theme }) => ({
   width: 28,
@@ -188,7 +189,7 @@ export default function CustomizedSwitches() {
  
       <FormControlLabel
         control={<IOSSwitch sx={{ m: 1 }} checked={flagList} onClick={()=>{switchFlagList()}} />}
-        label={flagList==false?'Слайдер':'Список'}
+        label={flagList==true?'Галерея':'Список'}
       />
      
     </div>

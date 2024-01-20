@@ -16,9 +16,9 @@ export const useStore = create((set,get) => ({
   operator2:0,
   countSlide:0,
   index:0,
-  flagList:false,
-  switchFlagList(){
-    set(state=>({...state,flagList:!state.flagList}))
+  flagList:true,
+  switchFlagList(flag){
+    set(state=>({...state,flagList:flag}))
   },
   async makeCall(phone){
     let resp=await $api.post('/makeCall',{phone:`${phone}`}) 
@@ -60,6 +60,16 @@ export const useStore = create((set,get) => ({
     } catch (error) {
       console.log(error);
       set(state=>({...state,loader:false}))
+      return false
+    }
+  },
+  async removeOrder () {
+    try {
+      set(state=>({...state,goodCart:[],shopCart:0}))
+      localStorage.removeItem('state');
+     return true
+    } catch (error) {
+      console.log(error);
       return false
     }
   },
