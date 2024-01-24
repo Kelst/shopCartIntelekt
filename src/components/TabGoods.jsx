@@ -108,7 +108,7 @@ const switchFlagList=useStore(state=>state.switchFlagList)
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}
         onChangeIndex={handleChangeIndex}
-        className=' ml-[-1.5px] bg-white shadow-xl '
+        className=' ml-[2.5px] bg-white shadow-xl '
       >
      
         {cat.map((e, index) => (
