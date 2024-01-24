@@ -56,6 +56,9 @@ const makerLinksToFastPayEasyPay = (amount, login) => {
 export default function CheckOut() {
     const [name, setName] = React.useState('');
     const [nameWifi, setNameWiFi] = React.useState('');
+    const [firstName, setFirstName] = React.useState('');
+    const [secondName, setSecondName] = React.useState('');
+    const [thirdName, setThirdName] = React.useState('');
     const [passWifi, setPassWiFi] = React.useState('');
     const [place, setPlace] = React.useState(10);
     const [wifi,setWifi]=useState(false)
@@ -117,7 +120,7 @@ export default function CheckOut() {
       
          
       let data={
-        name:name,
+        name:`${firstName} ${secondName} ${thirdName}`,
         phone:phone,
         telegram_id:telegramId,
         cart:gooDate,
@@ -226,6 +229,11 @@ export default function CheckOut() {
       },[])
   return (
     <div className='max-w-[303px] m-auto border p-9 shadow-md relative  overflow-auto'>
+       <div 
+        onClick={()=>{setOpenAlertDialog(true)}}
+        className=' animate-pulse cursor-pointer  absolute right-1 top-1'>
+ <AnnouncementIcon />
+ </div>
 {pay ? <>
   <span className=' uppercase text-lg font-bold'>До оплати : {price} (грн) </span>
   <div class="mb-6">
@@ -243,12 +251,26 @@ export default function CheckOut() {
         <Typography className=' uppercase  ' variant='h7'>Оформлення Замовлення </Typography>
        <div className='mt-8 flex flex-col justify-center items-center'>
     
-        <TextField  label="ПІБ"
-        value={name}
+        <TextField  label="Прізвище"
+        value={firstName}
         sx={{width:"100%"}}
         variant='standard'
         onChange={(event) => { 
-          setName(event.target.value);
+          setFirstName(event.target.value);
+        }}/>
+         <TextField  label="Ім'я"
+        value={secondName}
+        sx={{width:"100%"}}
+        variant='standard'
+        onChange={(event) => { 
+          setSecondName(event.target.value);
+        }}/>
+         <TextField  label="По - Батькові"
+        value={thirdName}
+        sx={{width:"100%"}}
+        variant='standard'
+        onChange={(event) => { 
+          setThirdName(event.target.value);
         }}/>
          <TextField  label="Телефон"
          inputProps={{
@@ -376,8 +398,8 @@ export default function CheckOut() {
         
         sx={{marginTop:3}} variant='outlined' disabled={
     place == "30"
-      ? !(name.trim() !== "" && phone.trim() !== "" && adress.trim() !== "")
-      : !(name.trim() !== "" && phone.trim() !== "")
+      ? !(firstName.trim() !== "" && secondName.trim() !== "" && thirdName.trim() !== "" && phone.trim().length == 12 && adress.trim() !== "")
+      : !(firstName.trim() !== "" && secondName.trim() !== ""  && (phone.trim().length ==12 ))
   }   >Оформити замовлення</Button>
    <Button 
         onClick={()=>resetData()}
@@ -386,11 +408,7 @@ export default function CheckOut() {
             Скасувати
     </Button>
         </div>
-        <div 
-        onClick={()=>{setOpenAlertDialog(true)}}
-        className=' animate-pulse cursor-pointer  absolute right-2'>
- <AnnouncementIcon />
- </div>
+       
  <AlertDialog open={openAlertDialog} setOpen={setOpenAlertDialog} title={alertTitle} text={alertText}/>
  </>
 }
