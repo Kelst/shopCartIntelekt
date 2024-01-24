@@ -29,7 +29,7 @@ function TabPanel(props) {
     >
       {value === index && (
           // p:3,paddingLeft:4 
-        <Box sx={flagList==false?{ p:3,paddingLeft:4  }:{ paddingTop: 1,paddingLeft:0.5}}>
+        <Box sx={flagList==false?{ p:3,paddingLeft:4  }:{ paddingTop: 1,paddingLeft:0.7}}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -108,7 +108,7 @@ const switchFlagList=useStore(state=>state.switchFlagList)
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}
         onChangeIndex={handleChangeIndex}
-        className=''
+        className=' ml-[-1.5px] bg-white shadow-xl '
       >
      
         {cat.map((e, index) => (
