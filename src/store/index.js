@@ -58,7 +58,7 @@ export const useStore = create((set,get) => ({
       localStorage.removeItem('state');
      return data
     } catch (error) {
-      console.log(error);
+      console.log(error,"POMILKA");
       set(state=>({...state,loader:false}))
       return false
     }
@@ -93,7 +93,6 @@ setCatNav(id){
     set(state=>({...state,loader:val}))
   },
   setTelegramId(id){
-
     set(state=>({...state,telegramId:`${id}`}))
   },
  async getPhone(id){

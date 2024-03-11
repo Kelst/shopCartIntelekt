@@ -115,7 +115,6 @@ export default function CheckOut() {
               case 30:
                 console.log("!3");
                   adre= adress+" "+vidilen[Number.parseInt(placeVidil)].Description
-                
              }
       
          
@@ -145,6 +144,7 @@ export default function CheckOut() {
         }
       }else {
         setTectAlert("Виникла помилка при оформленні замовлення будь ласка зв'яжіться із тех. підтримкою")
+        console.log("d");
         setState(1)
         setOpen(true)
       }

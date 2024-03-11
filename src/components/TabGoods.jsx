@@ -29,7 +29,7 @@ function TabPanel(props) {
     >
       {value === index && (
           // p:3,paddingLeft:4 
-        <Box sx={flagList==false?{ p:3,paddingLeft:4  }:{ paddingTop: 1,paddingLeft:0.7}}>
+        <Box sx={  flagList==false?{ p:3,paddingLeft:4  }:{ paddingTop: 1}}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -71,7 +71,7 @@ const switchFlagList=useStore(state=>state.switchFlagList)
   };
 
   return (
-    <Box sx={{ bgcolor: 'white', width:'95vw', marginTop: '-6px' }}>
+    <Box sx={{  width:'95vw', marginTop: '-6px',padding:"6px" }}>
       <AppBar position="static ">
         <Tabs
          variant="scrollable"
@@ -98,7 +98,8 @@ const switchFlagList=useStore(state=>state.switchFlagList)
         </Tabs>
         
       </AppBar>
-      <div className='w-[150px] ml-3 mr-auto h-[30px] mt-1 flex  justify-start items-center gap-1'>
+      <div>
+      <div className=' mr-auto  mt-1 flex  justify-start items-center gap-1'>
       <Tooltip title="grid" placement="top"> <GridViewIcon onClick={()=>{switchFlagList(true)}} className={`${flagList==true?' bg-red-800 rounded-md text-white':''}`}/></Tooltip>
       <Tooltip title="slide" placement="top"> <ReorderIcon onClick={()=>{switchFlagList(false)}} className={`rotate-90 ${flagList==false?' bg-red-800  text-white rounded-md':''}`}/></Tooltip>
       
@@ -108,7 +109,7 @@ const switchFlagList=useStore(state=>state.switchFlagList)
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}
         onChangeIndex={handleChangeIndex}
-        className=' ml-[2.5px] bg-white shadow-xl '
+        className=' flex justify-center items-center  '
       >
      
         {cat.map((e, index) => (
@@ -125,6 +126,7 @@ const switchFlagList=useStore(state=>state.switchFlagList)
           </TabPanel>
         )}
       </SwipeableViews>
+      </div>
     </Box>
   );
 }
