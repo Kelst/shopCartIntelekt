@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, '../dist')));
 // Всі запити повертатимуть індексний HTML-файл
 app.get("/*", (_req, res) => {
   
-  res.sendFile(path.join("/home/vladb/tovar_app/shopCartIntelekt/dist/", "index.html"));
+  res.sendFile(path.join(__dirname, "../dist", "index.html"));
 })
 
 // Запускаємо сервер
