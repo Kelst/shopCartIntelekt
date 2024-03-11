@@ -5,16 +5,124 @@ export const useStore = create((set,get) => ({
   shopCart: 0,
   cat:[],
   goodCart:[],
+  goodsUnique:[],
+  orders:[],
   cartSum:0,
   operators:0,
+  telegramId:"",
+  catNav:0,
+  loader:false,
+  shovDynamicsNavigation:false,
+  operator2:0,
+  countSlide:0,
+  index:0,
+  flagList:true,
+  switchFlagList(flag){
+    set(state=>({...state,flagList:flag}))
+  },
+  async makeCall(phone){
+    let resp=await $api.post('/makeCall',{phone:`${phone}`}) 
+    console.log("ВІдправлено смс  дзвінок",resp.data);
 
+  },
+  async getOrderTelegram (id){
+    try {
+      set(state=>({...state,loader:true}))
+        let data=await $api.post('/get-order-telegram',{id:`${id}`})
+        set(state=>({...state,orders:data.data}))
+        console.log(data.data,"Orders");
+
+    }
+    catch(e){
+      console.log(e,"OrderGet");
+      
+      set(state=>({...state,loader:false,orders:[...state.orders]}))
+ 
+    }
+    finally {
+      set(state=>({...state,loader:false})) 
+    }
+   
+     
+
+  },
+
+  async sendOrder (order) {
+    try {
+      set(state=>({...state,loader:true}))
+      const response=await $api.post("/create-order",{order:order})
+      const data=response.data
+      set(state=>({...state,loader:false}))
+      if(data==false) return false 
+      set(state=>({...state,goodCart:[],shopCart:0}))
+      localStorage.removeItem('state');
+     return data
+    } catch (error) {
+      console.log(error);
+      set(state=>({...state,loader:false}))
+      return false
+    }
+  },
+  async removeOrder () {
+    try {
+      set(state=>({...state,goodCart:[],shopCart:0}))
+      localStorage.removeItem('state');
+     return true
+    } catch (error) {
+      console.log(error);
+      return false
+    }
+  },
+  setIndex(index){
+    set((state)=>({...state,index:index}))
+  },
+  setOperator2(){
+set(state=>({...state,operator2:state.operator2+1}))
+  },
+  setAllCat(cats){
+set(state=>({...state,cat:cats}))
+  },
+setShovDynamicsNavigation(flag){
+  set(state=>({...state,shovDynamicsNavigation:flag}))
+},
+setCatNav(id){
+  set(state=>({...state,catNav:id}))
+
+},
+  setLoader(val){
+    set(state=>({...state,loader:val}))
+  },
+  setTelegramId(id){
+
+    set(state=>({...state,telegramId:`${id}`}))
+  },
+ async getPhone(id){
+try {
+  const response=await $api.post("/get-phone",{id:id})
+  const data=response.data
+  if (data!=false){
+    return data
+  }else {
+    return ""
+  }
+}
+catch (e){
+
+}
+  },
   checkLocalStorage(){
     const dataFromLocalStorage=JSON.parse(localStorage.getItem("state"))
-   
-    if(dataFromLocalStorage.goodCart.length!=0){
-      set(state=>({...state,operators:dataFromLocalStorage.operators,cat:dataFromLocalStorage.cat,shopCart:dataFromLocalStorage.goodCart.length,goodCart:[...dataFromLocalStorage.goodCart]}))
+    if(!dataFromLocalStorage) return
+    try {
+      if(dataFromLocalStorage.goodCart.length!=0){
+        set(state=>({...state,catNav:dataFromLocalStorage.catNav,operators:dataFromLocalStorage.operators,shopCart:dataFromLocalStorage.goodCart.length,goodCart:[...dataFromLocalStorage.goodCart]}))
+      }
+      console.log("Check",dataFromLocalStorage.goodCart);
     }
-    console.log("Check",dataFromLocalStorage.goodCart);
+    catch(e){
+console.log("ERROR CHEckLOcal ",e);
+    }
+
   },
   async getAllCat () {
   
@@ -30,12 +138,26 @@ export const useStore = create((set,get) => ({
   },
   async getGoods (id_cat) {
     try {
+      set(state=>({...state,loader:true}))
       const response=await $api.post("/get-all-goods-by-cat",{id_cat:id_cat})
       const data=response.data
+      set(state=>({...state,loader:false}))
      return data
     } catch (error) {
       console.log(error);
-      
+      set(state=>({...state,loader:false}))
+    }
+  },
+  async getGoodsUniques () {
+    try {
+      set(state=>({...state,loader:true}))
+      const response=await $api.get("/get-all-goods_unique")
+      const data=response.data
+      set(state=>({...state,goodsUnique:data,loader:false}))
+     return data
+    } catch (error) {
+      console.log(error);
+      set(state=>({...state,loader:false}))
     }
   },
   addToCart(good) {
@@ -80,7 +202,7 @@ export const useStore = create((set,get) => ({
       }
     }
     return item;
-  });
+  })
 
   const newGoodCart = updatedGoodCart.filter(item => item !== null);
 
@@ -97,10 +219,33 @@ export const useStore = create((set,get) => ({
   localStorage.removeItem('state');
   localStorage.setItem("state", JSON.stringify(get()));
 }
+,
 
+removeFromCartShop(good) {
+  const id_cat = good.id_cat;
+  const id = good.id;
+  const updatedGoodCart = get().goodCart.map(item => {
+    if (item.id === id && item.id_cat === id_cat) {
+  return null
+    }
+    return item;
+  })
 
+  const newGoodCart = updatedGoodCart.filter(item => item !== null);
 
+  console.log(newGoodCart);
 
+  set(state => ({
+    ...state,
+    shopCart: newGoodCart.length,
+    goodCart: [...newGoodCart],
+    operators:state.operators-1
+
+  }));
+  
+  localStorage.removeItem('state');
+  localStorage.setItem("state", JSON.stringify(get()));
+}
 
 
 ,

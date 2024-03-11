@@ -10,10 +10,21 @@
   
   /* Фон смуги прокрутки (для WebKit браузерів) */
   ::-webkit-scrollbar-track {
-    background: transparent; /* Зробити фон смуги прокрутки прозорим */
+    background: red; /* Зробити фон смуги прокрутки прозорим */
   }
   
   /* Ползунок смуги прокрутки (для WebKit браузерів) */
   ::-webkit-scrollbar-thumb {
     background: transparent; /* Зробити ползунок смуги прокрутки прозорим */
+  }
+
+  /* body{
+    background-image: url('./assets/bg.png');
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+  } */
+
+  body{
+    
   }

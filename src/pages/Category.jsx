@@ -1,29 +1,47 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from 'react'
+import { useLoaderData, useLocation, useParams } from 'react-router-dom';
 import { useStore } from '../store';
 import GoodItem from '../components/GoodItem';
 import { Typography } from '@mui/material';
+import Carousel from 'react-material-ui-carousel'
+import Slider from "react-slick";
+import CaruselCustum from '../components/CaruselCustum';
+import TabGoods from '../components/TabGoods';
 
 export default function Category() {
-  let { id } = useParams(); useParams
-  const [goodByCat,setGoodByCat]=useState([])
-  const goods=useStore(state=>state.getGoods)
+  let { id } = useParams(); 
+  const setCatNav=useStore(state=>state.setCatNav)
+  const cat=useStore(state=>state.cat)
+  const setShovDynamicsNavigation=useStore(state=>state.setShovDynamicsNavigation)
+  const [showItem,setShowItem]=useState([])
+  const operator2=useStore(state=>state.operator2)
+const datas=useLoaderData()
   useEffect(()=>{
 
-    async function fetchData(id) {
+    
+    setShovDynamicsNavigation(true)
+    let index=cat.findIndex(e=>e.id==id)
+    setCatNav(index)
+     let a= datas.map(e=><GoodItem key={e.id} good={e}/>)
+      setShowItem(a)
+    console.log("CAtegory:",datas,"Index",index);
+  
 
-      const data=await goods(id)  
-      setGoodByCat(data)
-    }
-    fetchData(id)
-  },[goods,id])
+
+  },[])
   return (
-    <div className=' flex flex-col items-center justify-center w-[100%]  '>
+    <div className=' flex  items-center justify-center w-[100%] mt-5  bg-white  shadow-lg'>
+      
+      <TabGoods/>
 
-    {
-      goodByCat.length==0?<Typography>Вибачте в даній категорії немає жодного товару</Typography>:
-      goodByCat.map(e=><GoodItem key={e.id} good={e}/>)
-    }
+    {/* {
+      showItem.length==0?<Typography>Вибачте в даній категорії немає жодного товару</Typography>:
+     
+     <CaruselCustum showItem={[...showItem]} />
+     
+     
+    } */}
+  
     
     </div>
   )

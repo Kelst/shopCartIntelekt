@@ -5,7 +5,28 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'sm': '350px',
+      },
+      animation: {
+        'reverse-spin': 'reverse-spin 5s linear infinite',
+        'my-spin': 'spin 20s linear infinite'
+      },
+      keyframes: {
+        'reverse-spin': {
+          from: {
+            transform: 'rotate(360deg)'
+          },
+        
+        },
+        'spin':{
+          from:{
+            transform:'rotate(-360deg)'
+          }
+        }
+      }
+    },
   },
-  plugins: [],
+
 }

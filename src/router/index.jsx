@@ -5,31 +5,59 @@ import {
 import Cart from "../pages/Cart";
 import ShopCart from "../pages/ShopCart";
 import Category from "../pages/Category";
-import Item from "../pages/Item";
+
 import Layout from "../pages/Layout";
+import CheckOut from "../pages/CheckOut";
+import $api from "../http";
+import MyOrders from "../pages/MyOrders";
+import ReadMe from "../pages/ReadMe";
+import Warranty from "../pages/Warranty";
 
 export const router=createBrowserRouter([
     {
         path:"/",
         element:<Layout/>,
+        loader:async()=>{
+          const response=await $api.get("/get-all-cat")
+          const data=response.data
+          return data
+        },
         children:[
             {
-                path: "/",
+              
                 index:true,
                 element: <Cart/>,
               },
               {
+                
                   path: "/category/:id",
+                  loader: async ({ params }) => { 
+                    const response=await $api.post("/get-all-goods-by-cat",{id_cat:params.id})
+                    return response.data
+                  },
                   element: <Category/>,
-                },
-                {
-                  path: "/item/",
-                  element: <Item/>,
                 },
                 {
                   path: "/shop-cart/",
                   element: <ShopCart/>,
                 },
+                {
+                  path: "/check-out/",
+                  element: <CheckOut/>,
+                },
+                {
+                  path:"/my-orders/",
+                  element:<MyOrders/>
+                },
+                {
+                  path:"/read-me/",
+                  element:<ReadMe/>
+                },
+                {
+                  path:"/warranty/",
+                  element:<Warranty/>
+                },
+                
         ]
     }
    
