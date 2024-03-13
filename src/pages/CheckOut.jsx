@@ -244,7 +244,7 @@ export default function CheckOut() {
 
  <Button onClick={async ()=>{ 
  
-    const login=await getLogin()
+    const login=await getLogin(telegramId)
   
   window.location.href ='https://easypay.ua/ua/partners/intelekt-group/intelekt-group?hash='+makerLinksToFastPayEasyPay(price,login)}} sx={{borderColor:"black",color:"black"}} variant='outlined'>Оплатити </Button>
 </>:
