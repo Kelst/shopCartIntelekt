@@ -37,7 +37,6 @@ export default function AlertDialog({open,setOpen,title,text}) {
 
   <div class="mb-6">
     <p class="text-lg">Нова пошта (за тарифами перевізника).</p>
-    <p class="text-sm">Доставкою Нова Пошта- 100% предоплата на обраний товар.</p>
   </div>
 
   <div class="mb-6">
@@ -48,7 +47,7 @@ export default function AlertDialog({open,setOpen,title,text}) {
   <h2 class="text-xl font-bold mb-4">Способи оплати:</h2>
 
   <div class="mb-6">
-    <p class="text-sm">При замовленні доставки товару "Новою Поштою" - обов'язкова 100% передоплата замовлення.  Вартість доставки замовлення оплачує покупець, згідно тарифів "Нової Пошти".</p>
+  <p class="text-sm">При замовленні доставки товару "Новою Поштою" - оплата здійснюється з Вашого логіну.</p>
   </div>
 </div>
           </DialogContentText>

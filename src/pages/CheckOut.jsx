@@ -236,9 +236,9 @@ export default function CheckOut() {
  <AnnouncementIcon />
  </div>
 {pay ? <>
-  <span className=' uppercase text-lg font-bold'>До оплати : {price} (грн) </span>
+  <span className=' uppercase text-lg font-bold'>До оплати : {price} грн. </span>
   <div class="mb-6">
-    <p class="text-sm">При замовленні доставки товару "Новою Поштою" - обов'язкова 100% передоплата замовлення.  Вартість доставки замовлення оплачує покупець, згідно тарифів "Нової Пошти".</p>
+    {/* <p class="text-sm">При замовленні доставки товару "Новою Поштою" - обов'язкова 100% передоплата замовлення.  Вартість доставки замовлення оплачує покупець, згідно тарифів "Нової Пошти".</p> */}
    
   </div>
 
