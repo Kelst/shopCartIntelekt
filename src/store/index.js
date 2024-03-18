@@ -47,10 +47,10 @@ export const useStore = create((set,get) => ({
 
   },
 
-  async sendOrder (order) {
+  async sendOrder (order,depositPay=false) {
     try {
       set(state=>({...state,loader:true}))
-      const response=await $api.post("/create-order",{order:order})
+      const response=await $api.post("/create-order",{order:order,depositPay:depositPay})
       const data=response.data
       set(state=>({...state,loader:false}))
       if(data==false) return false 
@@ -109,6 +109,16 @@ catch (e){
 
 }
   },
+  async getDeposit(telegram_id,sum){
+    try {
+      const response=await $api.get("/get-deposit",{telegram_id:telegram_id,sum:sum})
+      const data=response.data
+        return data
+    }
+    catch (e){
+    return false
+    }
+      },
   checkLocalStorage(){
     const dataFromLocalStorage=JSON.parse(localStorage.getItem("state"))
     if(!dataFromLocalStorage) return

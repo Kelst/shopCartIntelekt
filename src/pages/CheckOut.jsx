@@ -73,6 +73,7 @@ export default function CheckOut() {
     const goodCart=useStore(state=>state.goodCart)
     const sendOrder=useStore(state=>state.sendOrder)
     const getPrice=useStore(state=>state.getPrice)
+    const getDeposit=useStore(state=>state.getDeposit)
     const telegramId=useStore(state=>state.telegramId)
     const [price,setPrice]=useState(0)
     const cat=useStore(state=>state.cat)
@@ -80,6 +81,7 @@ export default function CheckOut() {
     const [openAlertDialog,setOpenAlertDialog]=useState(false)
     const [alertTitle,setAlertTitle]=useState("")
     const [alertText,setAlertText]=useState("")
+    const [showPay,setShowPay]=useState(false)
 
     const navigation=useNavigate()
 
@@ -138,6 +140,8 @@ export default function CheckOut() {
         setOpen(true)
      
         if(place==30){
+          let showPay=await getDeposit(telegramId,data.sum)
+           setShowPay(showPay)
            setPay(true)   
         } else {
           navigation("/")
@@ -237,10 +241,13 @@ export default function CheckOut() {
 {pay ? <>
   <span className=' uppercase text-lg font-bold'>До оплати : {price} (грн) </span>
   <div class="mb-6">
+    
     <p class="text-sm">При замовленні доставки товару "Новою Поштою" - обов'язкова 100% передоплата замовлення.  Вартість доставки замовлення оплачує покупець, згідно тарифів "Нової Пошти".</p>
    
   </div>
+
  <Button onClick={()=>{ window.location.href ='https://easypay.ua/ua/partners/intelekt-group/intelekt-group?hash='+makerLinksToFastPayEasyPay(price,'buyer')}} sx={{borderColor:"black",color:"black"}} variant='outlined'>Оплатити </Button>
+ <Button onClick={()=>{ window.location.href ='https://easypay.ua/ua/partners/intelekt-group/intelekt-group?hash='+makerLinksToFastPayEasyPay(price,'buyer')}} sx={{borderColor:"black",color:"black"}} variant='outlined'>Оплатити  </Button>
 
 
 </>:
