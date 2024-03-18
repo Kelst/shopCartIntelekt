@@ -75,6 +75,7 @@ export default function CheckOut() {
     const getPrice=useStore(state=>state.getPrice)
     const getDeposit=useStore(state=>state.getDeposit)
     const telegramId=useStore(state=>state.telegramId)
+    const getLogin=useStore(state=>state.getLogin)
     const [price,setPrice]=useState(0)
     const cat=useStore(state=>state.cat)
     const removeOrder=useStore(state=>state.removeOrder)
@@ -245,9 +246,7 @@ export default function CheckOut() {
     <p class="text-sm">При замовленні доставки товару "Новою Поштою" - обов'язкова 100% передоплата замовлення.  Вартість доставки замовлення оплачує покупець, згідно тарифів "Нової Пошти".</p>
    
   </div>
-
  <Button onClick={()=>{ window.location.href ='https://easypay.ua/ua/partners/intelekt-group/intelekt-group?hash='+makerLinksToFastPayEasyPay(price,'buyer')}} sx={{borderColor:"black",color:"black"}} variant='outlined'>Оплатити </Button>
- <Button onClick={()=>{ window.location.href ='https://easypay.ua/ua/partners/intelekt-group/intelekt-group?hash='+makerLinksToFastPayEasyPay(price,'buyer')}} sx={{borderColor:"black",color:"black"}} variant='outlined'>Оплатити  </Button>
 
 
 </>:

@@ -157,6 +157,19 @@ console.log("ERROR CHEckLOcal ",e);
       set(state=>({...state,loader:false}))
     }
   },
+  async getLogin (idTelegram) {
+    const phone=await get().getPhone(idTelegram)
+    try {
+      set(state=>({...state,loader:true}))
+      const response=await $api.post("/get-login",{id:idTelegram,phone:phone})
+      const data=response.data
+      set(state=>({...state,loader:false}))
+     return data
+    } catch (error) {
+      console.log(error);
+      set(state=>({...state,loader:false}))
+    }
+  },
   async getGoodsUniques () {
     try {
       set(state=>({...state,loader:true}))
