@@ -75,6 +75,7 @@ export default function CheckOut() {
     const goodCart=useStore(state=>state.goodCart)
     const sendOrder=useStore(state=>state.sendOrder)
     const getPrice=useStore(state=>state.getPrice)
+    const getDeposit=useStore(state=>state.getDeposit)
     const telegramId=useStore(state=>state.telegramId)
     const getLogin=useStore(state=>state.getLogin)
     const payDeposit=useStore(state=>state.payDeposit)
@@ -148,8 +149,6 @@ export default function CheckOut() {
         setOpen(true)
      
         if(place==30){
-          let showPay=await getDeposit(telegramId,data.sum)
-          setShowPay(showPay)
            setPay(true)   
         } else {
           navigation("/")
@@ -250,30 +249,15 @@ export default function CheckOut() {
 {pay ? <>
   <span className=' uppercase text-lg font-bold'>До оплати : {price} грн. </span>
   <div class="mb-6">
-    {/* <p class="text-sm">При замовленні доставки товару "Новою Поштою" - обов'язкова 100% передоплата замовлення.  Вартість доставки замовлення оплачує покупець, згідно тарифів "Нової Пошти".</p> */}
+    <p class="text-sm">При замовленні доставки товару "Новою Поштою" - обов'язкова 100% передоплата замовлення.  Вартість доставки замовлення оплачує покупець, згідно тарифів "Нової Пошти".</p>
    
   </div>
- {
-  showPay? <Button onClick={async ()=>{
-   if (orderId!=0){
-    setLoader(true)
-    await payDeposit(telegramId,orderId)
-    setLoader(false)
-    setTectAlert("Замовлення оплачено із коштів логіну !")
-    console.log("d");
-    setOpen(true)
-    navigation("/")
 
-   }
-   navigation("/")
-
-  }} sx={{borderColor:"black",color:"black",marginBottom:"7px"}} variant='outlined'> Оплатити з логіну  </Button>:""
+ <Button onClick={async ()=>{ 
  
- }
-  <Button onClick={async ()=>{ 
     const login=await getLogin(telegramId)
-  window.location.href ='https://easypay.ua/ua/partners/intelekt-group/intelekt-group?hash='+makerLinksToFastPayEasyPay(price,login)}} sx={{borderColor:"black",color:"black"}} variant='outlined'>Оплатити картою </Button>
-
+  
+  window.location.href ='https://easypay.ua/ua/partners/intelekt-group/intelekt-group?hash='+makerLinksToFastPayEasyPay(price,login)}} sx={{borderColor:"black",color:"black"}} variant='outlined'>Оплатити </Button>
 </>:
 <>
        <AlertCustum open={open} setOpen={setOpen} text={textAlert} state={state}/> 

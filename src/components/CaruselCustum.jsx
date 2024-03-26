@@ -46,7 +46,7 @@ fetch()
     
    
     
-    sx={{minWidth:"325px", marginTop:"-15px", marginLeft:"-16px", display:"flex", flexDirection:"column", justifyItems:"center", alignItems:"center"}} 
+    sx={{minWidth:"250px", marginTop:"-15px", marginLeft:"-16px", display:"flex", flexDirection:"column", justifyItems:"center", alignItems:"center"}} 
     autoPlay={false}
     swipe 
     duration={200}

@@ -37,15 +37,15 @@ export default function GoodItem({good}) {
       nav("/shop-cart/")
     }
   return (
-<Card raised className=' flex flex-col justify-end' sx={{height:475,border:`${good.unique_price!=0?"2px solid red":"1px solid gray"}` }} >
+<Card raised className=' flex flex-col justify-end ' sx={{height:475,width:'auto',border:`${good.unique_price!=0?" solid red":" solid white"}` }} >
       <ShowDetailInfo open={open} good={good} setOpen={setOpen}/>
       <CardMedia
           component="img"
           loading='true'
         
          sx={{
-            maxHeight: 160,
-           maxWidth:200,
+            maxHeight: 140,
+           width:100,
             margin:"0 auto",
             objectFit: "contain", 
             paddingTop:"20px"
@@ -65,7 +65,7 @@ export default function GoodItem({good}) {
   good.unique_price !== 0
     ? (
       <>
-        <span className=' font-bold '>Ціна тижня {good.unique_price} грн.</span> замість старої ціни : {good.cost} грн.
+        <span className=' font-bold text-red-100'>Ціна тижня {good.unique_price} грн.</span> замість старої ціни : {good.cost} грн.
       </>
     )
     : ""
