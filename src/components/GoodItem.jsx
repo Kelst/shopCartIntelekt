@@ -45,7 +45,7 @@ export default function GoodItem({good}) {
         
          sx={{
             maxHeight: 160,
-           maxWidth:200,
+           width:200,
             margin:"0 auto",
             objectFit: "contain", 
             paddingTop:"20px"
