@@ -71,7 +71,7 @@ const switchFlagList=useStore(state=>state.switchFlagList)
   };
 
   return (
-    <Box sx={{  width:'98vw', marginTop: '-6px',padding:"6px" }}>
+    <Box sx={{  width:'99vw', marginTop: '-6px',padding:"6px" }}>
       <AppBar position="static ">
         <Tabs
          variant="scrollable"
