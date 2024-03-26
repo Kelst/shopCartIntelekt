@@ -14,6 +14,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import CustumeDone from '../components/CustumDone';
+import BackDroopCustum from '../components/BackDroopCustum';
 function hasRouter(goodCart, cat) {
   for (let i = 0; i < goodCart.length; i++) {
     const id_cat = goodCart[i].id_cat;
@@ -54,6 +55,7 @@ const makerLinksToFastPayEasyPay = (amount, login) => {
   return encodedData;
 };
 export default function CheckOut() {
+  const [orderId,setOrderId]=useState(0)
     const [name, setName] = React.useState('');
     const [nameWifi, setNameWiFi] = React.useState('');
     const [firstName, setFirstName] = React.useState('');
@@ -75,12 +77,17 @@ export default function CheckOut() {
     const getPrice=useStore(state=>state.getPrice)
     const telegramId=useStore(state=>state.telegramId)
     const getLogin=useStore(state=>state.getLogin)
+    const payDeposit=useStore(state=>state.payDeposit)
+    
+    const getDeposit=useStore(state=>state.getDeposit)
     const [price,setPrice]=useState(0)
     const cat=useStore(state=>state.cat)
     const removeOrder=useStore(state=>state.removeOrder)
     const [openAlertDialog,setOpenAlertDialog]=useState(false)
     const [alertTitle,setAlertTitle]=useState("")
     const [alertText,setAlertText]=useState("")
+    const [showPay,setShowPay]=useState(false)
+    const setLoader=useStore(state=>state.setLoader)
 
     const navigation=useNavigate()
 
@@ -132,13 +139,17 @@ export default function CheckOut() {
 
       setPrice(data.sum)
    let flag=await sendOrder(data)
-      if(flag){
+   
+      if(flag.flag){
+        setOrderId(flag.orderId)
         setTectAlert("Ваше замовлення принято !!! очікуйте повідомлення про номер замовлення")
         setState(0)
 
         setOpen(true)
      
         if(place==30){
+          let showPay=await getDeposit(telegramId,data.sum)
+          setShowPay(showPay)
            setPay(true)   
         } else {
           navigation("/")
@@ -230,6 +241,7 @@ export default function CheckOut() {
       },[])
   return (
     <div className='max-w-[303px] m-auto border p-9 shadow-md relative  overflow-auto'>
+      <BackDroopCustum/>
        <div 
         onClick={()=>{setOpenAlertDialog(true)}}
         className=' animate-pulse cursor-pointer  absolute right-1 top-1'>
@@ -241,12 +253,27 @@ export default function CheckOut() {
     {/* <p class="text-sm">При замовленні доставки товару "Новою Поштою" - обов'язкова 100% передоплата замовлення.  Вартість доставки замовлення оплачує покупець, згідно тарифів "Нової Пошти".</p> */}
    
   </div>
+ {
+  showPay? <Button onClick={async ()=>{
+   if (orderId!=0){
+    setLoader(true)
+    await payDeposit(telegramId,orderId)
+    setLoader(false)
+    setTectAlert("Замовлення оплачено із коштів логіну !")
+    console.log("d");
+    setOpen(true)
+    navigation("/")
 
- <Button onClick={async ()=>{ 
+   }
+   navigation("/")
+
+  }} sx={{borderColor:"black",color:"black",marginBottom:"7px"}} variant='outlined'> Оплатити з логіну  </Button>:""
  
+ }
+  <Button onClick={async ()=>{ 
     const login=await getLogin(telegramId)
-  
-  window.location.href ='https://easypay.ua/ua/partners/intelekt-group/intelekt-group?hash='+makerLinksToFastPayEasyPay(price,login)}} sx={{borderColor:"black",color:"black"}} variant='outlined'>Оплатити </Button>
+  window.location.href ='https://easypay.ua/ua/partners/intelekt-group/intelekt-group?hash='+makerLinksToFastPayEasyPay(price,login)}} sx={{borderColor:"black",color:"black"}} variant='outlined'>Оплатити картою </Button>
+
 </>:
 <>
        <AlertCustum open={open} setOpen={setOpen} text={textAlert} state={state}/> 
@@ -416,6 +443,7 @@ export default function CheckOut() {
  <AlertDialog open={openAlertDialog} setOpen={setOpenAlertDialog} title={alertTitle} text={alertText}/>
  </>
 }
+    
     </div>
   )
 }

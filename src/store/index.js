@@ -53,7 +53,7 @@ export const useStore = create((set,get) => ({
       const response=await $api.post("/create-order",{order:order})
       const data=response.data
       set(state=>({...state,loader:false}))
-      if(data==false) return false 
+      if(data.flag==false) return false 
       set(state=>({...state,goodCart:[],shopCart:0}))
       localStorage.removeItem('state');
      return data
@@ -61,6 +61,16 @@ export const useStore = create((set,get) => ({
       console.log(error,"POMILKA");
       set(state=>({...state,loader:false}))
       return false
+    }
+  },
+  async payDeposit(telegram_id,orderId){
+    try {
+      const response=await $api.post("/payDeposit",{telegram_id:telegram_id,orderId:orderId})
+return true
+    }
+    catch(e){
+      return false
+      console.log('erro pay deposit',e);
     }
   },
   async removeOrder () {
@@ -160,6 +170,16 @@ console.log("ERROR CHEckLOcal ",e);
       set(state=>({...state,loader:false}))
     }
   },
+  async getDeposit(telegram_id,sum){
+    try {
+      const response=await $api.post("/get-deposit",{telegram_id:telegram_id,sum:sum})
+      const data=response.data
+        return data
+    }
+    catch (e){
+    return false
+    }
+      },
   async getGoodsUniques () {
     try {
       set(state=>({...state,loader:true}))
