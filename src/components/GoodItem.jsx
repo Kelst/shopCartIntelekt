@@ -37,7 +37,7 @@ export default function GoodItem({good}) {
       nav("/shop-cart/")
     }
   return (
-<Card raised className=' flex flex-col justify-end' sx={{height:475,border:`${good.unique_price!=0?"2px solid red":"1px solid gray"}` }} >
+<Card raised className=' flex flex-col justify-end ' sx={{height:475,width:'auto',border:`${good.unique_price!=0?" solid red":" solid white"}` }} >
       <ShowDetailInfo open={open} good={good} setOpen={setOpen}/>
       <CardMedia
           component="img"
@@ -45,7 +45,7 @@ export default function GoodItem({good}) {
         
          sx={{
             maxHeight: 160,
-           width:200,
+           width:190,
             margin:"0 auto",
             objectFit: "contain", 
             paddingTop:"20px"

@@ -42,7 +42,7 @@ fetch()
 },[]) 
   return (
     // w-[250px]  m-auto
-<div className={items.length==1?`w-[210px]   m-auto`: `w-auto  grid grid-cols-2 gap-2  `}>
+<div className={items.length==1?`w-[210px]   m-auto`: `w-[290px]  grid grid-cols-2 gap-2  `}>
     {
       ...items  
     }
