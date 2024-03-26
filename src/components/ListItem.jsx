@@ -46,7 +46,7 @@ export default function ListItem({good}) {
         
          sx={{
             maxHeight: 100,
-           maxWidth:190,
+           maxWidth:200,
             margin:"0 auto",
             objectFit: "contain", 
             paddingTop:"20px"

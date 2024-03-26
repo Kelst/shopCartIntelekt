@@ -29,7 +29,7 @@ function TabPanel(props) {
     >
       {value === index && (
           // p:3,paddingLeft:4 
-        <Box sx={  flagList==false?{ p:3,paddingLeft:4  }:{ paddingTop: 1}}>
+        <Box sx={  flagList==false?{ p:2,paddingLeft:4  }:{ paddingTop: 1}}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -71,7 +71,7 @@ const switchFlagList=useStore(state=>state.switchFlagList)
   };
 
   return (
-    <Box sx={{  width:'95vw', marginTop: '-6px',padding:"6px" }}>
+    <Box sx={{  width:'98vw', marginTop: '-6px',padding:"6px" }}>
       <AppBar position="static ">
         <Tabs
          variant="scrollable"
