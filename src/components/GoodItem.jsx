@@ -44,8 +44,8 @@ export default function GoodItem({good}) {
           loading='true'
         
          sx={{
-            maxHeight: 160,
-           width:190,
+            maxHeight: 140,
+           width:100,
             margin:"0 auto",
             objectFit: "contain", 
             paddingTop:"20px"
@@ -65,7 +65,7 @@ export default function GoodItem({good}) {
   good.unique_price !== 0
     ? (
       <>
-        <span className=' font-bold '>Ціна тижня {good.unique_price} грн.</span> замість старої ціни : {good.cost} грн.
+        <span className=' font-bold text-red-100'>Ціна тижня {good.unique_price} грн.</span> замість старої ціни : {good.cost} грн.
       </>
     )
     : ""
